@@ -1,0 +1,87 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+typedef  int u32 ;
+struct iss_csi2_device {int /*<<< orphan*/  regs1; int /*<<< orphan*/  iss; } ;
+
+/* Variables and functions */
+ int /*<<< orphan*/  CSI2_COMPLEXIO_IRQENABLE ; 
+ int /*<<< orphan*/  CSI2_COMPLEXIO_IRQSTATUS ; 
+ int CSI2_COMPLEXIO_IRQ_ERRCONTROL1 ; 
+ int CSI2_COMPLEXIO_IRQ_ERRCONTROL2 ; 
+ int CSI2_COMPLEXIO_IRQ_ERRCONTROL3 ; 
+ int CSI2_COMPLEXIO_IRQ_ERRCONTROL4 ; 
+ int CSI2_COMPLEXIO_IRQ_ERRCONTROL5 ; 
+ int CSI2_COMPLEXIO_IRQ_ERRESC1 ; 
+ int CSI2_COMPLEXIO_IRQ_ERRESC2 ; 
+ int CSI2_COMPLEXIO_IRQ_ERRESC3 ; 
+ int CSI2_COMPLEXIO_IRQ_ERRESC4 ; 
+ int CSI2_COMPLEXIO_IRQ_ERRESC5 ; 
+ int CSI2_COMPLEXIO_IRQ_ERRSOTHS1 ; 
+ int CSI2_COMPLEXIO_IRQ_ERRSOTHS2 ; 
+ int CSI2_COMPLEXIO_IRQ_ERRSOTHS3 ; 
+ int CSI2_COMPLEXIO_IRQ_ERRSOTHS4 ; 
+ int CSI2_COMPLEXIO_IRQ_ERRSOTHS5 ; 
+ int CSI2_COMPLEXIO_IRQ_ERRSOTSYNCHS1 ; 
+ int CSI2_COMPLEXIO_IRQ_ERRSOTSYNCHS2 ; 
+ int CSI2_COMPLEXIO_IRQ_ERRSOTSYNCHS3 ; 
+ int CSI2_COMPLEXIO_IRQ_ERRSOTSYNCHS4 ; 
+ int CSI2_COMPLEXIO_IRQ_ERRSOTSYNCHS5 ; 
+ int CSI2_COMPLEXIO_IRQ_STATEALLULPMENTER ; 
+ int CSI2_COMPLEXIO_IRQ_STATEALLULPMEXIT ; 
+ int CSI2_COMPLEXIO_IRQ_STATEULPM1 ; 
+ int CSI2_COMPLEXIO_IRQ_STATEULPM2 ; 
+ int CSI2_COMPLEXIO_IRQ_STATEULPM3 ; 
+ int CSI2_COMPLEXIO_IRQ_STATEULPM4 ; 
+ int CSI2_COMPLEXIO_IRQ_STATEULPM5 ; 
+ int /*<<< orphan*/  iss_reg_set (int /*<<< orphan*/ ,int /*<<< orphan*/ ,int /*<<< orphan*/ ,int) ; 
+ int /*<<< orphan*/  iss_reg_write (int /*<<< orphan*/ ,int /*<<< orphan*/ ,int /*<<< orphan*/ ,int) ; 
+
+__attribute__((used)) static void csi2_irq_complexio1_set(struct iss_csi2_device *csi2, int enable)
+{
+	u32 reg;
+
+	reg = CSI2_COMPLEXIO_IRQ_STATEALLULPMEXIT |
+		CSI2_COMPLEXIO_IRQ_STATEALLULPMENTER |
+		CSI2_COMPLEXIO_IRQ_STATEULPM5 |
+		CSI2_COMPLEXIO_IRQ_ERRCONTROL5 |
+		CSI2_COMPLEXIO_IRQ_ERRESC5 |
+		CSI2_COMPLEXIO_IRQ_ERRSOTSYNCHS5 |
+		CSI2_COMPLEXIO_IRQ_ERRSOTHS5 |
+		CSI2_COMPLEXIO_IRQ_STATEULPM4 |
+		CSI2_COMPLEXIO_IRQ_ERRCONTROL4 |
+		CSI2_COMPLEXIO_IRQ_ERRESC4 |
+		CSI2_COMPLEXIO_IRQ_ERRSOTSYNCHS4 |
+		CSI2_COMPLEXIO_IRQ_ERRSOTHS4 |
+		CSI2_COMPLEXIO_IRQ_STATEULPM3 |
+		CSI2_COMPLEXIO_IRQ_ERRCONTROL3 |
+		CSI2_COMPLEXIO_IRQ_ERRESC3 |
+		CSI2_COMPLEXIO_IRQ_ERRSOTSYNCHS3 |
+		CSI2_COMPLEXIO_IRQ_ERRSOTHS3 |
+		CSI2_COMPLEXIO_IRQ_STATEULPM2 |
+		CSI2_COMPLEXIO_IRQ_ERRCONTROL2 |
+		CSI2_COMPLEXIO_IRQ_ERRESC2 |
+		CSI2_COMPLEXIO_IRQ_ERRSOTSYNCHS2 |
+		CSI2_COMPLEXIO_IRQ_ERRSOTHS2 |
+		CSI2_COMPLEXIO_IRQ_STATEULPM1 |
+		CSI2_COMPLEXIO_IRQ_ERRCONTROL1 |
+		CSI2_COMPLEXIO_IRQ_ERRESC1 |
+		CSI2_COMPLEXIO_IRQ_ERRSOTSYNCHS1 |
+		CSI2_COMPLEXIO_IRQ_ERRSOTHS1;
+	iss_reg_write(csi2->iss, csi2->regs1, CSI2_COMPLEXIO_IRQSTATUS, reg);
+	if (enable)
+		iss_reg_set(csi2->iss, csi2->regs1, CSI2_COMPLEXIO_IRQENABLE,
+			    reg);
+	else
+		iss_reg_write(csi2->iss, csi2->regs1, CSI2_COMPLEXIO_IRQENABLE,
+			      0);
+}

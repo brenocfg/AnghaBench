@@ -1,0 +1,40 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+typedef  struct TYPE_4__   TYPE_2__ ;
+typedef  struct TYPE_3__   TYPE_1__ ;
+
+/* Type definitions */
+typedef  int /*<<< orphan*/  u64 ;
+struct TYPE_3__ {int /*<<< orphan*/ * per_prio_counters; } ;
+struct TYPE_4__ {TYPE_1__ pport; } ;
+struct mlx5e_priv {TYPE_2__ stats; } ;
+
+/* Variables and functions */
+ int /*<<< orphan*/  MLX5E_READ_CTR64_BE (int /*<<< orphan*/ *,int /*<<< orphan*/ ,int) ; 
+ int NUM_PPORT_PER_PRIO_TRAFFIC_COUNTERS ; 
+ int NUM_PPORT_PRIO ; 
+ int /*<<< orphan*/  pport_per_prio_traffic_stats_desc ; 
+
+__attribute__((used)) static int mlx5e_grp_per_prio_traffic_fill_stats(struct mlx5e_priv *priv,
+						 u64 *data,
+						 int idx)
+{
+	int i, prio;
+
+	for (prio = 0; prio < NUM_PPORT_PRIO; prio++) {
+		for (i = 0; i < NUM_PPORT_PER_PRIO_TRAFFIC_COUNTERS; i++)
+			data[idx++] =
+				MLX5E_READ_CTR64_BE(&priv->stats.pport.per_prio_counters[prio],
+						    pport_per_prio_traffic_stats_desc, i);
+	}
+
+	return idx;
+}

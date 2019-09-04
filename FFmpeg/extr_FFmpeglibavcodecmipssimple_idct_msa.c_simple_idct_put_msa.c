@@ -1,0 +1,236 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+typedef  int /*<<< orphan*/  v8u16 ;
+typedef  int v8i16 ;
+typedef  int v4i32 ;
+typedef  int /*<<< orphan*/  v2i64 ;
+typedef  int /*<<< orphan*/  v16u8 ;
+typedef  int /*<<< orphan*/  uint8_t ;
+typedef  int /*<<< orphan*/  uint64_t ;
+typedef  int int32_t ;
+typedef  int /*<<< orphan*/  int16_t ;
+
+/* Variables and functions */
+ int /*<<< orphan*/  ADD2 (int,int,int,int,int,int) ; 
+ int /*<<< orphan*/  BUTTERFLY_16 (int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int) ; 
+ int /*<<< orphan*/  BUTTERFLY_8 (int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int) ; 
+ scalar_t__ CLIP_SH_0_255 (int) ; 
+ int /*<<< orphan*/  DOTP_SH4_SW (int,int,int,int,int,int,int,int,int,int,int,int) ; 
+ int /*<<< orphan*/  DPADD_SH4_SW (int,int,int,int,int,int,int,int,int,int,int,int) ; 
+ int /*<<< orphan*/  ILVRL_H2_SW (int,int,int,int) ; 
+ int /*<<< orphan*/  ILVR_H2_SH (int,int,int,int,int,int) ; 
+ int /*<<< orphan*/  ILVR_H4_SH (int,int,int,int,int,int,int,int,int,int,int,int) ; 
+ int /*<<< orphan*/  LD_SH8 (int /*<<< orphan*/ *,int,int,int,int,int,int,int,int,int) ; 
+ int /*<<< orphan*/  MUL2 (int,int,int,int,int,int) ; 
+ int /*<<< orphan*/  PCKEV_B4_SW (int,int,int,int,int,int,int,int,int,int,int,int) ; 
+ int /*<<< orphan*/  PCKEV_H4_SW (int,int,int,int,int,int,int,int,int,int,int,int) ; 
+ int /*<<< orphan*/  SD4 (int /*<<< orphan*/ ,int /*<<< orphan*/ ,int /*<<< orphan*/ ,int /*<<< orphan*/ ,int /*<<< orphan*/ *,int) ; 
+ int /*<<< orphan*/  SPLATI_H4_SH (int,int,int,int,int,int,int,int,int) ; 
+ int /*<<< orphan*/  SRA_4V (int,int,int,int,int) ; 
+ int /*<<< orphan*/  SUB2 (int,int,int,int,int,int) ; 
+ int /*<<< orphan*/  TRANSPOSE8x8_SH_SH (int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int) ; 
+ int /*<<< orphan*/  UNPCK_SH_SW (int,int,int) ; 
+ scalar_t__ __msa_bmnz_v (int /*<<< orphan*/ ,int /*<<< orphan*/ ,int /*<<< orphan*/ ) ; 
+ int __msa_clti_u_h (int /*<<< orphan*/ ,int) ; 
+ int /*<<< orphan*/  __msa_copy_u_d (int /*<<< orphan*/ ,int) ; 
+ int __msa_ilvod_h (int,int) ; 
+ scalar_t__ __msa_ilvr_h (int,int) ; 
+ int __msa_insert_w (int,int /*<<< orphan*/ ,int) ; 
+ int __msa_ldi_w (int) ; 
+ scalar_t__ __msa_splati_h (int,int) ; 
+ int __msa_splati_w (int,int /*<<< orphan*/ ) ; 
+
+__attribute__((used)) static void simple_idct_put_msa(uint8_t *dst, int32_t dst_stride,
+                                int16_t *block)
+{
+    int32_t const_val;
+    uint64_t tmp0, tmp1, tmp2, tmp3;
+    v8i16 weights = { 0, 22725, 21407, 19266, 16383, 12873, 8867, 4520 };
+    v8i16 in0, in1, in2, in3, in4, in5, in6, in7;
+    v8i16 w1, w3, w5, w7;
+    v8i16 const0, const1, const2, const3, const4, const5, const6, const7;
+    v4i32 temp0_r, temp1_r, temp2_r, temp3_r;
+    v4i32 temp0_l, temp1_l, temp2_l, temp3_l;
+    v4i32 a0_r, a1_r, a2_r, a3_r, a0_l, a1_l, a2_l, a3_l;
+    v4i32 b0_r, b1_r, b2_r, b3_r, b0_l, b1_l, b2_l, b3_l;
+    v4i32 w2, w4, w6;
+    v8i16 select_vec, temp;
+    v8i16 zero = { 0 };
+    v4i32 const_val0 = __msa_ldi_w(1);
+    v4i32 const_val1 = __msa_ldi_w(1);
+
+    LD_SH8(block, 8, in0, in1, in2, in3, in4, in5, in6, in7);
+    const_val0 <<= 10;
+    const_val = 16383 * ((1 << 19) / 16383);
+    const_val1 = __msa_insert_w(const_val0, 0, const_val);
+    const_val1 = __msa_splati_w(const_val1, 0);
+    TRANSPOSE8x8_SH_SH(in0, in1, in2, in3, in4, in5, in6, in7,
+                       in0, in1, in2, in3, in4, in5, in6, in7);
+    select_vec = in1 | in2 | in3 | in4 | in5 | in6 | in7;
+    select_vec = __msa_clti_u_h((v8u16) select_vec, 1);
+    UNPCK_SH_SW(in0, a0_r, a0_l);
+    UNPCK_SH_SW(in2, temp3_r, temp3_l);
+    temp = in0 << 3;
+    w2 = (v4i32) __msa_splati_h(weights, 2);
+    w2 = (v4i32) __msa_ilvr_h(zero, (v8i16) w2);
+    w4 = (v4i32) __msa_splati_h(weights, 4);
+    w4 = (v4i32) __msa_ilvr_h(zero, (v8i16) w4);
+    w6 = (v4i32) __msa_splati_h(weights, 6);
+    w6 = (v4i32) __msa_ilvr_h(zero, (v8i16) w6);
+    MUL2(a0_r, w4, a0_l, w4, a0_r, a0_l);
+    ADD2(a0_r, const_val0, a0_l, const_val0, temp0_r, temp0_l);
+    MUL2(w2, temp3_r, w2, temp3_l, temp1_r, temp1_l);
+    MUL2(w6, temp3_r, w6, temp3_l, temp2_r, temp2_l);
+    BUTTERFLY_8(temp0_r, temp0_l, temp0_r, temp0_l,
+                temp2_l, temp2_r, temp1_l, temp1_r,
+                a0_r, a0_l, a1_r, a1_l, a2_l, a2_r, a3_l, a3_r);
+    UNPCK_SH_SW(in4, temp0_r, temp0_l);
+    UNPCK_SH_SW(in6, temp3_r, temp3_l);
+    MUL2(temp0_r, w4, temp0_l, w4, temp0_r, temp0_l);
+    MUL2(w2, temp3_r, w2, temp3_l, temp2_r, temp2_l);
+    MUL2(w6, temp3_r, w6, temp3_l, temp1_r, temp1_l);
+    ADD2(a0_r, temp0_r, a0_l, temp0_l, a0_r, a0_l);
+    SUB2(a1_r, temp0_r, a1_l, temp0_l, a1_r, a1_l);
+    SUB2(a2_r, temp0_r, a2_l, temp0_l, a2_r, a2_l);
+    ADD2(a3_r, temp0_r, a3_l, temp0_l, a3_r, a3_l);
+    ADD2(a0_r, temp1_r, a0_l, temp1_l, a0_r, a0_l);
+    SUB2(a1_r, temp2_r, a1_l, temp2_l, a1_r, a1_l);
+    ADD2(a2_r, temp2_r, a2_l, temp2_l, a2_r, a2_l);
+    SUB2(a3_r, temp1_r, a3_l, temp1_l, a3_r, a3_l);
+    ILVRL_H2_SW(in1, in3, b3_r, b3_l);
+    SPLATI_H4_SH(weights, 1, 3, 5, 7, w1, w3, w5, w7);
+    ILVRL_H2_SW(in5, in7, temp0_r, temp0_l);
+    ILVR_H4_SH(w1, w3, w3, -w7, w5, -w1, w7, -w5,
+               const0, const1, const2, const3);
+    ILVR_H2_SH(w5, w7, w7, w3, const4, const6);
+    const5 = __msa_ilvod_h(-w1, -w5);
+    const7 = __msa_ilvod_h(w3, -w1);
+    DOTP_SH4_SW(b3_r, b3_r, b3_r, b3_r, const0, const1, const2, const3,
+                b0_r, b1_r, b2_r, b3_r);
+    DPADD_SH4_SW(temp0_r, temp0_r, temp0_r, temp0_r,
+                 const4, const5, const6, const7, b0_r, b1_r, b2_r, b3_r);
+    DOTP_SH4_SW(b3_l, b3_l, b3_l, b3_l, const0, const1, const2, const3,
+                b0_l, b1_l, b2_l, b3_l);
+    DPADD_SH4_SW(temp0_l, temp0_l, temp0_l, temp0_l,
+                 const4, const5, const6, const7, b0_l, b1_l, b2_l, b3_l);
+    BUTTERFLY_16(a0_r, a0_l, a1_r, a1_l, a2_r, a2_l, a3_r, a3_l,
+                 b3_l, b3_r, b2_l, b2_r, b1_l, b1_r, b0_l, b0_r,
+                 temp0_r, temp0_l, temp1_r, temp1_l,
+                 temp2_r, temp2_l, temp3_r, temp3_l,
+                 a3_l, a3_r, a2_l, a2_r, a1_l, a1_r, a0_l, a0_r);
+    SRA_4V(temp0_r, temp0_l, temp1_r, temp1_l, 11);
+    SRA_4V(temp2_r, temp2_l, temp3_r, temp3_l, 11);
+    PCKEV_H4_SW(temp0_l, temp0_r, temp1_l, temp1_r,
+                temp2_l, temp2_r, temp3_l, temp3_r,
+                temp0_r, temp1_r, temp2_r, temp3_r);
+    in0 = (v8i16) __msa_bmnz_v((v16u8) temp0_r, (v16u8) temp,
+                               (v16u8) select_vec);
+    in1 = (v8i16) __msa_bmnz_v((v16u8) temp1_r, (v16u8) temp,
+                               (v16u8) select_vec);
+    in2 = (v8i16) __msa_bmnz_v((v16u8) temp2_r, (v16u8) temp,
+                               (v16u8) select_vec);
+    in3 = (v8i16) __msa_bmnz_v((v16u8) temp3_r, (v16u8) temp,
+                               (v16u8) select_vec);
+    SRA_4V(a3_r, a3_l, a2_r, a2_l, 11);
+    SRA_4V(a1_r, a1_l, a0_r, a0_l, 11);
+    PCKEV_H4_SW(a0_l, a0_r, a1_l, a1_r, a2_l, a2_r, a3_l, a3_r,
+                a0_r, a1_r, a2_r, a3_r);
+    in4 = (v8i16) __msa_bmnz_v((v16u8) a3_r, (v16u8) temp, (v16u8) select_vec);
+    in5 = (v8i16) __msa_bmnz_v((v16u8) a2_r, (v16u8) temp, (v16u8) select_vec);
+    in6 = (v8i16) __msa_bmnz_v((v16u8) a1_r, (v16u8) temp, (v16u8) select_vec);
+    in7 = (v8i16) __msa_bmnz_v((v16u8) a0_r, (v16u8) temp, (v16u8) select_vec);
+    TRANSPOSE8x8_SH_SH(in0, in1, in2, in3, in4, in5, in6, in7,
+                       in0, in1, in2, in3, in4, in5, in6, in7);
+    UNPCK_SH_SW(in0, a0_r, a0_l);
+    UNPCK_SH_SW(in2, temp3_r, temp3_l);
+    w2 = (v4i32) __msa_splati_h(weights, 2);
+    w2 = (v4i32) __msa_ilvr_h(zero, (v8i16) w2);
+    w4 = (v4i32) __msa_splati_h(weights, 4);
+    w4 = (v4i32) __msa_ilvr_h(zero, (v8i16) w4);
+    w6 = (v4i32) __msa_splati_h(weights, 6);
+    w6 = (v4i32) __msa_ilvr_h(zero, (v8i16) w6);
+    MUL2(a0_r, w4, a0_l, w4, a0_r, a0_l);
+    ADD2(a0_r, const_val1, a0_l, const_val1, temp0_r, temp0_l);
+    MUL2(w2, temp3_r, w2, temp3_l, temp1_r, temp1_l);
+    MUL2(w6, temp3_r, w6, temp3_l, temp2_r, temp2_l);
+    BUTTERFLY_8(temp0_r, temp0_l, temp0_r, temp0_l,
+                temp2_l, temp2_r, temp1_l, temp1_r,
+                a0_r, a0_l, a1_r, a1_l, a2_l, a2_r, a3_l, a3_r);
+    UNPCK_SH_SW(in4, temp0_r, temp0_l);
+    UNPCK_SH_SW(in6, temp3_r, temp3_l);
+    MUL2(temp0_r, w4, temp0_l, w4, temp0_r, temp0_l);
+    MUL2(w2, temp3_r, w2, temp3_l, temp2_r, temp2_l);
+    MUL2(w6, temp3_r, w6, temp3_l, temp1_r, temp1_l);
+    ADD2(a0_r, temp0_r, a0_l, temp0_l, a0_r, a0_l);
+    SUB2(a1_r, temp0_r, a1_l, temp0_l, a1_r, a1_l);
+    SUB2(a2_r, temp0_r, a2_l, temp0_l, a2_r, a2_l);
+    ADD2(a3_r, temp0_r, a3_l, temp0_l, a3_r, a3_l);
+    ADD2(a0_r, temp1_r, a0_l, temp1_l, a0_r, a0_l);
+    SUB2(a1_r, temp2_r, a1_l, temp2_l, a1_r, a1_l);
+    ADD2(a2_r, temp2_r, a2_l, temp2_l, a2_r, a2_l);
+    SUB2(a3_r, temp1_r, a3_l, temp1_l, a3_r, a3_l);
+    ILVRL_H2_SW(in1, in3, b3_r, b3_l);
+    SPLATI_H4_SH(weights, 1, 3, 5, 7, w1, w3, w5, w7);
+    ILVR_H4_SH(w1, w3, w3, -w7, w5, -w1, w7, -w5,
+               const0, const1, const2, const3);
+    DOTP_SH4_SW(b3_r, b3_r, b3_r, b3_r, const0, const1, const2, const3,
+                b0_r, b1_r, b2_r, b3_r);
+    DOTP_SH4_SW(b3_l, b3_l, b3_l, b3_l, const0, const1, const2, const3,
+                b0_l, b1_l, b2_l, b3_l);
+    ILVRL_H2_SW(in5, in7, temp0_r, temp0_l);
+    ILVR_H2_SH(w5, w7, w7, w3, const4, const6);
+    const5 = __msa_ilvod_h(-w1, -w5);
+    const7 = __msa_ilvod_h(w3, -w1);
+    DPADD_SH4_SW(temp0_r, temp0_r, temp0_r, temp0_r,
+                 const4, const5, const6, const7, b0_r, b1_r, b2_r, b3_r);
+    DPADD_SH4_SW(temp0_l, temp0_l, temp0_l, temp0_l,
+                 const4, const5, const6, const7, b0_l, b1_l, b2_l, b3_l);
+    BUTTERFLY_16(a0_r, a0_l, a1_r, a1_l, a2_r, a2_l, a3_r, a3_l,
+                 b3_l, b3_r, b2_l, b2_r, b1_l, b1_r, b0_l, b0_r,
+                 temp0_r, temp0_l, temp1_r, temp1_l,
+                 temp2_r, temp2_l, temp3_r, temp3_l,
+                 a3_l, a3_r, a2_l, a2_r, a1_l, a1_r, a0_l, a0_r);
+    SRA_4V(temp0_r, temp0_l, temp1_r, temp1_l, 20);
+    SRA_4V(temp2_r, temp2_l, temp3_r, temp3_l, 20);
+    SRA_4V(a3_r, a3_l, a2_r, a2_l, 20);
+    SRA_4V(a1_r, a1_l, a0_r, a0_l, 20);
+    PCKEV_H4_SW(temp0_l, temp0_r, temp1_l, temp1_r, temp2_l, temp2_r,
+                temp3_l, temp3_r, temp0_r, temp1_r, temp2_r, temp3_r);
+    PCKEV_H4_SW(a0_l, a0_r, a1_l, a1_r, a2_l, a2_r, a3_l, a3_r,
+                a0_r, a1_r, a2_r, a3_r);
+    temp0_r = (v4i32) CLIP_SH_0_255(temp0_r);
+    temp1_r = (v4i32) CLIP_SH_0_255(temp1_r);
+    temp2_r = (v4i32) CLIP_SH_0_255(temp2_r);
+    temp3_r = (v4i32) CLIP_SH_0_255(temp3_r);
+    PCKEV_B4_SW(temp0_r, temp0_r, temp1_r, temp1_r,
+                temp2_r, temp2_r, temp3_r, temp3_r,
+                temp0_r, temp1_r, temp2_r, temp3_r);
+    tmp0 = __msa_copy_u_d((v2i64) temp0_r, 1);
+    tmp1 = __msa_copy_u_d((v2i64) temp1_r, 1);
+    tmp2 = __msa_copy_u_d((v2i64) temp2_r, 1);
+    tmp3 = __msa_copy_u_d((v2i64) temp3_r, 1);
+    SD4(tmp0, tmp1, tmp2, tmp3, dst, dst_stride);
+    dst += 4 * dst_stride;
+    a0_r = (v4i32) CLIP_SH_0_255(a0_r);
+    a1_r = (v4i32) CLIP_SH_0_255(a1_r);
+    a2_r = (v4i32) CLIP_SH_0_255(a2_r);
+    a3_r = (v4i32) CLIP_SH_0_255(a3_r);
+    PCKEV_B4_SW(a0_r, a0_r, a1_r, a1_r,
+                a2_r, a2_r, a3_r, a3_r, a0_r, a1_r, a2_r, a3_r);
+    tmp3 = __msa_copy_u_d((v2i64) a0_r, 1);
+    tmp2 = __msa_copy_u_d((v2i64) a1_r, 1);
+    tmp1 = __msa_copy_u_d((v2i64) a2_r, 1);
+    tmp0 = __msa_copy_u_d((v2i64) a3_r, 1);
+    SD4(tmp0, tmp1, tmp2, tmp3, dst, dst_stride);
+    dst += 4 * dst_stride;
+}

@@ -1,0 +1,33 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+typedef  struct TYPE_2__   TYPE_1__ ;
+
+/* Type definitions */
+struct rpc_xprt {TYPE_1__* ops; } ;
+struct rpc_task {int /*<<< orphan*/  tk_status; scalar_t__ tk_timeout; int /*<<< orphan*/ * tk_rqstp; struct rpc_xprt* tk_xprt; } ;
+struct TYPE_2__ {int /*<<< orphan*/  (* alloc_slot ) (struct rpc_xprt*,struct rpc_task*) ;} ;
+
+/* Variables and functions */
+ int /*<<< orphan*/  EAGAIN ; 
+ int /*<<< orphan*/  stub1 (struct rpc_xprt*,struct rpc_task*) ; 
+
+void xprt_retry_reserve(struct rpc_task *task)
+{
+	struct rpc_xprt *xprt = task->tk_xprt;
+
+	task->tk_status = 0;
+	if (task->tk_rqstp != NULL)
+		return;
+
+	task->tk_timeout = 0;
+	task->tk_status = -EAGAIN;
+	xprt->ops->alloc_slot(xprt, task);
+}

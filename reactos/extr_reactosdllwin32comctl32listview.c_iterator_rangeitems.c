@@ -1,0 +1,28 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+typedef  struct TYPE_4__   TYPE_1__ ;
+
+/* Type definitions */
+struct TYPE_4__ {int /*<<< orphan*/  range; } ;
+typedef  int /*<<< orphan*/  RANGE ;
+typedef  TYPE_1__ ITERATOR ;
+typedef  int /*<<< orphan*/  BOOL ;
+
+/* Variables and functions */
+ int /*<<< orphan*/  TRUE ; 
+ int /*<<< orphan*/  iterator_empty (TYPE_1__*) ; 
+
+__attribute__((used)) static inline BOOL iterator_rangeitems(ITERATOR* i, RANGE range)
+{
+    iterator_empty(i);
+    i->range = range;
+    return TRUE;
+}

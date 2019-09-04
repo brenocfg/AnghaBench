@@ -1,0 +1,41 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+typedef  struct TYPE_11__   TYPE_4__ ;
+typedef  struct TYPE_10__   TYPE_3__ ;
+typedef  struct TYPE_9__   TYPE_2__ ;
+typedef  struct TYPE_8__   TYPE_1__ ;
+
+/* Type definitions */
+typedef  int /*<<< orphan*/  ULONG ;
+struct TYPE_11__ {int SectorOffset; int SectorCount; int SectorSize; int SectorNumber; } ;
+struct TYPE_9__ {int QuadPart; } ;
+struct TYPE_8__ {int QuadPart; } ;
+struct TYPE_10__ {TYPE_2__ CurrentAddress; TYPE_1__ EndingAddress; } ;
+typedef  TYPE_3__ FILEINFORMATION ;
+typedef  TYPE_4__ DISKCONTEXT ;
+typedef  int /*<<< orphan*/  ARC_STATUS ;
+
+/* Variables and functions */
+ int /*<<< orphan*/  ESUCCESS ; 
+ TYPE_4__* FsGetDeviceSpecific (int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  RtlZeroMemory (TYPE_3__*,int) ; 
+
+__attribute__((used)) static ARC_STATUS
+DiskGetFileInformation(ULONG FileId, FILEINFORMATION* Information)
+{
+    DISKCONTEXT* Context = FsGetDeviceSpecific(FileId);
+
+    RtlZeroMemory(Information, sizeof(FILEINFORMATION));
+    Information->EndingAddress.QuadPart = (Context->SectorOffset + Context->SectorCount) * Context->SectorSize;
+    Information->CurrentAddress.QuadPart = (Context->SectorOffset + Context->SectorNumber) * Context->SectorSize;
+
+    return ESUCCESS;
+}

@@ -1,0 +1,44 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+typedef  struct TYPE_2__   TYPE_1__ ;
+
+/* Type definitions */
+struct tcq_if {int dummy; } ;
+struct ifclassq {scalar_t__ ifcq_type; TYPE_1__* ifcq_disc_slots; struct tcq_if* ifcq_disc; } ;
+struct TYPE_2__ {int /*<<< orphan*/ * cl; scalar_t__ qid; } ;
+
+/* Variables and functions */
+ int /*<<< orphan*/  IFCQ_LOCK_ASSERT_HELD (struct ifclassq*) ; 
+ int IFCQ_SC_MAX ; 
+ scalar_t__ PKTSCHEDT_TCQ ; 
+ int /*<<< orphan*/  VERIFY (int) ; 
+ int ifclassq_detach (struct ifclassq*) ; 
+ int /*<<< orphan*/  tcq_destroy_locked (struct tcq_if*) ; 
+
+int
+tcq_teardown_ifclassq(struct ifclassq *ifq)
+{
+	struct tcq_if *tif = ifq->ifcq_disc;
+	int i;
+
+	IFCQ_LOCK_ASSERT_HELD(ifq);
+	VERIFY(tif != NULL && ifq->ifcq_type == PKTSCHEDT_TCQ);
+
+	(void) tcq_destroy_locked(tif);
+
+	ifq->ifcq_disc = NULL;
+	for (i = 0; i < IFCQ_SC_MAX; i++) {
+		ifq->ifcq_disc_slots[i].qid = 0;
+		ifq->ifcq_disc_slots[i].cl = NULL;
+	}
+
+	return (ifclassq_detach(ifq));
+}

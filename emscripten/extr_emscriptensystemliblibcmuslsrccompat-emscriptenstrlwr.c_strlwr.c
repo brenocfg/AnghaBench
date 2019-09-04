@@ -1,0 +1,26 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+
+/* Variables and functions */
+ char tolower (char) ; 
+
+char *strlwr(char *str)
+{
+	char *ret = str;
+	while(*str)
+	{
+		*str = tolower(*str);
+		++str;
+	}
+	return ret;
+}

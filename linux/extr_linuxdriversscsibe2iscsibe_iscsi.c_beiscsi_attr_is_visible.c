@@ -1,0 +1,131 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+typedef  int /*<<< orphan*/  umode_t ;
+
+/* Variables and functions */
+#define  ISCSI_HOST_PARAM 173 
+#define  ISCSI_HOST_PARAM_HWADDRESS 172 
+#define  ISCSI_HOST_PARAM_INITIATOR_NAME 171 
+#define  ISCSI_HOST_PARAM_PORT_SPEED 170 
+#define  ISCSI_HOST_PARAM_PORT_STATE 169 
+#define  ISCSI_NET_PARAM 168 
+#define  ISCSI_NET_PARAM_IFACE_ENABLE 167 
+#define  ISCSI_NET_PARAM_IPV4_ADDR 166 
+#define  ISCSI_NET_PARAM_IPV4_BOOTPROTO 165 
+#define  ISCSI_NET_PARAM_IPV4_GW 164 
+#define  ISCSI_NET_PARAM_IPV4_SUBNET 163 
+#define  ISCSI_NET_PARAM_IPV6_ADDR 162 
+#define  ISCSI_NET_PARAM_VLAN_ENABLED 161 
+#define  ISCSI_NET_PARAM_VLAN_ID 160 
+#define  ISCSI_NET_PARAM_VLAN_PRIORITY 159 
+#define  ISCSI_PARAM 158 
+#define  ISCSI_PARAM_ABORT_TMO 157 
+#define  ISCSI_PARAM_CONN_ADDRESS 156 
+#define  ISCSI_PARAM_CONN_PORT 155 
+#define  ISCSI_PARAM_DATADGST_EN 154 
+#define  ISCSI_PARAM_DATASEQ_INORDER_EN 153 
+#define  ISCSI_PARAM_ERL 152 
+#define  ISCSI_PARAM_EXP_STATSN 151 
+#define  ISCSI_PARAM_FAST_ABORT 150 
+#define  ISCSI_PARAM_FIRST_BURST 149 
+#define  ISCSI_PARAM_HDRDGST_EN 148 
+#define  ISCSI_PARAM_IFACE_NAME 147 
+#define  ISCSI_PARAM_IMM_DATA_EN 146 
+#define  ISCSI_PARAM_INITIAL_R2T_EN 145 
+#define  ISCSI_PARAM_INITIATOR_NAME 144 
+#define  ISCSI_PARAM_LU_RESET_TMO 143 
+#define  ISCSI_PARAM_MAX_BURST 142 
+#define  ISCSI_PARAM_MAX_R2T 141 
+#define  ISCSI_PARAM_MAX_RECV_DLENGTH 140 
+#define  ISCSI_PARAM_MAX_XMIT_DLENGTH 139 
+#define  ISCSI_PARAM_PASSWORD 138 
+#define  ISCSI_PARAM_PASSWORD_IN 137 
+#define  ISCSI_PARAM_PDU_INORDER_EN 136 
+#define  ISCSI_PARAM_PERSISTENT_ADDRESS 135 
+#define  ISCSI_PARAM_PERSISTENT_PORT 134 
+#define  ISCSI_PARAM_PING_TMO 133 
+#define  ISCSI_PARAM_RECV_TMO 132 
+#define  ISCSI_PARAM_TARGET_NAME 131 
+#define  ISCSI_PARAM_TPGT 130 
+#define  ISCSI_PARAM_USERNAME 129 
+#define  ISCSI_PARAM_USERNAME_IN 128 
+ int /*<<< orphan*/  S_IRUGO ; 
+
+umode_t beiscsi_attr_is_visible(int param_type, int param)
+{
+	switch (param_type) {
+	case ISCSI_NET_PARAM:
+		switch (param) {
+		case ISCSI_NET_PARAM_IFACE_ENABLE:
+		case ISCSI_NET_PARAM_IPV4_ADDR:
+		case ISCSI_NET_PARAM_IPV4_SUBNET:
+		case ISCSI_NET_PARAM_IPV4_BOOTPROTO:
+		case ISCSI_NET_PARAM_IPV4_GW:
+		case ISCSI_NET_PARAM_IPV6_ADDR:
+		case ISCSI_NET_PARAM_VLAN_ID:
+		case ISCSI_NET_PARAM_VLAN_PRIORITY:
+		case ISCSI_NET_PARAM_VLAN_ENABLED:
+			return S_IRUGO;
+		default:
+			return 0;
+		}
+	case ISCSI_HOST_PARAM:
+		switch (param) {
+		case ISCSI_HOST_PARAM_HWADDRESS:
+		case ISCSI_HOST_PARAM_INITIATOR_NAME:
+		case ISCSI_HOST_PARAM_PORT_STATE:
+		case ISCSI_HOST_PARAM_PORT_SPEED:
+			return S_IRUGO;
+		default:
+			return 0;
+		}
+	case ISCSI_PARAM:
+		switch (param) {
+		case ISCSI_PARAM_MAX_RECV_DLENGTH:
+		case ISCSI_PARAM_MAX_XMIT_DLENGTH:
+		case ISCSI_PARAM_HDRDGST_EN:
+		case ISCSI_PARAM_DATADGST_EN:
+		case ISCSI_PARAM_CONN_ADDRESS:
+		case ISCSI_PARAM_CONN_PORT:
+		case ISCSI_PARAM_EXP_STATSN:
+		case ISCSI_PARAM_PERSISTENT_ADDRESS:
+		case ISCSI_PARAM_PERSISTENT_PORT:
+		case ISCSI_PARAM_PING_TMO:
+		case ISCSI_PARAM_RECV_TMO:
+		case ISCSI_PARAM_INITIAL_R2T_EN:
+		case ISCSI_PARAM_MAX_R2T:
+		case ISCSI_PARAM_IMM_DATA_EN:
+		case ISCSI_PARAM_FIRST_BURST:
+		case ISCSI_PARAM_MAX_BURST:
+		case ISCSI_PARAM_PDU_INORDER_EN:
+		case ISCSI_PARAM_DATASEQ_INORDER_EN:
+		case ISCSI_PARAM_ERL:
+		case ISCSI_PARAM_TARGET_NAME:
+		case ISCSI_PARAM_TPGT:
+		case ISCSI_PARAM_USERNAME:
+		case ISCSI_PARAM_PASSWORD:
+		case ISCSI_PARAM_USERNAME_IN:
+		case ISCSI_PARAM_PASSWORD_IN:
+		case ISCSI_PARAM_FAST_ABORT:
+		case ISCSI_PARAM_ABORT_TMO:
+		case ISCSI_PARAM_LU_RESET_TMO:
+		case ISCSI_PARAM_IFACE_NAME:
+		case ISCSI_PARAM_INITIATOR_NAME:
+			return S_IRUGO;
+		default:
+			return 0;
+		}
+	}
+
+	return 0;
+}

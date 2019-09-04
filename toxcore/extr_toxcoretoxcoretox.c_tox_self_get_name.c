@@ -1,0 +1,26 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+typedef  int /*<<< orphan*/  uint8_t ;
+typedef  int /*<<< orphan*/  Tox ;
+typedef  int /*<<< orphan*/  Messenger ;
+
+/* Variables and functions */
+ int /*<<< orphan*/  getself_name (int /*<<< orphan*/  const*,int /*<<< orphan*/ *) ; 
+
+void tox_self_get_name(const Tox *tox, uint8_t *name)
+{
+    if (name) {
+        const Messenger *m = tox;
+        getself_name(m, name);
+    }
+}

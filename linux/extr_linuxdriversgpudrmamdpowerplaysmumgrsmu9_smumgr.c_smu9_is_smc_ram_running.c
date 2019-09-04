@@ -1,0 +1,41 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+typedef  int uint32_t ;
+struct pp_hwmgr {struct amdgpu_device* adev; } ;
+struct amdgpu_device {int dummy; } ;
+
+/* Variables and functions */
+ int MP1_FIRMWARE_FLAGS__INTERRUPTS_ENABLED_MASK ; 
+ int MP1_Public ; 
+ int /*<<< orphan*/  NBIF ; 
+ int RREG32_SOC15 (int /*<<< orphan*/ ,int /*<<< orphan*/ ,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  WREG32_SOC15 (int /*<<< orphan*/ ,int /*<<< orphan*/ ,int /*<<< orphan*/ ,int) ; 
+ int /*<<< orphan*/  mmPCIE_DATA2 ; 
+ int /*<<< orphan*/  mmPCIE_INDEX2 ; 
+ int smnMP1_FIRMWARE_FLAGS ; 
+
+bool smu9_is_smc_ram_running(struct pp_hwmgr *hwmgr)
+{
+	struct amdgpu_device *adev = hwmgr->adev;
+	uint32_t mp1_fw_flags;
+
+	WREG32_SOC15(NBIF, 0, mmPCIE_INDEX2,
+			(MP1_Public | (smnMP1_FIRMWARE_FLAGS & 0xffffffff)));
+
+	mp1_fw_flags = RREG32_SOC15(NBIF, 0, mmPCIE_DATA2);
+
+	if (mp1_fw_flags & MP1_FIRMWARE_FLAGS__INTERRUPTS_ENABLED_MASK)
+		return true;
+
+	return false;
+}

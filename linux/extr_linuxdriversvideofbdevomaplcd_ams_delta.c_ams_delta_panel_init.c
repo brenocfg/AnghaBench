@@ -1,0 +1,25 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+struct omapfb_device {int dummy; } ;
+struct lcd_panel {int dummy; } ;
+
+/* Variables and functions */
+ int /*<<< orphan*/  ARRAY_SIZE (int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  _gpios ; 
+ int gpio_request_array (int /*<<< orphan*/ ,int /*<<< orphan*/ ) ; 
+
+__attribute__((used)) static int ams_delta_panel_init(struct lcd_panel *panel,
+		struct omapfb_device *fbdev)
+{
+	return gpio_request_array(_gpios, ARRAY_SIZE(_gpios));
+}

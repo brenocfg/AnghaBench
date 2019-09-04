@@ -1,0 +1,242 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+typedef  struct TYPE_12__   TYPE_6__ ;
+typedef  struct TYPE_11__   TYPE_5__ ;
+typedef  struct TYPE_10__   TYPE_4__ ;
+typedef  struct TYPE_9__   TYPE_3__ ;
+typedef  struct TYPE_8__   TYPE_2__ ;
+typedef  struct TYPE_7__   TYPE_1__ ;
+
+/* Type definitions */
+struct TYPE_11__ {struct demangle_component* sub; } ;
+struct TYPE_10__ {struct demangle_component* length; } ;
+struct TYPE_9__ {struct demangle_component* name; } ;
+struct TYPE_8__ {struct demangle_component* name; } ;
+struct TYPE_7__ {struct demangle_component* name; } ;
+struct TYPE_12__ {TYPE_5__ s_unary_num; TYPE_4__ s_fixed; TYPE_3__ s_extended_operator; TYPE_2__ s_dtor; TYPE_1__ s_ctor; } ;
+struct demangle_component {int type; TYPE_6__ u; } ;
+
+/* Variables and functions */
+#define  DEMANGLE_COMPONENT_ARGLIST 208 
+#define  DEMANGLE_COMPONENT_ARRAY_TYPE 207 
+#define  DEMANGLE_COMPONENT_BINARY 206 
+#define  DEMANGLE_COMPONENT_BINARY_ARGS 205 
+#define  DEMANGLE_COMPONENT_BUILTIN_TYPE 204 
+#define  DEMANGLE_COMPONENT_CAST 203 
+#define  DEMANGLE_COMPONENT_CHARACTER 202 
+#define  DEMANGLE_COMPONENT_CLONE 201 
+#define  DEMANGLE_COMPONENT_COMPLEX 200 
+#define  DEMANGLE_COMPONENT_COMPOUND_NAME 199 
+#define  DEMANGLE_COMPONENT_CONST 198 
+#define  DEMANGLE_COMPONENT_CONSTRUCTION_VTABLE 197 
+#define  DEMANGLE_COMPONENT_CONST_THIS 196 
+#define  DEMANGLE_COMPONENT_CONVERSION 195 
+#define  DEMANGLE_COMPONENT_COVARIANT_THUNK 194 
+#define  DEMANGLE_COMPONENT_CTOR 193 
+#define  DEMANGLE_COMPONENT_DECLTYPE 192 
+#define  DEMANGLE_COMPONENT_DEFAULT_ARG 191 
+#define  DEMANGLE_COMPONENT_DTOR 190 
+#define  DEMANGLE_COMPONENT_EXTENDED_OPERATOR 189 
+#define  DEMANGLE_COMPONENT_FIXED_TYPE 188 
+#define  DEMANGLE_COMPONENT_FUNCTION_PARAM 187 
+#define  DEMANGLE_COMPONENT_FUNCTION_TYPE 186 
+#define  DEMANGLE_COMPONENT_GLOBAL_CONSTRUCTORS 185 
+#define  DEMANGLE_COMPONENT_GLOBAL_DESTRUCTORS 184 
+#define  DEMANGLE_COMPONENT_GUARD 183 
+#define  DEMANGLE_COMPONENT_HIDDEN_ALIAS 182 
+#define  DEMANGLE_COMPONENT_IMAGINARY 181 
+#define  DEMANGLE_COMPONENT_INITIALIZER_LIST 180 
+#define  DEMANGLE_COMPONENT_JAVA_CLASS 179 
+#define  DEMANGLE_COMPONENT_JAVA_RESOURCE 178 
+#define  DEMANGLE_COMPONENT_LAMBDA 177 
+#define  DEMANGLE_COMPONENT_LITERAL 176 
+#define  DEMANGLE_COMPONENT_LITERAL_NEG 175 
+#define  DEMANGLE_COMPONENT_LOCAL_NAME 174 
+#define  DEMANGLE_COMPONENT_NAME 173 
+#define  DEMANGLE_COMPONENT_NOEXCEPT 172 
+#define  DEMANGLE_COMPONENT_NONTRANSACTION_CLONE 171 
+#define  DEMANGLE_COMPONENT_NULLARY 170 
+#define  DEMANGLE_COMPONENT_NUMBER 169 
+#define  DEMANGLE_COMPONENT_OPERATOR 168 
+#define  DEMANGLE_COMPONENT_PACK_EXPANSION 167 
+#define  DEMANGLE_COMPONENT_POINTER 166 
+#define  DEMANGLE_COMPONENT_PTRMEM_TYPE 165 
+#define  DEMANGLE_COMPONENT_QUAL_NAME 164 
+#define  DEMANGLE_COMPONENT_REFERENCE 163 
+#define  DEMANGLE_COMPONENT_REFERENCE_THIS 162 
+#define  DEMANGLE_COMPONENT_REFTEMP 161 
+#define  DEMANGLE_COMPONENT_RESTRICT 160 
+#define  DEMANGLE_COMPONENT_RESTRICT_THIS 159 
+#define  DEMANGLE_COMPONENT_RVALUE_REFERENCE 158 
+#define  DEMANGLE_COMPONENT_RVALUE_REFERENCE_THIS 157 
+#define  DEMANGLE_COMPONENT_SUB_STD 156 
+#define  DEMANGLE_COMPONENT_TAGGED_NAME 155 
+#define  DEMANGLE_COMPONENT_TEMPLATE 154 
+#define  DEMANGLE_COMPONENT_TEMPLATE_ARGLIST 153 
+#define  DEMANGLE_COMPONENT_TEMPLATE_PARAM 152 
+#define  DEMANGLE_COMPONENT_THROW_SPEC 151 
+#define  DEMANGLE_COMPONENT_THUNK 150 
+#define  DEMANGLE_COMPONENT_TLS_INIT 149 
+#define  DEMANGLE_COMPONENT_TLS_WRAPPER 148 
+#define  DEMANGLE_COMPONENT_TPARM_OBJ 147 
+#define  DEMANGLE_COMPONENT_TRANSACTION_CLONE 146 
+#define  DEMANGLE_COMPONENT_TRANSACTION_SAFE 145 
+#define  DEMANGLE_COMPONENT_TRINARY 144 
+#define  DEMANGLE_COMPONENT_TRINARY_ARG1 143 
+#define  DEMANGLE_COMPONENT_TRINARY_ARG2 142 
+#define  DEMANGLE_COMPONENT_TYPED_NAME 141 
+#define  DEMANGLE_COMPONENT_TYPEINFO 140 
+#define  DEMANGLE_COMPONENT_TYPEINFO_FN 139 
+#define  DEMANGLE_COMPONENT_TYPEINFO_NAME 138 
+#define  DEMANGLE_COMPONENT_UNARY 137 
+#define  DEMANGLE_COMPONENT_UNNAMED_TYPE 136 
+#define  DEMANGLE_COMPONENT_VECTOR_TYPE 135 
+#define  DEMANGLE_COMPONENT_VENDOR_TYPE 134 
+#define  DEMANGLE_COMPONENT_VENDOR_TYPE_QUAL 133 
+#define  DEMANGLE_COMPONENT_VIRTUAL_THUNK 132 
+#define  DEMANGLE_COMPONENT_VOLATILE 131 
+#define  DEMANGLE_COMPONENT_VOLATILE_THIS 130 
+#define  DEMANGLE_COMPONENT_VTABLE 129 
+#define  DEMANGLE_COMPONENT_VTT 128 
+ struct demangle_component* d_left (struct demangle_component const*) ; 
+ struct demangle_component* d_right (struct demangle_component const*) ; 
+
+__attribute__((used)) static void
+d_count_templates_scopes (int *num_templates, int *num_scopes,
+			  const struct demangle_component *dc)
+{
+  if (dc == NULL)
+    return;
+
+  switch (dc->type)
+    {
+    case DEMANGLE_COMPONENT_NAME:
+    case DEMANGLE_COMPONENT_TEMPLATE_PARAM:
+    case DEMANGLE_COMPONENT_FUNCTION_PARAM:
+    case DEMANGLE_COMPONENT_SUB_STD:
+    case DEMANGLE_COMPONENT_BUILTIN_TYPE:
+    case DEMANGLE_COMPONENT_OPERATOR:
+    case DEMANGLE_COMPONENT_CHARACTER:
+    case DEMANGLE_COMPONENT_NUMBER:
+    case DEMANGLE_COMPONENT_UNNAMED_TYPE:
+      break;
+
+    case DEMANGLE_COMPONENT_TEMPLATE:
+      (*num_templates)++;
+      goto recurse_left_right;
+
+    case DEMANGLE_COMPONENT_REFERENCE:
+    case DEMANGLE_COMPONENT_RVALUE_REFERENCE:
+      if (d_left (dc)->type == DEMANGLE_COMPONENT_TEMPLATE_PARAM)
+	(*num_scopes)++;
+      goto recurse_left_right;
+
+    case DEMANGLE_COMPONENT_QUAL_NAME:
+    case DEMANGLE_COMPONENT_LOCAL_NAME:
+    case DEMANGLE_COMPONENT_TYPED_NAME:
+    case DEMANGLE_COMPONENT_VTABLE:
+    case DEMANGLE_COMPONENT_VTT:
+    case DEMANGLE_COMPONENT_CONSTRUCTION_VTABLE:
+    case DEMANGLE_COMPONENT_TYPEINFO:
+    case DEMANGLE_COMPONENT_TYPEINFO_NAME:
+    case DEMANGLE_COMPONENT_TYPEINFO_FN:
+    case DEMANGLE_COMPONENT_THUNK:
+    case DEMANGLE_COMPONENT_VIRTUAL_THUNK:
+    case DEMANGLE_COMPONENT_COVARIANT_THUNK:
+    case DEMANGLE_COMPONENT_JAVA_CLASS:
+    case DEMANGLE_COMPONENT_GUARD:
+    case DEMANGLE_COMPONENT_TLS_INIT:
+    case DEMANGLE_COMPONENT_TLS_WRAPPER:
+    case DEMANGLE_COMPONENT_REFTEMP:
+    case DEMANGLE_COMPONENT_HIDDEN_ALIAS:
+    case DEMANGLE_COMPONENT_RESTRICT:
+    case DEMANGLE_COMPONENT_VOLATILE:
+    case DEMANGLE_COMPONENT_CONST:
+    case DEMANGLE_COMPONENT_RESTRICT_THIS:
+    case DEMANGLE_COMPONENT_VOLATILE_THIS:
+    case DEMANGLE_COMPONENT_CONST_THIS:
+    case DEMANGLE_COMPONENT_REFERENCE_THIS:
+    case DEMANGLE_COMPONENT_RVALUE_REFERENCE_THIS:
+    case DEMANGLE_COMPONENT_TRANSACTION_SAFE:
+    case DEMANGLE_COMPONENT_NOEXCEPT:
+    case DEMANGLE_COMPONENT_THROW_SPEC:
+    case DEMANGLE_COMPONENT_VENDOR_TYPE_QUAL:
+    case DEMANGLE_COMPONENT_POINTER:
+    case DEMANGLE_COMPONENT_COMPLEX:
+    case DEMANGLE_COMPONENT_IMAGINARY:
+    case DEMANGLE_COMPONENT_VENDOR_TYPE:
+    case DEMANGLE_COMPONENT_FUNCTION_TYPE:
+    case DEMANGLE_COMPONENT_ARRAY_TYPE:
+    case DEMANGLE_COMPONENT_PTRMEM_TYPE:
+    case DEMANGLE_COMPONENT_VECTOR_TYPE:
+    case DEMANGLE_COMPONENT_ARGLIST:
+    case DEMANGLE_COMPONENT_TEMPLATE_ARGLIST:
+    case DEMANGLE_COMPONENT_TPARM_OBJ:
+    case DEMANGLE_COMPONENT_INITIALIZER_LIST:
+    case DEMANGLE_COMPONENT_CAST:
+    case DEMANGLE_COMPONENT_CONVERSION:
+    case DEMANGLE_COMPONENT_NULLARY:
+    case DEMANGLE_COMPONENT_UNARY:
+    case DEMANGLE_COMPONENT_BINARY:
+    case DEMANGLE_COMPONENT_BINARY_ARGS:
+    case DEMANGLE_COMPONENT_TRINARY:
+    case DEMANGLE_COMPONENT_TRINARY_ARG1:
+    case DEMANGLE_COMPONENT_TRINARY_ARG2:
+    case DEMANGLE_COMPONENT_LITERAL:
+    case DEMANGLE_COMPONENT_LITERAL_NEG:
+    case DEMANGLE_COMPONENT_JAVA_RESOURCE:
+    case DEMANGLE_COMPONENT_COMPOUND_NAME:
+    case DEMANGLE_COMPONENT_DECLTYPE:
+    case DEMANGLE_COMPONENT_TRANSACTION_CLONE:
+    case DEMANGLE_COMPONENT_NONTRANSACTION_CLONE:
+    case DEMANGLE_COMPONENT_PACK_EXPANSION:
+    case DEMANGLE_COMPONENT_TAGGED_NAME:
+    case DEMANGLE_COMPONENT_CLONE:
+    recurse_left_right:
+      d_count_templates_scopes (num_templates, num_scopes,
+				d_left (dc));
+      d_count_templates_scopes (num_templates, num_scopes,
+				d_right (dc));
+      break;
+
+    case DEMANGLE_COMPONENT_CTOR:
+      d_count_templates_scopes (num_templates, num_scopes,
+				dc->u.s_ctor.name);
+      break;
+
+    case DEMANGLE_COMPONENT_DTOR:
+      d_count_templates_scopes (num_templates, num_scopes,
+				dc->u.s_dtor.name);
+      break;
+
+    case DEMANGLE_COMPONENT_EXTENDED_OPERATOR:
+      d_count_templates_scopes (num_templates, num_scopes,
+				dc->u.s_extended_operator.name);
+      break;
+
+    case DEMANGLE_COMPONENT_FIXED_TYPE:
+      d_count_templates_scopes (num_templates, num_scopes,
+                                dc->u.s_fixed.length);
+      break;
+
+    case DEMANGLE_COMPONENT_GLOBAL_CONSTRUCTORS:
+    case DEMANGLE_COMPONENT_GLOBAL_DESTRUCTORS:
+      d_count_templates_scopes (num_templates, num_scopes,
+				d_left (dc));
+      break;
+
+    case DEMANGLE_COMPONENT_LAMBDA:
+    case DEMANGLE_COMPONENT_DEFAULT_ARG:
+      d_count_templates_scopes (num_templates, num_scopes,
+				dc->u.s_unary_num.sub);
+      break;
+    }
+}

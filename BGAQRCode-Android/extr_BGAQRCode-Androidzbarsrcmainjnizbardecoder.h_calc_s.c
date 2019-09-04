@@ -1,0 +1,27 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+typedef  int /*<<< orphan*/  zbar_decoder_t ;
+
+/* Variables and functions */
+ scalar_t__ get_width (int /*<<< orphan*/  const*,int /*<<< orphan*/ ) ; 
+
+__attribute__((used)) static inline unsigned calc_s (const zbar_decoder_t *dcode,
+                               unsigned char offset,
+                               unsigned char n)
+{
+    /* FIXME check that this gets unrolled for constant n */
+    unsigned s = 0;
+    while(n--)
+        s += get_width(dcode, offset++);
+    return(s);
+}

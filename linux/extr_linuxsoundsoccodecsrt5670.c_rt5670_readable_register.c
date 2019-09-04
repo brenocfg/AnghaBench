@@ -1,0 +1,320 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+typedef  struct TYPE_3__   TYPE_1__ ;
+
+/* Type definitions */
+struct device {int dummy; } ;
+struct TYPE_3__ {unsigned int window_start; unsigned int window_len; unsigned int range_min; unsigned int range_max; } ;
+
+/* Variables and functions */
+ int ARRAY_SIZE (TYPE_1__*) ; 
+#define  RT5670_ADC_BST_VOL1 267 
+#define  RT5670_ADC_BST_VOL2 266 
+#define  RT5670_ADC_EQ_CTRL1 265 
+#define  RT5670_ADC_EQ_CTRL2 264 
+#define  RT5670_ADC_MONO_HP_CTRL1 263 
+#define  RT5670_ADC_MONO_HP_CTRL2 262 
+#define  RT5670_ADC_STO2_HP_CTRL1 261 
+#define  RT5670_ADC_STO2_HP_CTRL2 260 
+#define  RT5670_ADDA_CLK1 259 
+#define  RT5670_ADDA_CLK2 258 
+#define  RT5670_ADJ_HPF1 257 
+#define  RT5670_ADJ_HPF2 256 
+#define  RT5670_AD_DA_MIXER 255 
+#define  RT5670_ALC_CTRL_1 254 
+#define  RT5670_ALC_CTRL_2 253 
+#define  RT5670_ALC_CTRL_3 252 
+#define  RT5670_ALC_DRC_CTRL1 251 
+#define  RT5670_ALC_DRC_CTRL2 250 
+#define  RT5670_ASRC_1 249 
+#define  RT5670_ASRC_10 248 
+#define  RT5670_ASRC_11 247 
+#define  RT5670_ASRC_12 246 
+#define  RT5670_ASRC_13 245 
+#define  RT5670_ASRC_14 244 
+#define  RT5670_ASRC_2 243 
+#define  RT5670_ASRC_3 242 
+#define  RT5670_ASRC_4 241 
+#define  RT5670_ASRC_5 240 
+#define  RT5670_ASRC_7 239 
+#define  RT5670_ASRC_8 238 
+#define  RT5670_ASRC_9 237 
+#define  RT5670_A_JD_CTRL1 236 
+#define  RT5670_A_JD_CTRL2 235 
+#define  RT5670_BASE_BACK 234 
+#define  RT5670_CHARGE_PUMP 233 
+#define  RT5670_CJ_CTRL1 232 
+#define  RT5670_CJ_CTRL2 231 
+#define  RT5670_CJ_CTRL3 230 
+#define  RT5670_DAC1_DIG_VOL 229 
+#define  RT5670_DAC2_DIG_VOL 228 
+#define  RT5670_DAC_CTRL 227 
+#define  RT5670_DD_MIXER 226 
+#define  RT5670_DEPOP_M1 225 
+#define  RT5670_DEPOP_M2 224 
+#define  RT5670_DEPOP_M3 223 
+#define  RT5670_DIG_INF1_DATA 222 
+#define  RT5670_DIG_INF2_DATA 221 
+#define  RT5670_DIG_MISC 220 
+#define  RT5670_DIG_MIXER 219 
+#define  RT5670_DMIC_CTRL1 218 
+#define  RT5670_DMIC_CTRL2 217 
+#define  RT5670_DRC_HL_CTRL1 216 
+#define  RT5670_DRC_HL_CTRL2 215 
+#define  RT5670_DSP_CLK 214 
+#define  RT5670_DSP_CTRL1 213 
+#define  RT5670_DSP_CTRL2 212 
+#define  RT5670_DSP_CTRL3 211 
+#define  RT5670_DSP_CTRL4 210 
+#define  RT5670_DSP_CTRL5 209 
+#define  RT5670_DSP_PATH1 208 
+#define  RT5670_DSP_PATH2 207 
+#define  RT5670_EQ_CTRL1 206 
+#define  RT5670_EQ_CTRL2 205 
+#define  RT5670_GEN_CTRL2 204 
+#define  RT5670_GEN_CTRL3 203 
+#define  RT5670_GLB_CLK 202 
+#define  RT5670_GPIO_CTRL1 201 
+#define  RT5670_GPIO_CTRL2 200 
+#define  RT5670_GPIO_CTRL3 199 
+#define  RT5670_HPO_MIXER 198 
+#define  RT5670_HP_CALIB_AMP_DET 197 
+#define  RT5670_HP_VOL 196 
+#define  RT5670_I2S1_SDP 195 
+#define  RT5670_I2S2_SDP 194 
+#define  RT5670_I2S3_SDP 193 
+#define  RT5670_I2S4_SDP 192 
+#define  RT5670_IL_CMD 191 
+#define  RT5670_IL_CMD2 190 
+#define  RT5670_IL_CMD3 189 
+#define  RT5670_IN2 188 
+#define  RT5670_INL1_INR1_VOL 187 
+#define  RT5670_INT_IRQ_ST 186 
+#define  RT5670_IRQ_CTRL1 185 
+#define  RT5670_IRQ_CTRL2 184 
+#define  RT5670_JD_CTRL 183 
+#define  RT5670_JD_CTRL3 182 
+#define  RT5670_JD_CTRL4 181 
+#define  RT5670_LOUT1 180 
+#define  RT5670_LOUT_MIXER 179 
+#define  RT5670_MICBIAS 178 
+#define  RT5670_MONO_ADC_DIG_VOL 177 
+#define  RT5670_MONO_ADC_MIXER 176 
+#define  RT5670_MONO_MIXER 175 
+#define  RT5670_MP3_PLUS1 174 
+#define  RT5670_MP3_PLUS2 173 
+#define  RT5670_OUT_L1_MIXER 172 
+#define  RT5670_OUT_R1_MIXER 171 
+#define  RT5670_PDM1_DATA_CTRL2 170 
+#define  RT5670_PDM1_DATA_CTRL3 169 
+#define  RT5670_PDM1_DATA_CTRL4 168 
+#define  RT5670_PDM2_DATA_CTRL2 167 
+#define  RT5670_PDM2_DATA_CTRL3 166 
+#define  RT5670_PDM2_DATA_CTRL4 165 
+#define  RT5670_PDM_DATA_CTRL1 164 
+#define  RT5670_PDM_OUT_CTRL 163 
+#define  RT5670_PLL_CTRL1 162 
+#define  RT5670_PLL_CTRL2 161 
+#define  RT5670_PRIV_DATA 160 
+#define  RT5670_PRIV_INDEX 159 
+#define  RT5670_PWR_ANLG1 158 
+#define  RT5670_PWR_ANLG2 157 
+#define  RT5670_PWR_DIG1 156 
+#define  RT5670_PWR_DIG2 155 
+#define  RT5670_PWR_MIXER 154 
+#define  RT5670_PWR_VOL 153 
+#define  RT5670_REC_L1_MIXER 152 
+#define  RT5670_REC_L2_MIXER 151 
+#define  RT5670_REC_R1_MIXER 150 
+#define  RT5670_REC_R2_MIXER 149 
+#define  RT5670_RESET 148 
+#define  RT5670_SCRABBLE_CTRL 147 
+#define  RT5670_SCRABBLE_FUN 146 
+#define  RT5670_STO1_ADC_DIG_VOL 145 
+#define  RT5670_STO1_ADC_MIXER 144 
+#define  RT5670_STO2_ADC_DIG_VOL 143 
+#define  RT5670_STO2_ADC_MIXER 142 
+#define  RT5670_STO_DAC_MIXER 141 
+#define  RT5670_SV_ZCD1 140 
+#define  RT5670_SV_ZCD2 139 
+#define  RT5670_TDM_CTRL_1 138 
+#define  RT5670_TDM_CTRL_2 137 
+#define  RT5670_TDM_CTRL_3 136 
+#define  RT5670_VAD_CTRL1 135 
+#define  RT5670_VAD_CTRL2 134 
+#define  RT5670_VAD_CTRL3 133 
+#define  RT5670_VAD_CTRL4 132 
+#define  RT5670_VAD_CTRL5 131 
+#define  RT5670_VENDOR_ID 130 
+#define  RT5670_VENDOR_ID1 129 
+#define  RT5670_VENDOR_ID2 128 
+ TYPE_1__* rt5670_ranges ; 
+
+__attribute__((used)) static bool rt5670_readable_register(struct device *dev, unsigned int reg)
+{
+	int i;
+
+	for (i = 0; i < ARRAY_SIZE(rt5670_ranges); i++) {
+		if ((reg >= rt5670_ranges[i].window_start &&
+		     reg <= rt5670_ranges[i].window_start +
+		     rt5670_ranges[i].window_len) ||
+		    (reg >= rt5670_ranges[i].range_min &&
+		     reg <= rt5670_ranges[i].range_max)) {
+			return true;
+		}
+	}
+
+	switch (reg) {
+	case RT5670_RESET:
+	case RT5670_HP_VOL:
+	case RT5670_LOUT1:
+	case RT5670_CJ_CTRL1:
+	case RT5670_CJ_CTRL2:
+	case RT5670_CJ_CTRL3:
+	case RT5670_IN2:
+	case RT5670_INL1_INR1_VOL:
+	case RT5670_DAC1_DIG_VOL:
+	case RT5670_DAC2_DIG_VOL:
+	case RT5670_DAC_CTRL:
+	case RT5670_STO1_ADC_DIG_VOL:
+	case RT5670_MONO_ADC_DIG_VOL:
+	case RT5670_STO2_ADC_DIG_VOL:
+	case RT5670_ADC_BST_VOL1:
+	case RT5670_ADC_BST_VOL2:
+	case RT5670_STO2_ADC_MIXER:
+	case RT5670_STO1_ADC_MIXER:
+	case RT5670_MONO_ADC_MIXER:
+	case RT5670_AD_DA_MIXER:
+	case RT5670_STO_DAC_MIXER:
+	case RT5670_DD_MIXER:
+	case RT5670_DIG_MIXER:
+	case RT5670_DSP_PATH1:
+	case RT5670_DSP_PATH2:
+	case RT5670_DIG_INF1_DATA:
+	case RT5670_DIG_INF2_DATA:
+	case RT5670_PDM_OUT_CTRL:
+	case RT5670_PDM_DATA_CTRL1:
+	case RT5670_PDM1_DATA_CTRL2:
+	case RT5670_PDM1_DATA_CTRL3:
+	case RT5670_PDM1_DATA_CTRL4:
+	case RT5670_PDM2_DATA_CTRL2:
+	case RT5670_PDM2_DATA_CTRL3:
+	case RT5670_PDM2_DATA_CTRL4:
+	case RT5670_REC_L1_MIXER:
+	case RT5670_REC_L2_MIXER:
+	case RT5670_REC_R1_MIXER:
+	case RT5670_REC_R2_MIXER:
+	case RT5670_HPO_MIXER:
+	case RT5670_MONO_MIXER:
+	case RT5670_OUT_L1_MIXER:
+	case RT5670_OUT_R1_MIXER:
+	case RT5670_LOUT_MIXER:
+	case RT5670_PWR_DIG1:
+	case RT5670_PWR_DIG2:
+	case RT5670_PWR_ANLG1:
+	case RT5670_PWR_ANLG2:
+	case RT5670_PWR_MIXER:
+	case RT5670_PWR_VOL:
+	case RT5670_PRIV_INDEX:
+	case RT5670_PRIV_DATA:
+	case RT5670_I2S4_SDP:
+	case RT5670_I2S1_SDP:
+	case RT5670_I2S2_SDP:
+	case RT5670_I2S3_SDP:
+	case RT5670_ADDA_CLK1:
+	case RT5670_ADDA_CLK2:
+	case RT5670_DMIC_CTRL1:
+	case RT5670_DMIC_CTRL2:
+	case RT5670_TDM_CTRL_1:
+	case RT5670_TDM_CTRL_2:
+	case RT5670_TDM_CTRL_3:
+	case RT5670_DSP_CLK:
+	case RT5670_GLB_CLK:
+	case RT5670_PLL_CTRL1:
+	case RT5670_PLL_CTRL2:
+	case RT5670_ASRC_1:
+	case RT5670_ASRC_2:
+	case RT5670_ASRC_3:
+	case RT5670_ASRC_4:
+	case RT5670_ASRC_5:
+	case RT5670_ASRC_7:
+	case RT5670_ASRC_8:
+	case RT5670_ASRC_9:
+	case RT5670_ASRC_10:
+	case RT5670_ASRC_11:
+	case RT5670_ASRC_12:
+	case RT5670_ASRC_13:
+	case RT5670_ASRC_14:
+	case RT5670_DEPOP_M1:
+	case RT5670_DEPOP_M2:
+	case RT5670_DEPOP_M3:
+	case RT5670_CHARGE_PUMP:
+	case RT5670_MICBIAS:
+	case RT5670_A_JD_CTRL1:
+	case RT5670_A_JD_CTRL2:
+	case RT5670_VAD_CTRL1:
+	case RT5670_VAD_CTRL2:
+	case RT5670_VAD_CTRL3:
+	case RT5670_VAD_CTRL4:
+	case RT5670_VAD_CTRL5:
+	case RT5670_ADC_EQ_CTRL1:
+	case RT5670_ADC_EQ_CTRL2:
+	case RT5670_EQ_CTRL1:
+	case RT5670_EQ_CTRL2:
+	case RT5670_ALC_DRC_CTRL1:
+	case RT5670_ALC_DRC_CTRL2:
+	case RT5670_ALC_CTRL_1:
+	case RT5670_ALC_CTRL_2:
+	case RT5670_ALC_CTRL_3:
+	case RT5670_JD_CTRL:
+	case RT5670_IRQ_CTRL1:
+	case RT5670_IRQ_CTRL2:
+	case RT5670_INT_IRQ_ST:
+	case RT5670_GPIO_CTRL1:
+	case RT5670_GPIO_CTRL2:
+	case RT5670_GPIO_CTRL3:
+	case RT5670_SCRABBLE_FUN:
+	case RT5670_SCRABBLE_CTRL:
+	case RT5670_BASE_BACK:
+	case RT5670_MP3_PLUS1:
+	case RT5670_MP3_PLUS2:
+	case RT5670_ADJ_HPF1:
+	case RT5670_ADJ_HPF2:
+	case RT5670_HP_CALIB_AMP_DET:
+	case RT5670_SV_ZCD1:
+	case RT5670_SV_ZCD2:
+	case RT5670_IL_CMD:
+	case RT5670_IL_CMD2:
+	case RT5670_IL_CMD3:
+	case RT5670_DRC_HL_CTRL1:
+	case RT5670_DRC_HL_CTRL2:
+	case RT5670_ADC_MONO_HP_CTRL1:
+	case RT5670_ADC_MONO_HP_CTRL2:
+	case RT5670_ADC_STO2_HP_CTRL1:
+	case RT5670_ADC_STO2_HP_CTRL2:
+	case RT5670_JD_CTRL3:
+	case RT5670_JD_CTRL4:
+	case RT5670_DIG_MISC:
+	case RT5670_DSP_CTRL1:
+	case RT5670_DSP_CTRL2:
+	case RT5670_DSP_CTRL3:
+	case RT5670_DSP_CTRL4:
+	case RT5670_DSP_CTRL5:
+	case RT5670_GEN_CTRL2:
+	case RT5670_GEN_CTRL3:
+	case RT5670_VENDOR_ID:
+	case RT5670_VENDOR_ID1:
+	case RT5670_VENDOR_ID2:
+		return true;
+	default:
+		return false;
+	}
+}

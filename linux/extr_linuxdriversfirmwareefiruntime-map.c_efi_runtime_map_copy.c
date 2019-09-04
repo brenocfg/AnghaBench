@@ -1,0 +1,32 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+typedef  struct TYPE_4__   TYPE_2__ ;
+typedef  struct TYPE_3__   TYPE_1__ ;
+
+/* Type definitions */
+struct TYPE_3__ {int /*<<< orphan*/  map; } ;
+struct TYPE_4__ {TYPE_1__ memmap; } ;
+
+/* Variables and functions */
+ TYPE_2__ efi ; 
+ size_t efi_get_runtime_map_size () ; 
+ int /*<<< orphan*/  memcpy (void*,int /*<<< orphan*/ ,size_t) ; 
+
+int efi_runtime_map_copy(void *buf, size_t bufsz)
+{
+	size_t sz = efi_get_runtime_map_size();
+
+	if (sz > bufsz)
+		sz = bufsz;
+
+	memcpy(buf, efi.memmap.map, sz);
+	return 0;
+}

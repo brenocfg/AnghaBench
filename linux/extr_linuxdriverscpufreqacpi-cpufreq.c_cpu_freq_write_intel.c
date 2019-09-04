@@ -1,0 +1,29 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+typedef  int u32 ;
+struct acpi_pct_register {int dummy; } ;
+
+/* Variables and functions */
+ int INTEL_MSR_RANGE ; 
+ int /*<<< orphan*/  MSR_IA32_PERF_CTL ; 
+ int /*<<< orphan*/  rdmsr (int /*<<< orphan*/ ,int,int) ; 
+ int /*<<< orphan*/  wrmsr (int /*<<< orphan*/ ,int,int) ; 
+
+__attribute__((used)) static void cpu_freq_write_intel(struct acpi_pct_register *not_used, u32 val)
+{
+	u32 lo, hi;
+
+	rdmsr(MSR_IA32_PERF_CTL, lo, hi);
+	lo = (lo & ~INTEL_MSR_RANGE) | (val & INTEL_MSR_RANGE);
+	wrmsr(MSR_IA32_PERF_CTL, lo, hi);
+}

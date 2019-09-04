@@ -1,0 +1,24 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+typedef  int /*<<< orphan*/  ut8 ;
+typedef  int /*<<< orphan*/  RCrypto ;
+
+/* Variables and functions */
+ int flag ; 
+ int rot_init (int /*<<< orphan*/ *,int /*<<< orphan*/  const*,int) ; 
+ int /*<<< orphan*/  rot_key ; 
+
+__attribute__((used)) static bool rot_set_key(RCrypto *cry, const ut8 *key, int keylen, int mode, int direction) {
+	flag = direction;
+	return rot_init (&rot_key, key, keylen);
+}

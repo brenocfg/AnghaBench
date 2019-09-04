@@ -1,0 +1,23 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+struct ntb_dev {int dummy; } ;
+
+/* Variables and functions */
+ int /*<<< orphan*/  NTB_UNSAFE_SPAD ; 
+ int ndev_ignore_unsafe (int /*<<< orphan*/ ,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  ntb_ndev (struct ntb_dev*) ; 
+
+int intel_ntb_spad_is_unsafe(struct ntb_dev *ntb)
+{
+	return ndev_ignore_unsafe(ntb_ndev(ntb), NTB_UNSAFE_SPAD);
+}

@@ -1,0 +1,26 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+struct intel_huc {int /*<<< orphan*/  fw; } ;
+struct drm_i915_private {int dummy; } ;
+
+/* Variables and functions */
+ struct drm_i915_private* huc_to_i915 (struct intel_huc*) ; 
+ int /*<<< orphan*/  intel_uc_fw_fetch (struct drm_i915_private*,int /*<<< orphan*/ *) ; 
+
+int intel_huc_init_misc(struct intel_huc *huc)
+{
+	struct drm_i915_private *i915 = huc_to_i915(huc);
+
+	intel_uc_fw_fetch(i915, &huc->fw);
+	return 0;
+}

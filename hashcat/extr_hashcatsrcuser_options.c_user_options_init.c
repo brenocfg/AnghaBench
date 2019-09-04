@@ -1,0 +1,215 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+typedef  struct TYPE_5__   TYPE_2__ ;
+typedef  struct TYPE_4__   TYPE_1__ ;
+
+/* Type definitions */
+struct TYPE_4__ {char** rp_files; int /*<<< orphan*/ * hc_argv; scalar_t__ hc_argc; void* hc_bin; scalar_t__ rp_files_cnt; int /*<<< orphan*/  workload_profile; int /*<<< orphan*/  wordlist_autohex_disable; int /*<<< orphan*/  version; scalar_t__ veracrypt_pim_stop; scalar_t__ veracrypt_pim_start; int /*<<< orphan*/ * veracrypt_keyfiles; int /*<<< orphan*/  username; int /*<<< orphan*/  usage; int /*<<< orphan*/ * truecrypt_keyfiles; int /*<<< orphan*/  stdout_flag; int /*<<< orphan*/  stdin_timeout_abort; int /*<<< orphan*/  status_timer; int /*<<< orphan*/  status_json; int /*<<< orphan*/  status; int /*<<< orphan*/  spin_damp; int /*<<< orphan*/  speed_only; int /*<<< orphan*/  slow_candidates; int /*<<< orphan*/  skip; int /*<<< orphan*/  show; void* session; int /*<<< orphan*/  separator; int /*<<< orphan*/  self_test_disable; int /*<<< orphan*/  segment_size; int /*<<< orphan*/  scrypt_tmto; int /*<<< orphan*/  runtime; int /*<<< orphan*/  rule_buf_r; int /*<<< orphan*/  rule_buf_l; int /*<<< orphan*/  rp_gen_seed; int /*<<< orphan*/  rp_gen; int /*<<< orphan*/  rp_gen_func_min; int /*<<< orphan*/  rp_gen_func_max; int /*<<< orphan*/  restore_timer; int /*<<< orphan*/  restore; int /*<<< orphan*/ * restore_file_path; int /*<<< orphan*/  restore_disable; int /*<<< orphan*/  remove_timer; int /*<<< orphan*/  remove; int /*<<< orphan*/  quiet; int /*<<< orphan*/  progress_only; int /*<<< orphan*/ * potfile_path; int /*<<< orphan*/  potfile_disable; int /*<<< orphan*/ * outfile; int /*<<< orphan*/  outfile_format; int /*<<< orphan*/  outfile_check_timer; int /*<<< orphan*/ * outfile_check_dir; int /*<<< orphan*/  outfile_autohex; int /*<<< orphan*/  optimized_kernel_enable; int /*<<< orphan*/  opencl_vector_width; int /*<<< orphan*/ * opencl_platforms; int /*<<< orphan*/  opencl_info; int /*<<< orphan*/ * opencl_device_types; int /*<<< orphan*/ * opencl_devices; int /*<<< orphan*/  nonce_error_corrections; int /*<<< orphan*/  markov_threshold; int /*<<< orphan*/ * markov_hcstat2; int /*<<< orphan*/  markov_disable; int /*<<< orphan*/  markov_classic; int /*<<< orphan*/  machine_readable; int /*<<< orphan*/  loopback; int /*<<< orphan*/  logfile_disable; int /*<<< orphan*/  limit; int /*<<< orphan*/  left; int /*<<< orphan*/  keyspace; int /*<<< orphan*/ * keyboard_layout_mapping; int /*<<< orphan*/  kernel_threads; int /*<<< orphan*/  kernel_loops; int /*<<< orphan*/  kernel_accel; int /*<<< orphan*/  keep_guessing; int /*<<< orphan*/ * induction_dir; int /*<<< orphan*/  increment_min; int /*<<< orphan*/  increment_max; int /*<<< orphan*/  increment; int /*<<< orphan*/  hex_wordlist; int /*<<< orphan*/  hex_salt; int /*<<< orphan*/  hex_charset; int /*<<< orphan*/  hccapx_message_pair; int /*<<< orphan*/  hash_mode; int /*<<< orphan*/  hwmon_temp_abort; int /*<<< orphan*/  hwmon_disable; int /*<<< orphan*/  force; int /*<<< orphan*/  example_hashes; int /*<<< orphan*/  encoding_to; int /*<<< orphan*/  encoding_from; int /*<<< orphan*/  debug_mode; int /*<<< orphan*/ * debug_file; int /*<<< orphan*/ * custom_charset_4; int /*<<< orphan*/ * custom_charset_3; int /*<<< orphan*/ * custom_charset_2; int /*<<< orphan*/ * custom_charset_1; int /*<<< orphan*/ * cpu_affinity; int /*<<< orphan*/  bitmap_min; int /*<<< orphan*/  bitmap_max; int /*<<< orphan*/  benchmark; int /*<<< orphan*/  benchmark_all; int /*<<< orphan*/  attack_mode; int /*<<< orphan*/  advice_disable; } ;
+typedef  TYPE_1__ user_options_t ;
+struct TYPE_5__ {TYPE_1__* user_options; } ;
+typedef  TYPE_2__ hashcat_ctx_t ;
+
+/* Variables and functions */
+ int /*<<< orphan*/  ADVICE_DISABLE ; 
+ int /*<<< orphan*/  ATTACK_MODE ; 
+ int /*<<< orphan*/  BENCHMARK ; 
+ int /*<<< orphan*/  BENCHMARK_ALL ; 
+ int /*<<< orphan*/  BITMAP_MAX ; 
+ int /*<<< orphan*/  BITMAP_MIN ; 
+ int /*<<< orphan*/  DEBUG_MODE ; 
+ int /*<<< orphan*/  ENCODING_FROM ; 
+ int /*<<< orphan*/  ENCODING_TO ; 
+ int /*<<< orphan*/  EXAMPLE_HASHES ; 
+ int /*<<< orphan*/  FORCE ; 
+ int /*<<< orphan*/  HASH_MODE ; 
+ int /*<<< orphan*/  HCCAPX_MESSAGE_PAIR ; 
+ int /*<<< orphan*/  HEX_CHARSET ; 
+ int /*<<< orphan*/  HEX_SALT ; 
+ int /*<<< orphan*/  HEX_WORDLIST ; 
+ int /*<<< orphan*/  HWMON_DISABLE ; 
+ int /*<<< orphan*/  HWMON_TEMP_ABORT ; 
+ int /*<<< orphan*/  INCREMENT ; 
+ int /*<<< orphan*/  INCREMENT_MAX ; 
+ int /*<<< orphan*/  INCREMENT_MIN ; 
+ int /*<<< orphan*/  KEEP_GUESSING ; 
+ int /*<<< orphan*/  KERNEL_ACCEL ; 
+ int /*<<< orphan*/  KERNEL_LOOPS ; 
+ int /*<<< orphan*/  KERNEL_THREADS ; 
+ int /*<<< orphan*/  KEYSPACE ; 
+ int /*<<< orphan*/  LEFT ; 
+ int /*<<< orphan*/  LIMIT ; 
+ int /*<<< orphan*/  LOGFILE_DISABLE ; 
+ int /*<<< orphan*/  LOOPBACK ; 
+ int /*<<< orphan*/  MACHINE_READABLE ; 
+ int /*<<< orphan*/  MARKOV_CLASSIC ; 
+ int /*<<< orphan*/  MARKOV_DISABLE ; 
+ int /*<<< orphan*/  MARKOV_THRESHOLD ; 
+ int /*<<< orphan*/  NONCE_ERROR_CORRECTIONS ; 
+ int /*<<< orphan*/  OPENCL_INFO ; 
+ int /*<<< orphan*/  OPENCL_VECTOR_WIDTH ; 
+ int /*<<< orphan*/  OPTIMIZED_KERNEL_ENABLE ; 
+ int /*<<< orphan*/  OUTFILE_AUTOHEX ; 
+ int /*<<< orphan*/  OUTFILE_CHECK_TIMER ; 
+ int /*<<< orphan*/  OUTFILE_FORMAT ; 
+ int /*<<< orphan*/  POTFILE_DISABLE ; 
+ void* PROGNAME ; 
+ int /*<<< orphan*/  PROGRESS_ONLY ; 
+ int /*<<< orphan*/  QUIET ; 
+ int /*<<< orphan*/  REMOVE ; 
+ int /*<<< orphan*/  REMOVE_TIMER ; 
+ int /*<<< orphan*/  RESTORE ; 
+ int /*<<< orphan*/  RESTORE_DISABLE ; 
+ int /*<<< orphan*/  RESTORE_TIMER ; 
+ int /*<<< orphan*/  RP_GEN ; 
+ int /*<<< orphan*/  RP_GEN_FUNC_MAX ; 
+ int /*<<< orphan*/  RP_GEN_FUNC_MIN ; 
+ int /*<<< orphan*/  RP_GEN_SEED ; 
+ int /*<<< orphan*/  RULE_BUF_L ; 
+ int /*<<< orphan*/  RULE_BUF_R ; 
+ int /*<<< orphan*/  RUNTIME ; 
+ int /*<<< orphan*/  SCRYPT_TMTO ; 
+ int /*<<< orphan*/  SEGMENT_SIZE ; 
+ int /*<<< orphan*/  SELF_TEST_DISABLE ; 
+ int /*<<< orphan*/  SEPARATOR ; 
+ int /*<<< orphan*/  SHOW ; 
+ int /*<<< orphan*/  SKIP ; 
+ int /*<<< orphan*/  SLOW_CANDIDATES ; 
+ int /*<<< orphan*/  SPEED_ONLY ; 
+ int /*<<< orphan*/  SPIN_DAMP ; 
+ int /*<<< orphan*/  STATUS ; 
+ int /*<<< orphan*/  STATUS_JSON ; 
+ int /*<<< orphan*/  STATUS_TIMER ; 
+ int /*<<< orphan*/  STDIN_TIMEOUT_ABORT ; 
+ int /*<<< orphan*/  STDOUT_FLAG ; 
+ int /*<<< orphan*/  USAGE ; 
+ int /*<<< orphan*/  USERNAME ; 
+ int /*<<< orphan*/  VERSION ; 
+ int /*<<< orphan*/  WORDLIST_AUTOHEX_DISABLE ; 
+ int /*<<< orphan*/  WORKLOAD_PROFILE ; 
+ scalar_t__ hccalloc (int,int) ; 
+
+int user_options_init (hashcat_ctx_t *hashcat_ctx)
+{
+  user_options_t *user_options = hashcat_ctx->user_options;
+
+  user_options->advice_disable            = ADVICE_DISABLE;
+  user_options->attack_mode               = ATTACK_MODE;
+  user_options->benchmark_all             = BENCHMARK_ALL;
+  user_options->benchmark                 = BENCHMARK;
+  user_options->bitmap_max                = BITMAP_MAX;
+  user_options->bitmap_min                = BITMAP_MIN;
+  #ifdef WITH_BRAIN
+  user_options->brain_client              = BRAIN_CLIENT;
+  user_options->brain_client_features     = BRAIN_CLIENT_FEATURES;
+  user_options->brain_host                = NULL;
+  user_options->brain_port                = BRAIN_PORT;
+  user_options->brain_server              = BRAIN_SERVER;
+  user_options->brain_session             = BRAIN_SESSION;
+  user_options->brain_session_whitelist   = NULL;
+  #endif
+  user_options->cpu_affinity              = NULL;
+  user_options->custom_charset_1          = NULL;
+  user_options->custom_charset_2          = NULL;
+  user_options->custom_charset_3          = NULL;
+  user_options->custom_charset_4          = NULL;
+  user_options->debug_file                = NULL;
+  user_options->debug_mode                = DEBUG_MODE;
+  user_options->encoding_from             = ENCODING_FROM;
+  user_options->encoding_to               = ENCODING_TO;
+  user_options->example_hashes            = EXAMPLE_HASHES;
+  user_options->force                     = FORCE;
+  user_options->hwmon_disable             = HWMON_DISABLE;
+  user_options->hwmon_temp_abort          = HWMON_TEMP_ABORT;
+  user_options->hash_mode                 = HASH_MODE;
+  user_options->hccapx_message_pair       = HCCAPX_MESSAGE_PAIR;
+  user_options->hex_charset               = HEX_CHARSET;
+  user_options->hex_salt                  = HEX_SALT;
+  user_options->hex_wordlist              = HEX_WORDLIST;
+  user_options->increment                 = INCREMENT;
+  user_options->increment_max             = INCREMENT_MAX;
+  user_options->increment_min             = INCREMENT_MIN;
+  user_options->induction_dir             = NULL;
+  user_options->keep_guessing             = KEEP_GUESSING;
+  user_options->kernel_accel              = KERNEL_ACCEL;
+  user_options->kernel_loops              = KERNEL_LOOPS;
+  user_options->kernel_threads            = KERNEL_THREADS;
+  user_options->keyboard_layout_mapping   = NULL;
+  user_options->keyspace                  = KEYSPACE;
+  user_options->left                      = LEFT;
+  user_options->limit                     = LIMIT;
+  user_options->logfile_disable           = LOGFILE_DISABLE;
+  user_options->loopback                  = LOOPBACK;
+  user_options->machine_readable          = MACHINE_READABLE;
+  user_options->markov_classic            = MARKOV_CLASSIC;
+  user_options->markov_disable            = MARKOV_DISABLE;
+  user_options->markov_hcstat2            = NULL;
+  user_options->markov_threshold          = MARKOV_THRESHOLD;
+  user_options->nonce_error_corrections   = NONCE_ERROR_CORRECTIONS;
+  user_options->opencl_devices            = NULL;
+  user_options->opencl_device_types       = NULL;
+  user_options->opencl_info               = OPENCL_INFO;
+  user_options->opencl_platforms          = NULL;
+  user_options->opencl_vector_width       = OPENCL_VECTOR_WIDTH;
+  user_options->optimized_kernel_enable   = OPTIMIZED_KERNEL_ENABLE;
+  user_options->outfile_autohex           = OUTFILE_AUTOHEX;
+  user_options->outfile_check_dir         = NULL;
+  user_options->outfile_check_timer       = OUTFILE_CHECK_TIMER;
+  user_options->outfile_format            = OUTFILE_FORMAT;
+  user_options->outfile                   = NULL;
+  user_options->potfile_disable           = POTFILE_DISABLE;
+  user_options->potfile_path              = NULL;
+  user_options->progress_only             = PROGRESS_ONLY;
+  user_options->quiet                     = QUIET;
+  user_options->remove                    = REMOVE;
+  user_options->remove_timer              = REMOVE_TIMER;
+  user_options->restore_disable           = RESTORE_DISABLE;
+  user_options->restore_file_path         = NULL;
+  user_options->restore                   = RESTORE;
+  user_options->restore_timer             = RESTORE_TIMER;
+  user_options->rp_gen_func_max           = RP_GEN_FUNC_MAX;
+  user_options->rp_gen_func_min           = RP_GEN_FUNC_MIN;
+  user_options->rp_gen                    = RP_GEN;
+  user_options->rp_gen_seed               = RP_GEN_SEED;
+  user_options->rule_buf_l                = RULE_BUF_L;
+  user_options->rule_buf_r                = RULE_BUF_R;
+  user_options->runtime                   = RUNTIME;
+  user_options->scrypt_tmto               = SCRYPT_TMTO;
+  user_options->segment_size              = SEGMENT_SIZE;
+  user_options->self_test_disable         = SELF_TEST_DISABLE;
+  user_options->separator                 = SEPARATOR;
+  user_options->session                   = PROGNAME;
+  user_options->show                      = SHOW;
+  user_options->skip                      = SKIP;
+  user_options->slow_candidates           = SLOW_CANDIDATES;
+  user_options->speed_only                = SPEED_ONLY;
+  user_options->spin_damp                 = SPIN_DAMP;
+  user_options->status                    = STATUS;
+  user_options->status_json               = STATUS_JSON;
+  user_options->status_timer              = STATUS_TIMER;
+  user_options->stdin_timeout_abort       = STDIN_TIMEOUT_ABORT;
+  user_options->stdout_flag               = STDOUT_FLAG;
+  user_options->truecrypt_keyfiles        = NULL;
+  user_options->usage                     = USAGE;
+  user_options->username                  = USERNAME;
+  user_options->veracrypt_keyfiles        = NULL;
+  user_options->veracrypt_pim_start       = 0;
+  user_options->veracrypt_pim_stop        = 0;
+  user_options->version                   = VERSION;
+  user_options->wordlist_autohex_disable  = WORDLIST_AUTOHEX_DISABLE;
+  user_options->workload_profile          = WORKLOAD_PROFILE;
+  user_options->rp_files_cnt              = 0;
+  user_options->rp_files                  = (char **) hccalloc (256, sizeof (char *));
+  user_options->hc_bin                    = PROGNAME;
+  user_options->hc_argc                   = 0;
+  user_options->hc_argv                   = NULL;
+
+  return 0;
+}

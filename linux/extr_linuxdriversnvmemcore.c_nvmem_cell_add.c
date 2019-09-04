@@ -1,0 +1,27 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+struct nvmem_cell {int /*<<< orphan*/  node; } ;
+
+/* Variables and functions */
+ int /*<<< orphan*/  list_add_tail (int /*<<< orphan*/ *,int /*<<< orphan*/ *) ; 
+ int /*<<< orphan*/  mutex_lock (int /*<<< orphan*/ *) ; 
+ int /*<<< orphan*/  mutex_unlock (int /*<<< orphan*/ *) ; 
+ int /*<<< orphan*/  nvmem_cells ; 
+ int /*<<< orphan*/  nvmem_cells_mutex ; 
+
+__attribute__((used)) static void nvmem_cell_add(struct nvmem_cell *cell)
+{
+	mutex_lock(&nvmem_cells_mutex);
+	list_add_tail(&cell->node, &nvmem_cells);
+	mutex_unlock(&nvmem_cells_mutex);
+}

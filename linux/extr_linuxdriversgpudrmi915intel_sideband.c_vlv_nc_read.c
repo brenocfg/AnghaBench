@@ -1,0 +1,39 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+typedef  int /*<<< orphan*/  u8 ;
+typedef  int /*<<< orphan*/  u32 ;
+struct drm_i915_private {int /*<<< orphan*/  sb_lock; int /*<<< orphan*/  pcu_lock; } ;
+
+/* Variables and functions */
+ int /*<<< orphan*/  IOSF_PORT_NC ; 
+ int /*<<< orphan*/  PCI_DEVFN (int /*<<< orphan*/ ,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  SB_CRRDDA_NP ; 
+ int /*<<< orphan*/  WARN_ON (int) ; 
+ int /*<<< orphan*/  mutex_is_locked (int /*<<< orphan*/ *) ; 
+ int /*<<< orphan*/  mutex_lock (int /*<<< orphan*/ *) ; 
+ int /*<<< orphan*/  mutex_unlock (int /*<<< orphan*/ *) ; 
+ int /*<<< orphan*/  vlv_sideband_rw (struct drm_i915_private*,int /*<<< orphan*/ ,int /*<<< orphan*/ ,int /*<<< orphan*/ ,int /*<<< orphan*/ ,int /*<<< orphan*/ *) ; 
+
+u32 vlv_nc_read(struct drm_i915_private *dev_priv, u8 addr)
+{
+	u32 val = 0;
+
+	WARN_ON(!mutex_is_locked(&dev_priv->pcu_lock));
+
+	mutex_lock(&dev_priv->sb_lock);
+	vlv_sideband_rw(dev_priv, PCI_DEVFN(0, 0), IOSF_PORT_NC,
+			SB_CRRDDA_NP, addr, &val);
+	mutex_unlock(&dev_priv->sb_lock);
+
+	return val;
+}

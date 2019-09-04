@@ -1,0 +1,40 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+typedef  struct TYPE_6__   TYPE_2__ ;
+typedef  struct TYPE_5__   TYPE_1__ ;
+
+/* Type definitions */
+struct TYPE_6__ {TYPE_1__* priv_data; } ;
+struct TYPE_5__ {scalar_t__ encrypt; scalar_t__ key_info_file; int /*<<< orphan*/  http_persistent; } ;
+typedef  TYPE_1__ HLSContext ;
+typedef  int /*<<< orphan*/  AVIOContext ;
+typedef  TYPE_2__ AVFormatContext ;
+
+/* Variables and functions */
+ int /*<<< orphan*/  ff_format_io_close (TYPE_2__*,int /*<<< orphan*/ **) ; 
+ int ff_is_http_proto (char*) ; 
+
+__attribute__((used)) static void hlsenc_io_close(AVFormatContext *s, AVIOContext **pb, char *filename) {
+    HLSContext *hls = s->priv_data;
+    int http_base_proto = filename ? ff_is_http_proto(filename) : 0;
+    if (!*pb)
+        return;
+    if (!http_base_proto || !hls->http_persistent || hls->key_info_file || hls->encrypt) {
+        ff_format_io_close(s, pb);
+#if CONFIG_HTTP_PROTOCOL
+    } else {
+        URLContext *http_url_context = ffio_geturlcontext(*pb);
+        av_assert0(http_url_context);
+        avio_flush(*pb);
+        ffurl_shutdown(http_url_context, AVIO_FLAG_WRITE);
+#endif
+    }
+}

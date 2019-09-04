@@ -1,0 +1,78 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+typedef  int /*<<< orphan*/  u_char ;
+typedef  size_t u32 ;
+struct mypriv {int asize; } ;
+struct mtd_info {size_t size; struct mypriv* priv; } ;
+typedef  size_t loff_t ;
+
+/* Variables and functions */
+ int /*<<< orphan*/  memcpy (int /*<<< orphan*/ *,int /*<<< orphan*/ *,size_t) ; 
+ int /*<<< orphan*/  pmc551_point (struct mtd_info*,size_t,size_t,size_t*,void**,int /*<<< orphan*/ *) ; 
+
+__attribute__((used)) static int pmc551_read(struct mtd_info *mtd, loff_t from, size_t len,
+			size_t * retlen, u_char * buf)
+{
+	struct mypriv *priv = mtd->priv;
+	u32 soff_hi, soff_lo;	/* start address offset hi/lo */
+	u32 eoff_hi, eoff_lo;	/* end address offset hi/lo */
+	unsigned long end;
+	u_char *ptr;
+	u_char *copyto = buf;
+
+#ifdef CONFIG_MTD_PMC551_DEBUG
+	printk(KERN_DEBUG "pmc551_read(pos:%ld, len:%ld) asize: %ld\n",
+		(long)from, (long)len, (long)priv->asize);
+#endif
+
+	end = from + len - 1;
+	soff_hi = from & ~(priv->asize - 1);
+	eoff_hi = end & ~(priv->asize - 1);
+	soff_lo = from & (priv->asize - 1);
+	eoff_lo = end & (priv->asize - 1);
+
+	pmc551_point(mtd, from, len, retlen, (void **)&ptr, NULL);
+
+	if (soff_hi == eoff_hi) {
+		/* The whole thing fits within one access, so just one shot
+		   will do it. */
+		memcpy(copyto, ptr, len);
+		copyto += len;
+	} else {
+		/* We have to do multiple writes to get all the data
+		   written. */
+		while (soff_hi != eoff_hi) {
+#ifdef CONFIG_MTD_PMC551_DEBUG
+			printk(KERN_DEBUG "pmc551_read() soff_hi: %ld, "
+				"eoff_hi: %ld\n", (long)soff_hi, (long)eoff_hi);
+#endif
+			memcpy(copyto, ptr, priv->asize);
+			copyto += priv->asize;
+			if (soff_hi + priv->asize >= mtd->size) {
+				goto out;
+			}
+			soff_hi += priv->asize;
+			pmc551_point(mtd, soff_hi, priv->asize, retlen,
+				     (void **)&ptr, NULL);
+		}
+		memcpy(copyto, ptr, eoff_lo);
+		copyto += eoff_lo;
+	}
+
+      out:
+#ifdef CONFIG_MTD_PMC551_DEBUG
+	printk(KERN_DEBUG "pmc551_read() done\n");
+#endif
+	*retlen = copyto - buf;
+	return 0;
+}

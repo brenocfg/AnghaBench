@@ -1,0 +1,129 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+typedef  int uint32_t ;
+typedef  enum encoder_id { ____Placeholder_encoder_id } encoder_id ;
+
+/* Variables and functions */
+ int /*<<< orphan*/  ASSERT (int /*<<< orphan*/ ) ; 
+ int ENCODER_ID_EXTERNAL_MVPU_FPGA ; 
+ int ENCODER_ID_EXTERNAL_NUTMEG ; 
+ int ENCODER_ID_EXTERNAL_TRAVIS ; 
+ int ENCODER_ID_INTERNAL_DAC1 ; 
+ int ENCODER_ID_INTERNAL_DAC2 ; 
+ int ENCODER_ID_INTERNAL_DDI ; 
+ int ENCODER_ID_INTERNAL_HDMI ; 
+ int ENCODER_ID_INTERNAL_KLDSCP_DAC1 ; 
+ int ENCODER_ID_INTERNAL_KLDSCP_DAC2 ; 
+ int ENCODER_ID_INTERNAL_KLDSCP_LVTMA ; 
+ int ENCODER_ID_INTERNAL_KLDSCP_TMDS1 ; 
+ int ENCODER_ID_INTERNAL_LVDS ; 
+ int ENCODER_ID_INTERNAL_LVTM1 ; 
+ int ENCODER_ID_INTERNAL_TMDS1 ; 
+ int ENCODER_ID_INTERNAL_TMDS2 ; 
+ int ENCODER_ID_INTERNAL_UNIPHY ; 
+ int ENCODER_ID_INTERNAL_UNIPHY1 ; 
+ int ENCODER_ID_INTERNAL_UNIPHY2 ; 
+ int ENCODER_ID_INTERNAL_UNIPHY3 ; 
+ int ENCODER_ID_UNKNOWN ; 
+#define  ENCODER_OBJECT_ID_ALMOND 146 
+#define  ENCODER_OBJECT_ID_HDMI_INTERNAL 145 
+#define  ENCODER_OBJECT_ID_INTERNAL_DAC1 144 
+#define  ENCODER_OBJECT_ID_INTERNAL_DAC2 143 
+#define  ENCODER_OBJECT_ID_INTERNAL_DDI 142 
+#define  ENCODER_OBJECT_ID_INTERNAL_KLDSCP_DAC1 141 
+#define  ENCODER_OBJECT_ID_INTERNAL_KLDSCP_DAC2 140 
+#define  ENCODER_OBJECT_ID_INTERNAL_KLDSCP_LVTMA 139 
+#define  ENCODER_OBJECT_ID_INTERNAL_KLDSCP_TMDS1 138 
+#define  ENCODER_OBJECT_ID_INTERNAL_LVDS 137 
+#define  ENCODER_OBJECT_ID_INTERNAL_LVTM1 136 
+#define  ENCODER_OBJECT_ID_INTERNAL_TMDS1 135 
+#define  ENCODER_OBJECT_ID_INTERNAL_TMDS2 134 
+#define  ENCODER_OBJECT_ID_INTERNAL_UNIPHY 133 
+#define  ENCODER_OBJECT_ID_INTERNAL_UNIPHY1 132 
+#define  ENCODER_OBJECT_ID_INTERNAL_UNIPHY2 131 
+#define  ENCODER_OBJECT_ID_INTERNAL_UNIPHY3 130 
+#define  ENCODER_OBJECT_ID_MVPU_FPGA 129 
+#define  ENCODER_OBJECT_ID_TRAVIS 128 
+ int gpu_id_from_bios_object_id (int) ; 
+
+__attribute__((used)) static enum encoder_id encoder_id_from_bios_object_id(uint32_t bios_object_id)
+{
+	uint32_t bios_encoder_id = gpu_id_from_bios_object_id(bios_object_id);
+	enum encoder_id id;
+
+	switch (bios_encoder_id) {
+	case ENCODER_OBJECT_ID_INTERNAL_LVDS:
+		id = ENCODER_ID_INTERNAL_LVDS;
+		break;
+	case ENCODER_OBJECT_ID_INTERNAL_TMDS1:
+		id = ENCODER_ID_INTERNAL_TMDS1;
+		break;
+	case ENCODER_OBJECT_ID_INTERNAL_TMDS2:
+		id = ENCODER_ID_INTERNAL_TMDS2;
+		break;
+	case ENCODER_OBJECT_ID_INTERNAL_DAC1:
+		id = ENCODER_ID_INTERNAL_DAC1;
+		break;
+	case ENCODER_OBJECT_ID_INTERNAL_DAC2:
+		id = ENCODER_ID_INTERNAL_DAC2;
+		break;
+	case ENCODER_OBJECT_ID_INTERNAL_LVTM1:
+		id = ENCODER_ID_INTERNAL_LVTM1;
+		break;
+	case ENCODER_OBJECT_ID_HDMI_INTERNAL:
+		id = ENCODER_ID_INTERNAL_HDMI;
+		break;
+	case ENCODER_OBJECT_ID_INTERNAL_KLDSCP_TMDS1:
+		id = ENCODER_ID_INTERNAL_KLDSCP_TMDS1;
+		break;
+	case ENCODER_OBJECT_ID_INTERNAL_KLDSCP_DAC1:
+		id = ENCODER_ID_INTERNAL_KLDSCP_DAC1;
+		break;
+	case ENCODER_OBJECT_ID_INTERNAL_KLDSCP_DAC2:
+		id = ENCODER_ID_INTERNAL_KLDSCP_DAC2;
+		break;
+	case ENCODER_OBJECT_ID_MVPU_FPGA:
+		id = ENCODER_ID_EXTERNAL_MVPU_FPGA;
+		break;
+	case ENCODER_OBJECT_ID_INTERNAL_DDI:
+		id = ENCODER_ID_INTERNAL_DDI;
+		break;
+	case ENCODER_OBJECT_ID_INTERNAL_UNIPHY:
+		id = ENCODER_ID_INTERNAL_UNIPHY;
+		break;
+	case ENCODER_OBJECT_ID_INTERNAL_KLDSCP_LVTMA:
+		id = ENCODER_ID_INTERNAL_KLDSCP_LVTMA;
+		break;
+	case ENCODER_OBJECT_ID_INTERNAL_UNIPHY1:
+		id = ENCODER_ID_INTERNAL_UNIPHY1;
+		break;
+	case ENCODER_OBJECT_ID_INTERNAL_UNIPHY2:
+		id = ENCODER_ID_INTERNAL_UNIPHY2;
+		break;
+	case ENCODER_OBJECT_ID_ALMOND: /* ENCODER_OBJECT_ID_NUTMEG */
+		id = ENCODER_ID_EXTERNAL_NUTMEG;
+		break;
+	case ENCODER_OBJECT_ID_TRAVIS:
+		id = ENCODER_ID_EXTERNAL_TRAVIS;
+		break;
+	case ENCODER_OBJECT_ID_INTERNAL_UNIPHY3:
+		id = ENCODER_ID_INTERNAL_UNIPHY3;
+		break;
+	default:
+		id = ENCODER_ID_UNKNOWN;
+		ASSERT(0);
+		break;
+	}
+
+	return id;
+}

@@ -1,0 +1,29 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+typedef  struct TYPE_2__   TYPE_1__ ;
+
+/* Type definitions */
+struct connectdata {TYPE_1__* handler; } ;
+typedef  int /*<<< orphan*/  curl_socket_t ;
+struct TYPE_2__ {int (* domore_getsock ) (struct connectdata*,int /*<<< orphan*/ *,int) ;} ;
+
+/* Variables and functions */
+ int GETSOCK_BLANK ; 
+ int stub1 (struct connectdata*,int /*<<< orphan*/ *,int) ; 
+
+__attribute__((used)) static int domore_getsock(struct connectdata *conn,
+                          curl_socket_t *socks,
+                          int numsocks)
+{
+  if(conn && conn->handler->domore_getsock)
+    return conn->handler->domore_getsock(conn, socks, numsocks);
+  return GETSOCK_BLANK;
+}

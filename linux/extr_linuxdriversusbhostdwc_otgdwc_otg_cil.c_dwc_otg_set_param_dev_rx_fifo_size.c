@@ -1,0 +1,48 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+typedef  struct TYPE_7__   TYPE_3__ ;
+typedef  struct TYPE_6__   TYPE_2__ ;
+typedef  struct TYPE_5__   TYPE_1__ ;
+
+/* Type definitions */
+typedef  scalar_t__ int32_t ;
+struct TYPE_7__ {TYPE_2__* core_params; TYPE_1__* core_global_regs; } ;
+typedef  TYPE_3__ dwc_otg_core_if_t ;
+struct TYPE_6__ {scalar_t__ dev_rx_fifo_size; } ;
+struct TYPE_5__ {int /*<<< orphan*/  grxfsiz; } ;
+
+/* Variables and functions */
+ int DWC_E_INVALID ; 
+ scalar_t__ DWC_OTG_PARAM_TEST (scalar_t__,int,int) ; 
+ scalar_t__ DWC_READ_REG32 (int /*<<< orphan*/ *) ; 
+ int /*<<< orphan*/  DWC_WARN (char*,...) ; 
+ scalar_t__ dwc_otg_param_initialized (scalar_t__) ; 
+
+int dwc_otg_set_param_dev_rx_fifo_size(dwc_otg_core_if_t * core_if, int32_t val)
+{
+	int retval = 0;
+	if (DWC_OTG_PARAM_TEST(val, 16, 32768)) {
+		DWC_WARN("Wrong value for dev_rx_fifo_size\n");
+		DWC_WARN("dev_rx_fifo_size must be 16-32768\n");
+		return -DWC_E_INVALID;
+	}
+
+	if (val > DWC_READ_REG32(&core_if->core_global_regs->grxfsiz)) {
+		if (dwc_otg_param_initialized(core_if->core_params->dev_rx_fifo_size)) {
+		DWC_WARN("%d invalid for dev_rx_fifo_size parameter\n", val);
+		}
+		val = DWC_READ_REG32(&core_if->core_global_regs->grxfsiz);
+		retval = -DWC_E_INVALID;
+	}
+
+	core_if->core_params->dev_rx_fifo_size = val;
+	return retval;
+}

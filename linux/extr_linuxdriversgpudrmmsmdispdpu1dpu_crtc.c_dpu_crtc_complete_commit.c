@@ -1,0 +1,29 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+struct drm_crtc_state {int dummy; } ;
+struct drm_crtc {int /*<<< orphan*/  state; } ;
+
+/* Variables and functions */
+ int /*<<< orphan*/  DPU_ERROR (char*) ; 
+ int /*<<< orphan*/  DRMID (struct drm_crtc*) ; 
+ int /*<<< orphan*/  trace_dpu_crtc_complete_commit (int /*<<< orphan*/ ) ; 
+
+void dpu_crtc_complete_commit(struct drm_crtc *crtc,
+		struct drm_crtc_state *old_state)
+{
+	if (!crtc || !crtc->state) {
+		DPU_ERROR("invalid crtc\n");
+		return;
+	}
+	trace_dpu_crtc_complete_commit(DRMID(crtc));
+}

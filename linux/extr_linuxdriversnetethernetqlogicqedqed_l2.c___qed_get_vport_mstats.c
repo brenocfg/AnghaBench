@@ -1,0 +1,56 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+typedef  struct TYPE_2__   TYPE_1__ ;
+
+/* Type definitions */
+typedef  int /*<<< orphan*/  u32 ;
+typedef  int /*<<< orphan*/  u16 ;
+struct qed_ptt {int dummy; } ;
+struct qed_hwfn {int dummy; } ;
+struct TYPE_2__ {int /*<<< orphan*/  tpa_coalesced_bytes; int /*<<< orphan*/  tpa_aborts_num; int /*<<< orphan*/  tpa_coalesced_events; int /*<<< orphan*/  tpa_coalesced_pkts; int /*<<< orphan*/  ttl0_discard; int /*<<< orphan*/  packet_too_big_discard; int /*<<< orphan*/  no_buff_discards; } ;
+struct qed_eth_stats {TYPE_1__ common; } ;
+struct eth_mstorm_per_queue_stat {int /*<<< orphan*/  tpa_coalesced_bytes; int /*<<< orphan*/  tpa_aborts_num; int /*<<< orphan*/  tpa_coalesced_events; int /*<<< orphan*/  tpa_coalesced_pkts; int /*<<< orphan*/  ttl0_discard; int /*<<< orphan*/  packet_too_big_discard; int /*<<< orphan*/  no_buff_discard; } ;
+typedef  int /*<<< orphan*/  mstats ;
+
+/* Variables and functions */
+ scalar_t__ HILO_64_REGPAIR (int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  __qed_get_vport_mstats_addrlen (struct qed_hwfn*,int /*<<< orphan*/ *,int /*<<< orphan*/ *,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  memset (struct eth_mstorm_per_queue_stat*,int /*<<< orphan*/ ,int) ; 
+ int /*<<< orphan*/  qed_memcpy_from (struct qed_hwfn*,struct qed_ptt*,struct eth_mstorm_per_queue_stat*,int /*<<< orphan*/ ,int /*<<< orphan*/ ) ; 
+
+__attribute__((used)) static void __qed_get_vport_mstats(struct qed_hwfn *p_hwfn,
+				   struct qed_ptt *p_ptt,
+				   struct qed_eth_stats *p_stats,
+				   u16 statistics_bin)
+{
+	struct eth_mstorm_per_queue_stat mstats;
+	u32 mstats_addr = 0, mstats_len = 0;
+
+	__qed_get_vport_mstats_addrlen(p_hwfn, &mstats_addr, &mstats_len,
+				       statistics_bin);
+
+	memset(&mstats, 0, sizeof(mstats));
+	qed_memcpy_from(p_hwfn, p_ptt, &mstats, mstats_addr, mstats_len);
+
+	p_stats->common.no_buff_discards +=
+	    HILO_64_REGPAIR(mstats.no_buff_discard);
+	p_stats->common.packet_too_big_discard +=
+	    HILO_64_REGPAIR(mstats.packet_too_big_discard);
+	p_stats->common.ttl0_discard += HILO_64_REGPAIR(mstats.ttl0_discard);
+	p_stats->common.tpa_coalesced_pkts +=
+	    HILO_64_REGPAIR(mstats.tpa_coalesced_pkts);
+	p_stats->common.tpa_coalesced_events +=
+	    HILO_64_REGPAIR(mstats.tpa_coalesced_events);
+	p_stats->common.tpa_aborts_num +=
+	    HILO_64_REGPAIR(mstats.tpa_aborts_num);
+	p_stats->common.tpa_coalesced_bytes +=
+	    HILO_64_REGPAIR(mstats.tpa_coalesced_bytes);
+}

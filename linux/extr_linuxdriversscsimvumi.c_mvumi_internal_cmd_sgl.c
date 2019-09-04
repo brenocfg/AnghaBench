@@ -1,0 +1,51 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+typedef  struct TYPE_2__   TYPE_1__ ;
+
+/* Type definitions */
+struct mvumi_sgl {unsigned int flags; void* baseaddr_h; void* baseaddr_l; } ;
+struct mvumi_hba {unsigned int eot_flag; int /*<<< orphan*/  pdev; } ;
+struct mvumi_cmd {void* data_buf; TYPE_1__* frame; } ;
+typedef  int /*<<< orphan*/  dma_addr_t ;
+struct TYPE_2__ {int sg_counts; int /*<<< orphan*/ * payload; } ;
+
+/* Variables and functions */
+ void* cpu_to_le32 (unsigned int) ; 
+ unsigned int lower_32_bits (int /*<<< orphan*/ ) ; 
+ void* pci_zalloc_consistent (int /*<<< orphan*/ ,unsigned int,int /*<<< orphan*/ *) ; 
+ int /*<<< orphan*/  sgd_setsz (struct mvumi_hba*,struct mvumi_sgl*,void*) ; 
+ unsigned int upper_32_bits (int /*<<< orphan*/ ) ; 
+
+__attribute__((used)) static int mvumi_internal_cmd_sgl(struct mvumi_hba *mhba, struct mvumi_cmd *cmd,
+							unsigned int size)
+{
+	struct mvumi_sgl *m_sg;
+	void *virt_addr;
+	dma_addr_t phy_addr;
+
+	if (size == 0)
+		return 0;
+
+	virt_addr = pci_zalloc_consistent(mhba->pdev, size, &phy_addr);
+	if (!virt_addr)
+		return -1;
+
+	m_sg = (struct mvumi_sgl *) &cmd->frame->payload[0];
+	cmd->frame->sg_counts = 1;
+	cmd->data_buf = virt_addr;
+
+	m_sg->baseaddr_l = cpu_to_le32(lower_32_bits(phy_addr));
+	m_sg->baseaddr_h = cpu_to_le32(upper_32_bits(phy_addr));
+	m_sg->flags = 1U << mhba->eot_flag;
+	sgd_setsz(mhba, m_sg, cpu_to_le32(size));
+
+	return 0;
+}

@@ -1,0 +1,79 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+typedef  struct TYPE_2__   TYPE_1__ ;
+
+/* Type definitions */
+struct mp_log {int dummy; } ;
+struct TYPE_2__ {scalar_t__ space; int /*<<< orphan*/  levels; } ;
+struct mp_image_params {int imgfmt; int w; int h; int p_w; int p_h; int /*<<< orphan*/  chroma_location; TYPE_1__ color; } ;
+struct mp_image {struct mp_image_params params; } ;
+
+/* Variables and functions */
+ int /*<<< orphan*/  MP_CHROMA_CENTER ; 
+ scalar_t__ MP_CSP_BT_601 ; 
+ int /*<<< orphan*/  MP_CSP_LEVELS_PC ; 
+ scalar_t__ MP_CSP_RGB ; 
+ int /*<<< orphan*/  mp_err (struct mp_log*,char*) ; 
+ struct mp_image* mp_image_alloc (int,int,int) ; 
+ int /*<<< orphan*/  mp_image_copy_attributes (struct mp_image*,struct mp_image*) ; 
+ struct mp_image* mp_image_new_ref (struct mp_image*) ; 
+ scalar_t__ mp_image_params_equal (struct mp_image_params*,struct mp_image_params*) ; 
+ int /*<<< orphan*/  mp_image_params_get_dsize (struct mp_image_params*,int*,int*) ; 
+ int /*<<< orphan*/  mp_image_params_guess_csp (struct mp_image_params*) ; 
+ scalar_t__ mp_image_swscale (struct mp_image*,struct mp_image*,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  mp_sws_hq_flags ; 
+ int /*<<< orphan*/  talloc_free (struct mp_image*) ; 
+
+struct mp_image *convert_image(struct mp_image *image, int destfmt,
+                               struct mp_log *log)
+{
+    int d_w, d_h;
+    mp_image_params_get_dsize(&image->params, &d_w, &d_h);
+
+    struct mp_image_params p = {
+        .imgfmt = destfmt,
+        .w = d_w,
+        .h = d_h,
+        .p_w = 1,
+        .p_h = 1,
+    };
+    mp_image_params_guess_csp(&p);
+
+    // If RGB, just assume everything is correct.
+    if (p.color.space != MP_CSP_RGB) {
+        // Currently, assume what FFmpeg's jpg encoder needs.
+        // Of course this works only for non-HDR (no HDR support in libswscale).
+        p.color.levels = MP_CSP_LEVELS_PC;
+        p.color.space = MP_CSP_BT_601;
+        p.chroma_location = MP_CHROMA_CENTER;
+        mp_image_params_guess_csp(&p);
+    }
+
+    if (mp_image_params_equal(&p, &image->params))
+        return mp_image_new_ref(image);
+
+    struct mp_image *dst = mp_image_alloc(p.imgfmt, p.w, p.h);
+    if (!dst) {
+        mp_err(log, "Out of memory.\n");
+        return NULL;
+    }
+    mp_image_copy_attributes(dst, image);
+
+    dst->params = p;
+
+    if (mp_image_swscale(dst, image, mp_sws_hq_flags) < 0) {
+        mp_err(log, "Error when converting image.\n");
+        talloc_free(dst);
+        return NULL;
+    }
+
+    return dst;
+}

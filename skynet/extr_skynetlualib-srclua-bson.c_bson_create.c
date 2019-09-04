@@ -1,0 +1,23 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+struct bson {int /*<<< orphan*/  buffer; int /*<<< orphan*/  ptr; int /*<<< orphan*/  cap; scalar_t__ size; } ;
+
+/* Variables and functions */
+ int /*<<< orphan*/  DEFAULT_CAP ; 
+
+__attribute__((used)) static inline void
+bson_create(struct bson *b) {
+	b->size = 0;
+	b->cap = DEFAULT_CAP;
+	b->ptr = b->buffer;
+}

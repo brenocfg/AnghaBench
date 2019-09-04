@@ -1,0 +1,29 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+struct nand_chip {int phys_erase_shift; int page_shift; } ;
+struct mtd_info {int dummy; } ;
+
+/* Variables and functions */
+ struct nand_chip* mtd_to_nand (struct mtd_info*) ; 
+ int nand_erase_op (struct nand_chip*,unsigned int) ; 
+
+__attribute__((used)) static int single_erase(struct mtd_info *mtd, int page)
+{
+	struct nand_chip *chip = mtd_to_nand(mtd);
+	unsigned int eraseblock;
+
+	/* Send commands to erase a block */
+	eraseblock = page >> (chip->phys_erase_shift - chip->page_shift);
+
+	return nand_erase_op(chip, eraseblock);
+}

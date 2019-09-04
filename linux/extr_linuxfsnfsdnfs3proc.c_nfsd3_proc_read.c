@@ -1,0 +1,68 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+typedef  struct TYPE_3__   TYPE_1__ ;
+
+/* Type definitions */
+typedef  int /*<<< orphan*/  u32 ;
+struct svc_rqst {int /*<<< orphan*/  rq_vec; struct nfsd3_readres* rq_resp; struct nfsd3_readargs* rq_argp; } ;
+struct TYPE_3__ {int /*<<< orphan*/  fh_dentry; } ;
+struct nfsd3_readres {unsigned long count; int /*<<< orphan*/  eof; TYPE_1__ fh; } ;
+struct nfsd3_readargs {scalar_t__ offset; int /*<<< orphan*/  vlen; int /*<<< orphan*/  fh; scalar_t__ count; } ;
+struct inode {int /*<<< orphan*/  i_size; } ;
+typedef  scalar_t__ __be32 ;
+
+/* Variables and functions */
+ int NFS3_POST_OP_ATTR_WORDS ; 
+ int /*<<< orphan*/  RETURN_STATUS (scalar_t__) ; 
+ int /*<<< orphan*/  SVCFH_fmt (int /*<<< orphan*/ *) ; 
+ struct inode* d_inode (int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  dprintk (char*,int /*<<< orphan*/ ,unsigned long,unsigned long long) ; 
+ int /*<<< orphan*/  fh_copy (TYPE_1__*,int /*<<< orphan*/ *) ; 
+ unsigned long min (scalar_t__,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  nfsd_eof_on_read (unsigned long,int,scalar_t__,int /*<<< orphan*/ ) ; 
+ scalar_t__ nfsd_read (struct svc_rqst*,TYPE_1__*,scalar_t__,int /*<<< orphan*/ ,int /*<<< orphan*/ ,int*) ; 
+ int /*<<< orphan*/  svc_max_payload (struct svc_rqst*) ; 
+ int /*<<< orphan*/  svc_reserve_auth (struct svc_rqst*,int) ; 
+
+__attribute__((used)) static __be32
+nfsd3_proc_read(struct svc_rqst *rqstp)
+{
+	struct nfsd3_readargs *argp = rqstp->rq_argp;
+	struct nfsd3_readres *resp = rqstp->rq_resp;
+	__be32	nfserr;
+	u32	max_blocksize = svc_max_payload(rqstp);
+	unsigned long cnt = min(argp->count, max_blocksize);
+
+	dprintk("nfsd: READ(3) %s %lu bytes at %Lu\n",
+				SVCFH_fmt(&argp->fh),
+				(unsigned long) argp->count,
+				(unsigned long long) argp->offset);
+
+	/* Obtain buffer pointer for payload.
+	 * 1 (status) + 22 (post_op_attr) + 1 (count) + 1 (eof)
+	 * + 1 (xdr opaque byte count) = 26
+	 */
+	resp->count = cnt;
+	svc_reserve_auth(rqstp, ((1 + NFS3_POST_OP_ATTR_WORDS + 3)<<2) + resp->count +4);
+
+	fh_copy(&resp->fh, &argp->fh);
+	nfserr = nfsd_read(rqstp, &resp->fh,
+				  argp->offset,
+			   	  rqstp->rq_vec, argp->vlen,
+				  &resp->count);
+	if (nfserr == 0) {
+		struct inode	*inode = d_inode(resp->fh.fh_dentry);
+		resp->eof = nfsd_eof_on_read(cnt, resp->count, argp->offset,
+							inode->i_size);
+	}
+
+	RETURN_STATUS(nfserr);
+}

@@ -1,0 +1,162 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+typedef  scalar_t__ PFNGLVALIDATEPROGRAMPIPELINEEXTPROC ;
+typedef  scalar_t__ PFNGLUSESHADERPROGRAMEXTPROC ;
+typedef  scalar_t__ PFNGLUSEPROGRAMSTAGESEXTPROC ;
+typedef  scalar_t__ PFNGLPROGRAMUNIFORMMATRIX4X3FVEXTPROC ;
+typedef  scalar_t__ PFNGLPROGRAMUNIFORMMATRIX4X2FVEXTPROC ;
+typedef  scalar_t__ PFNGLPROGRAMUNIFORMMATRIX4FVEXTPROC ;
+typedef  scalar_t__ PFNGLPROGRAMUNIFORMMATRIX3X4FVEXTPROC ;
+typedef  scalar_t__ PFNGLPROGRAMUNIFORMMATRIX3X2FVEXTPROC ;
+typedef  scalar_t__ PFNGLPROGRAMUNIFORMMATRIX3FVEXTPROC ;
+typedef  scalar_t__ PFNGLPROGRAMUNIFORMMATRIX2X4FVEXTPROC ;
+typedef  scalar_t__ PFNGLPROGRAMUNIFORMMATRIX2X3FVEXTPROC ;
+typedef  scalar_t__ PFNGLPROGRAMUNIFORMMATRIX2FVEXTPROC ;
+typedef  scalar_t__ PFNGLPROGRAMUNIFORM4UIVEXTPROC ;
+typedef  scalar_t__ PFNGLPROGRAMUNIFORM4UIEXTPROC ;
+typedef  scalar_t__ PFNGLPROGRAMUNIFORM4IVEXTPROC ;
+typedef  scalar_t__ PFNGLPROGRAMUNIFORM4IEXTPROC ;
+typedef  scalar_t__ PFNGLPROGRAMUNIFORM4FVEXTPROC ;
+typedef  scalar_t__ PFNGLPROGRAMUNIFORM4FEXTPROC ;
+typedef  scalar_t__ PFNGLPROGRAMUNIFORM3UIVEXTPROC ;
+typedef  scalar_t__ PFNGLPROGRAMUNIFORM3UIEXTPROC ;
+typedef  scalar_t__ PFNGLPROGRAMUNIFORM3IVEXTPROC ;
+typedef  scalar_t__ PFNGLPROGRAMUNIFORM3IEXTPROC ;
+typedef  scalar_t__ PFNGLPROGRAMUNIFORM3FVEXTPROC ;
+typedef  scalar_t__ PFNGLPROGRAMUNIFORM3FEXTPROC ;
+typedef  scalar_t__ PFNGLPROGRAMUNIFORM2UIVEXTPROC ;
+typedef  scalar_t__ PFNGLPROGRAMUNIFORM2UIEXTPROC ;
+typedef  scalar_t__ PFNGLPROGRAMUNIFORM2IVEXTPROC ;
+typedef  scalar_t__ PFNGLPROGRAMUNIFORM2IEXTPROC ;
+typedef  scalar_t__ PFNGLPROGRAMUNIFORM2FVEXTPROC ;
+typedef  scalar_t__ PFNGLPROGRAMUNIFORM2FEXTPROC ;
+typedef  scalar_t__ PFNGLPROGRAMUNIFORM1UIVEXTPROC ;
+typedef  scalar_t__ PFNGLPROGRAMUNIFORM1UIEXTPROC ;
+typedef  scalar_t__ PFNGLPROGRAMUNIFORM1IVEXTPROC ;
+typedef  scalar_t__ PFNGLPROGRAMUNIFORM1IEXTPROC ;
+typedef  scalar_t__ PFNGLPROGRAMUNIFORM1FVEXTPROC ;
+typedef  scalar_t__ PFNGLPROGRAMUNIFORM1FEXTPROC ;
+typedef  scalar_t__ PFNGLPROGRAMPARAMETERIEXTPROC ;
+typedef  scalar_t__ PFNGLISPROGRAMPIPELINEEXTPROC ;
+typedef  scalar_t__ PFNGLGETPROGRAMPIPELINEIVEXTPROC ;
+typedef  scalar_t__ PFNGLGETPROGRAMPIPELINEINFOLOGEXTPROC ;
+typedef  scalar_t__ PFNGLGENPROGRAMPIPELINESEXTPROC ;
+typedef  scalar_t__ PFNGLDELETEPROGRAMPIPELINESEXTPROC ;
+typedef  scalar_t__ PFNGLCREATESHADERPROGRAMVEXTPROC ;
+typedef  scalar_t__ PFNGLCREATESHADERPROGRAMEXTPROC ;
+typedef  scalar_t__ PFNGLBINDPROGRAMPIPELINEEXTPROC ;
+typedef  scalar_t__ PFNGLACTIVESHADERPROGRAMEXTPROC ;
+typedef  scalar_t__ PFNGLACTIVEPROGRAMEXTPROC ;
+typedef  scalar_t__ (* GLADloadproc ) (char*) ;
+
+/* Variables and functions */
+ int /*<<< orphan*/  GLAD_GL_EXT_separate_shader_objects ; 
+ scalar_t__ glad_glActiveProgramEXT ; 
+ scalar_t__ glad_glActiveShaderProgramEXT ; 
+ scalar_t__ glad_glBindProgramPipelineEXT ; 
+ scalar_t__ glad_glCreateShaderProgramEXT ; 
+ scalar_t__ glad_glCreateShaderProgramvEXT ; 
+ scalar_t__ glad_glDeleteProgramPipelinesEXT ; 
+ scalar_t__ glad_glGenProgramPipelinesEXT ; 
+ scalar_t__ glad_glGetProgramPipelineInfoLogEXT ; 
+ scalar_t__ glad_glGetProgramPipelineivEXT ; 
+ scalar_t__ glad_glIsProgramPipelineEXT ; 
+ scalar_t__ glad_glProgramParameteriEXT ; 
+ scalar_t__ glad_glProgramUniform1fEXT ; 
+ scalar_t__ glad_glProgramUniform1fvEXT ; 
+ scalar_t__ glad_glProgramUniform1iEXT ; 
+ scalar_t__ glad_glProgramUniform1ivEXT ; 
+ scalar_t__ glad_glProgramUniform1uiEXT ; 
+ scalar_t__ glad_glProgramUniform1uivEXT ; 
+ scalar_t__ glad_glProgramUniform2fEXT ; 
+ scalar_t__ glad_glProgramUniform2fvEXT ; 
+ scalar_t__ glad_glProgramUniform2iEXT ; 
+ scalar_t__ glad_glProgramUniform2ivEXT ; 
+ scalar_t__ glad_glProgramUniform2uiEXT ; 
+ scalar_t__ glad_glProgramUniform2uivEXT ; 
+ scalar_t__ glad_glProgramUniform3fEXT ; 
+ scalar_t__ glad_glProgramUniform3fvEXT ; 
+ scalar_t__ glad_glProgramUniform3iEXT ; 
+ scalar_t__ glad_glProgramUniform3ivEXT ; 
+ scalar_t__ glad_glProgramUniform3uiEXT ; 
+ scalar_t__ glad_glProgramUniform3uivEXT ; 
+ scalar_t__ glad_glProgramUniform4fEXT ; 
+ scalar_t__ glad_glProgramUniform4fvEXT ; 
+ scalar_t__ glad_glProgramUniform4iEXT ; 
+ scalar_t__ glad_glProgramUniform4ivEXT ; 
+ scalar_t__ glad_glProgramUniform4uiEXT ; 
+ scalar_t__ glad_glProgramUniform4uivEXT ; 
+ scalar_t__ glad_glProgramUniformMatrix2fvEXT ; 
+ scalar_t__ glad_glProgramUniformMatrix2x3fvEXT ; 
+ scalar_t__ glad_glProgramUniformMatrix2x4fvEXT ; 
+ scalar_t__ glad_glProgramUniformMatrix3fvEXT ; 
+ scalar_t__ glad_glProgramUniformMatrix3x2fvEXT ; 
+ scalar_t__ glad_glProgramUniformMatrix3x4fvEXT ; 
+ scalar_t__ glad_glProgramUniformMatrix4fvEXT ; 
+ scalar_t__ glad_glProgramUniformMatrix4x2fvEXT ; 
+ scalar_t__ glad_glProgramUniformMatrix4x3fvEXT ; 
+ scalar_t__ glad_glUseProgramStagesEXT ; 
+ scalar_t__ glad_glUseShaderProgramEXT ; 
+ scalar_t__ glad_glValidateProgramPipelineEXT ; 
+
+__attribute__((used)) static void load_GL_EXT_separate_shader_objects(GLADloadproc load) {
+	if(!GLAD_GL_EXT_separate_shader_objects) return;
+	glad_glUseShaderProgramEXT = (PFNGLUSESHADERPROGRAMEXTPROC)load("glUseShaderProgramEXT");
+	glad_glActiveProgramEXT = (PFNGLACTIVEPROGRAMEXTPROC)load("glActiveProgramEXT");
+	glad_glCreateShaderProgramEXT = (PFNGLCREATESHADERPROGRAMEXTPROC)load("glCreateShaderProgramEXT");
+	glad_glActiveShaderProgramEXT = (PFNGLACTIVESHADERPROGRAMEXTPROC)load("glActiveShaderProgramEXT");
+	glad_glBindProgramPipelineEXT = (PFNGLBINDPROGRAMPIPELINEEXTPROC)load("glBindProgramPipelineEXT");
+	glad_glCreateShaderProgramvEXT = (PFNGLCREATESHADERPROGRAMVEXTPROC)load("glCreateShaderProgramvEXT");
+	glad_glDeleteProgramPipelinesEXT = (PFNGLDELETEPROGRAMPIPELINESEXTPROC)load("glDeleteProgramPipelinesEXT");
+	glad_glGenProgramPipelinesEXT = (PFNGLGENPROGRAMPIPELINESEXTPROC)load("glGenProgramPipelinesEXT");
+	glad_glGetProgramPipelineInfoLogEXT = (PFNGLGETPROGRAMPIPELINEINFOLOGEXTPROC)load("glGetProgramPipelineInfoLogEXT");
+	glad_glGetProgramPipelineivEXT = (PFNGLGETPROGRAMPIPELINEIVEXTPROC)load("glGetProgramPipelineivEXT");
+	glad_glIsProgramPipelineEXT = (PFNGLISPROGRAMPIPELINEEXTPROC)load("glIsProgramPipelineEXT");
+	glad_glProgramParameteriEXT = (PFNGLPROGRAMPARAMETERIEXTPROC)load("glProgramParameteriEXT");
+	glad_glProgramUniform1fEXT = (PFNGLPROGRAMUNIFORM1FEXTPROC)load("glProgramUniform1fEXT");
+	glad_glProgramUniform1fvEXT = (PFNGLPROGRAMUNIFORM1FVEXTPROC)load("glProgramUniform1fvEXT");
+	glad_glProgramUniform1iEXT = (PFNGLPROGRAMUNIFORM1IEXTPROC)load("glProgramUniform1iEXT");
+	glad_glProgramUniform1ivEXT = (PFNGLPROGRAMUNIFORM1IVEXTPROC)load("glProgramUniform1ivEXT");
+	glad_glProgramUniform2fEXT = (PFNGLPROGRAMUNIFORM2FEXTPROC)load("glProgramUniform2fEXT");
+	glad_glProgramUniform2fvEXT = (PFNGLPROGRAMUNIFORM2FVEXTPROC)load("glProgramUniform2fvEXT");
+	glad_glProgramUniform2iEXT = (PFNGLPROGRAMUNIFORM2IEXTPROC)load("glProgramUniform2iEXT");
+	glad_glProgramUniform2ivEXT = (PFNGLPROGRAMUNIFORM2IVEXTPROC)load("glProgramUniform2ivEXT");
+	glad_glProgramUniform3fEXT = (PFNGLPROGRAMUNIFORM3FEXTPROC)load("glProgramUniform3fEXT");
+	glad_glProgramUniform3fvEXT = (PFNGLPROGRAMUNIFORM3FVEXTPROC)load("glProgramUniform3fvEXT");
+	glad_glProgramUniform3iEXT = (PFNGLPROGRAMUNIFORM3IEXTPROC)load("glProgramUniform3iEXT");
+	glad_glProgramUniform3ivEXT = (PFNGLPROGRAMUNIFORM3IVEXTPROC)load("glProgramUniform3ivEXT");
+	glad_glProgramUniform4fEXT = (PFNGLPROGRAMUNIFORM4FEXTPROC)load("glProgramUniform4fEXT");
+	glad_glProgramUniform4fvEXT = (PFNGLPROGRAMUNIFORM4FVEXTPROC)load("glProgramUniform4fvEXT");
+	glad_glProgramUniform4iEXT = (PFNGLPROGRAMUNIFORM4IEXTPROC)load("glProgramUniform4iEXT");
+	glad_glProgramUniform4ivEXT = (PFNGLPROGRAMUNIFORM4IVEXTPROC)load("glProgramUniform4ivEXT");
+	glad_glProgramUniformMatrix2fvEXT = (PFNGLPROGRAMUNIFORMMATRIX2FVEXTPROC)load("glProgramUniformMatrix2fvEXT");
+	glad_glProgramUniformMatrix3fvEXT = (PFNGLPROGRAMUNIFORMMATRIX3FVEXTPROC)load("glProgramUniformMatrix3fvEXT");
+	glad_glProgramUniformMatrix4fvEXT = (PFNGLPROGRAMUNIFORMMATRIX4FVEXTPROC)load("glProgramUniformMatrix4fvEXT");
+	glad_glUseProgramStagesEXT = (PFNGLUSEPROGRAMSTAGESEXTPROC)load("glUseProgramStagesEXT");
+	glad_glValidateProgramPipelineEXT = (PFNGLVALIDATEPROGRAMPIPELINEEXTPROC)load("glValidateProgramPipelineEXT");
+	glad_glProgramUniform1uiEXT = (PFNGLPROGRAMUNIFORM1UIEXTPROC)load("glProgramUniform1uiEXT");
+	glad_glProgramUniform2uiEXT = (PFNGLPROGRAMUNIFORM2UIEXTPROC)load("glProgramUniform2uiEXT");
+	glad_glProgramUniform3uiEXT = (PFNGLPROGRAMUNIFORM3UIEXTPROC)load("glProgramUniform3uiEXT");
+	glad_glProgramUniform4uiEXT = (PFNGLPROGRAMUNIFORM4UIEXTPROC)load("glProgramUniform4uiEXT");
+	glad_glProgramUniform1uivEXT = (PFNGLPROGRAMUNIFORM1UIVEXTPROC)load("glProgramUniform1uivEXT");
+	glad_glProgramUniform2uivEXT = (PFNGLPROGRAMUNIFORM2UIVEXTPROC)load("glProgramUniform2uivEXT");
+	glad_glProgramUniform3uivEXT = (PFNGLPROGRAMUNIFORM3UIVEXTPROC)load("glProgramUniform3uivEXT");
+	glad_glProgramUniform4uivEXT = (PFNGLPROGRAMUNIFORM4UIVEXTPROC)load("glProgramUniform4uivEXT");
+	glad_glProgramUniformMatrix4fvEXT = (PFNGLPROGRAMUNIFORMMATRIX4FVEXTPROC)load("glProgramUniformMatrix4fvEXT");
+	glad_glProgramUniformMatrix2x3fvEXT = (PFNGLPROGRAMUNIFORMMATRIX2X3FVEXTPROC)load("glProgramUniformMatrix2x3fvEXT");
+	glad_glProgramUniformMatrix3x2fvEXT = (PFNGLPROGRAMUNIFORMMATRIX3X2FVEXTPROC)load("glProgramUniformMatrix3x2fvEXT");
+	glad_glProgramUniformMatrix2x4fvEXT = (PFNGLPROGRAMUNIFORMMATRIX2X4FVEXTPROC)load("glProgramUniformMatrix2x4fvEXT");
+	glad_glProgramUniformMatrix4x2fvEXT = (PFNGLPROGRAMUNIFORMMATRIX4X2FVEXTPROC)load("glProgramUniformMatrix4x2fvEXT");
+	glad_glProgramUniformMatrix3x4fvEXT = (PFNGLPROGRAMUNIFORMMATRIX3X4FVEXTPROC)load("glProgramUniformMatrix3x4fvEXT");
+	glad_glProgramUniformMatrix4x3fvEXT = (PFNGLPROGRAMUNIFORMMATRIX4X3FVEXTPROC)load("glProgramUniformMatrix4x3fvEXT");
+}

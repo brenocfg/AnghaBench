@@ -1,0 +1,24 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+struct pnfs_layout_hdr {int /*<<< orphan*/  plh_flags; scalar_t__ plh_block_lgets; } ;
+
+/* Variables and functions */
+ int /*<<< orphan*/  NFS_LAYOUT_BULK_RECALL ; 
+ scalar_t__ test_bit (int /*<<< orphan*/ ,int /*<<< orphan*/ *) ; 
+
+__attribute__((used)) static bool
+pnfs_layoutgets_blocked(const struct pnfs_layout_hdr *lo)
+{
+	return lo->plh_block_lgets ||
+		test_bit(NFS_LAYOUT_BULK_RECALL, &lo->plh_flags);
+}

@@ -1,0 +1,77 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+typedef  int u32 ;
+struct scaler_context {int dummy; } ;
+
+/* Variables and functions */
+ int /*<<< orphan*/  SCALER_INT_EN ; 
+ int SCALER_INT_EN_FRAME_END ; 
+ int SCALER_INT_EN_ILLEGAL_BLEND ; 
+ int SCALER_INT_EN_ILLEGAL_DST_CB_BASE ; 
+ int SCALER_INT_EN_ILLEGAL_DST_COLOR ; 
+ int SCALER_INT_EN_ILLEGAL_DST_CR_BASE ; 
+ int SCALER_INT_EN_ILLEGAL_DST_C_SPAN ; 
+ int SCALER_INT_EN_ILLEGAL_DST_HEIGHT ; 
+ int SCALER_INT_EN_ILLEGAL_DST_H_POS ; 
+ int SCALER_INT_EN_ILLEGAL_DST_SPAN ; 
+ int SCALER_INT_EN_ILLEGAL_DST_V_POS ; 
+ int SCALER_INT_EN_ILLEGAL_DST_WIDTH ; 
+ int SCALER_INT_EN_ILLEGAL_DST_Y_BASE ; 
+ int SCALER_INT_EN_ILLEGAL_DST_Y_SPAN ; 
+ int SCALER_INT_EN_ILLEGAL_RATIO ; 
+ int SCALER_INT_EN_ILLEGAL_SRC_CB_BASE ; 
+ int SCALER_INT_EN_ILLEGAL_SRC_CH_POS ; 
+ int SCALER_INT_EN_ILLEGAL_SRC_COLOR ; 
+ int SCALER_INT_EN_ILLEGAL_SRC_CR_BASE ; 
+ int SCALER_INT_EN_ILLEGAL_SRC_CV_POS ; 
+ int SCALER_INT_EN_ILLEGAL_SRC_HEIGHT ; 
+ int SCALER_INT_EN_ILLEGAL_SRC_WIDTH ; 
+ int SCALER_INT_EN_ILLEGAL_SRC_YH_POS ; 
+ int SCALER_INT_EN_ILLEGAL_SRC_YV_POS ; 
+ int SCALER_INT_EN_ILLEGAL_SRC_Y_BASE ; 
+ int SCALER_INT_EN_ILLEGAL_SRC_Y_SPAN ; 
+ int SCALER_INT_EN_TIMEOUT ; 
+ int /*<<< orphan*/  scaler_write (int,int /*<<< orphan*/ ) ; 
+
+__attribute__((used)) static inline void scaler_enable_int(struct scaler_context *scaler)
+{
+	u32 val;
+
+	val = SCALER_INT_EN_TIMEOUT |
+		SCALER_INT_EN_ILLEGAL_BLEND |
+		SCALER_INT_EN_ILLEGAL_RATIO |
+		SCALER_INT_EN_ILLEGAL_DST_HEIGHT |
+		SCALER_INT_EN_ILLEGAL_DST_WIDTH |
+		SCALER_INT_EN_ILLEGAL_DST_V_POS |
+		SCALER_INT_EN_ILLEGAL_DST_H_POS |
+		SCALER_INT_EN_ILLEGAL_DST_C_SPAN |
+		SCALER_INT_EN_ILLEGAL_DST_Y_SPAN |
+		SCALER_INT_EN_ILLEGAL_DST_CR_BASE |
+		SCALER_INT_EN_ILLEGAL_DST_CB_BASE |
+		SCALER_INT_EN_ILLEGAL_DST_Y_BASE |
+		SCALER_INT_EN_ILLEGAL_DST_COLOR |
+		SCALER_INT_EN_ILLEGAL_SRC_HEIGHT |
+		SCALER_INT_EN_ILLEGAL_SRC_WIDTH |
+		SCALER_INT_EN_ILLEGAL_SRC_CV_POS |
+		SCALER_INT_EN_ILLEGAL_SRC_CH_POS |
+		SCALER_INT_EN_ILLEGAL_SRC_YV_POS |
+		SCALER_INT_EN_ILLEGAL_SRC_YH_POS |
+		SCALER_INT_EN_ILLEGAL_DST_SPAN |
+		SCALER_INT_EN_ILLEGAL_SRC_Y_SPAN |
+		SCALER_INT_EN_ILLEGAL_SRC_CR_BASE |
+		SCALER_INT_EN_ILLEGAL_SRC_CB_BASE |
+		SCALER_INT_EN_ILLEGAL_SRC_Y_BASE |
+		SCALER_INT_EN_ILLEGAL_SRC_COLOR |
+		SCALER_INT_EN_FRAME_END;
+	scaler_write(val, SCALER_INT_EN);
+}

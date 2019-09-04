@@ -1,0 +1,23 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+struct vme_error_handler {int /*<<< orphan*/  list; } ;
+
+/* Variables and functions */
+ int /*<<< orphan*/  kfree (struct vme_error_handler*) ; 
+ int /*<<< orphan*/  list_del (int /*<<< orphan*/ *) ; 
+
+void vme_unregister_error_handler(struct vme_error_handler *handler)
+{
+	list_del(&handler->list);
+	kfree(handler);
+}

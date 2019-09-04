@@ -1,0 +1,48 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+typedef  struct TYPE_3__   TYPE_1__ ;
+
+/* Type definitions */
+typedef  int /*<<< orphan*/  lua_State ;
+struct TYPE_3__ {char* member_0; int /*<<< orphan*/ * member_1; } ;
+typedef  TYPE_1__ luaL_Reg ;
+
+/* Variables and functions */
+ int /*<<< orphan*/ * ldecode ; 
+ int /*<<< orphan*/  llen ; 
+ int /*<<< orphan*/ * lmakeindex ; 
+ int /*<<< orphan*/  lreplace ; 
+ int /*<<< orphan*/  ltostring ; 
+ int /*<<< orphan*/  luaL_newlib (int /*<<< orphan*/ *,TYPE_1__*) ; 
+ scalar_t__ luaL_newmetatable (int /*<<< orphan*/ *,char*) ; 
+ int /*<<< orphan*/  lua_pushcfunction (int /*<<< orphan*/ *,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  lua_setfield (int /*<<< orphan*/ *,int,char*) ; 
+ int /*<<< orphan*/  lua_setmetatable (int /*<<< orphan*/ *,int) ; 
+
+__attribute__((used)) static void
+bson_meta(lua_State *L) {
+	if (luaL_newmetatable(L, "bson")) {
+		luaL_Reg l[] = {
+			{ "decode", ldecode },
+			{ "makeindex", lmakeindex },
+			{ NULL, NULL },
+		};
+		luaL_newlib(L,l);
+		lua_setfield(L, -2, "__index");
+		lua_pushcfunction(L, ltostring);
+		lua_setfield(L, -2, "__tostring");
+		lua_pushcfunction(L, llen);
+		lua_setfield(L, -2, "__len");
+		lua_pushcfunction(L, lreplace);
+		lua_setfield(L, -2, "__newindex");
+	}
+	lua_setmetatable(L, -2);
+}

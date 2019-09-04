@@ -1,0 +1,29 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+typedef  struct TYPE_4__   TYPE_2__ ;
+typedef  struct TYPE_3__   TYPE_1__ ;
+
+/* Type definitions */
+typedef  int /*<<< orphan*/  u64 ;
+struct mic_device {TYPE_2__* smpt; } ;
+typedef  scalar_t__ dma_addr_t ;
+struct TYPE_3__ {int /*<<< orphan*/  page_size; } ;
+struct TYPE_4__ {TYPE_1__ info; } ;
+
+/* Variables and functions */
+ int /*<<< orphan*/  ALIGN (scalar_t__,int /*<<< orphan*/ ) ; 
+ scalar_t__ mic_system_page_mask (struct mic_device*) ; 
+
+__attribute__((used)) static inline u64 mic_smpt_align_low(struct mic_device *mdev, dma_addr_t pa)
+{
+	return ALIGN(pa - mic_system_page_mask(mdev),
+		mdev->smpt->info.page_size);
+}

@@ -1,0 +1,43 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+
+/* Variables and functions */
+#define  COLOR_FMT_RGB565_UBWC 130 
+#define  COLOR_FMT_RGBA1010102_UBWC 129 
+#define  COLOR_FMT_RGBA8888_UBWC 128 
+ int MSM_MEDIA_ALIGN (int,int) ; 
+ int MSM_MEDIA_ROUNDUP (int,int) ; 
+
+__attribute__((used)) static inline unsigned int VENUS_RGB_META_SCANLINES(int color_fmt, int height)
+{
+	int rgb_tile_height = 0, rgb_meta_scanlines = 0;
+
+	if (!height)
+		goto invalid_input;
+
+	switch (color_fmt) {
+	case COLOR_FMT_RGBA8888_UBWC:
+	case COLOR_FMT_RGBA1010102_UBWC:
+	case COLOR_FMT_RGB565_UBWC:
+		rgb_tile_height = 4;
+		break;
+	default:
+		goto invalid_input;
+	}
+
+	rgb_meta_scanlines = MSM_MEDIA_ROUNDUP(height, rgb_tile_height);
+	rgb_meta_scanlines = MSM_MEDIA_ALIGN(rgb_meta_scanlines, 16);
+
+invalid_input:
+	return rgb_meta_scanlines;
+}

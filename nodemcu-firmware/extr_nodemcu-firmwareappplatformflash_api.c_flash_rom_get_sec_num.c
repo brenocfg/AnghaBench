@@ -1,0 +1,30 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+typedef  int uint16_t ;
+
+/* Variables and functions */
+ int SPI_FLASH_SEC_SIZE ; 
+ int flash_rom_get_size_byte () ; 
+
+uint16_t flash_rom_get_sec_num(void)
+{
+    //static uint16_t sec_num = 0;
+    // return flash_rom_get_size_byte() / (SPI_FLASH_SEC_SIZE);
+    // c_printf("\nflash_rom_get_size_byte()=%d\n", ( flash_rom_get_size_byte() / (SPI_FLASH_SEC_SIZE) ));
+    // if( sec_num == 0 )
+    //{
+    //    sec_num = 4 * 1024 * 1024 / (SPI_FLASH_SEC_SIZE);
+    //}
+    //return sec_num;
+    return ( flash_rom_get_size_byte() / (SPI_FLASH_SEC_SIZE) );
+}

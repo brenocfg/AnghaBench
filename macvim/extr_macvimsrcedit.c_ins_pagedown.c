@@ -1,0 +1,56 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+typedef  struct TYPE_2__   TYPE_1__ ;
+
+/* Type definitions */
+typedef  int /*<<< orphan*/  pos_T ;
+struct TYPE_2__ {int /*<<< orphan*/  w_cursor; } ;
+
+/* Variables and functions */
+ int /*<<< orphan*/  FORWARD ; 
+ scalar_t__ OK ; 
+ TYPE_1__* curwin ; 
+ scalar_t__ onepage (int /*<<< orphan*/ ,long) ; 
+ int /*<<< orphan*/  start_arrow (int /*<<< orphan*/ *) ; 
+ int /*<<< orphan*/  undisplay_dollar () ; 
+ int /*<<< orphan*/  vim_beep () ; 
+
+__attribute__((used)) static void
+ins_pagedown()
+{
+    pos_T	tpos;
+
+    undisplay_dollar();
+
+#ifdef FEAT_WINDOWS
+    if (mod_mask & MOD_MASK_CTRL)
+    {
+	/* <C-PageDown>: tab page forward */
+	if (first_tabpage->tp_next != NULL)
+	{
+	    start_arrow(&curwin->w_cursor);
+	    goto_tabpage(0);
+	}
+	return;
+    }
+#endif
+
+    tpos = curwin->w_cursor;
+    if (onepage(FORWARD, 1L) == OK)
+    {
+	start_arrow(&tpos);
+#ifdef FEAT_CINDENT
+	can_cindent = TRUE;
+#endif
+    }
+    else
+	vim_beep();
+}

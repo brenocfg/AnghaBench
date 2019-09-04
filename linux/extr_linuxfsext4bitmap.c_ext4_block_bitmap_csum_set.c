@@ -1,0 +1,44 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+struct super_block {int dummy; } ;
+struct ext4_sb_info {scalar_t__ s_desc_size; int /*<<< orphan*/  s_csum_seed; } ;
+struct ext4_group_desc {void* bg_block_bitmap_csum_hi; void* bg_block_bitmap_csum_lo; } ;
+struct buffer_head {scalar_t__ b_data; } ;
+typedef  int /*<<< orphan*/  ext4_group_t ;
+typedef  int /*<<< orphan*/  __u8 ;
+typedef  int __u32 ;
+
+/* Variables and functions */
+ scalar_t__ EXT4_BG_BLOCK_BITMAP_CSUM_HI_END ; 
+ int EXT4_CLUSTERS_PER_GROUP (struct super_block*) ; 
+ struct ext4_sb_info* EXT4_SB (struct super_block*) ; 
+ void* cpu_to_le16 (int) ; 
+ int ext4_chksum (struct ext4_sb_info*,int /*<<< orphan*/ ,int /*<<< orphan*/ *,int) ; 
+ int /*<<< orphan*/  ext4_has_metadata_csum (struct super_block*) ; 
+
+void ext4_block_bitmap_csum_set(struct super_block *sb, ext4_group_t group,
+				struct ext4_group_desc *gdp,
+				struct buffer_head *bh)
+{
+	int sz = EXT4_CLUSTERS_PER_GROUP(sb) / 8;
+	__u32 csum;
+	struct ext4_sb_info *sbi = EXT4_SB(sb);
+
+	if (!ext4_has_metadata_csum(sb))
+		return;
+
+	csum = ext4_chksum(sbi, sbi->s_csum_seed, (__u8 *)bh->b_data, sz);
+	gdp->bg_block_bitmap_csum_lo = cpu_to_le16(csum & 0xFFFF);
+	if (sbi->s_desc_size >= EXT4_BG_BLOCK_BITMAP_CSUM_HI_END)
+		gdp->bg_block_bitmap_csum_hi = cpu_to_le16(csum >> 16);
+}

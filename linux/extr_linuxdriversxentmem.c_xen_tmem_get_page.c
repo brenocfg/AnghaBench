@@ -1,0 +1,27 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+typedef  int /*<<< orphan*/  u32 ;
+struct tmem_oid {int dummy; } ;
+struct page {int dummy; } ;
+
+/* Variables and functions */
+ int /*<<< orphan*/  TMEM_GET_PAGE ; 
+ int /*<<< orphan*/  xen_page_to_gfn (struct page*) ; 
+ int xen_tmem_op (int /*<<< orphan*/ ,int /*<<< orphan*/ ,struct tmem_oid,int /*<<< orphan*/ ,int /*<<< orphan*/ ,int /*<<< orphan*/ ,int /*<<< orphan*/ ,int /*<<< orphan*/ ) ; 
+
+__attribute__((used)) static int xen_tmem_get_page(u32 pool_id, struct tmem_oid oid,
+			     u32 index, struct page *page)
+{
+	return xen_tmem_op(TMEM_GET_PAGE, pool_id, oid, index,
+			   xen_page_to_gfn(page), 0, 0, 0);
+}

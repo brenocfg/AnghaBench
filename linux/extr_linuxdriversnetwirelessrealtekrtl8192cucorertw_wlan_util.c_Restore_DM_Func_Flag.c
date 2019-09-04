@@ -1,0 +1,30 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+typedef  int /*<<< orphan*/  u8 ;
+typedef  int /*<<< orphan*/  _adapter ;
+
+/* Variables and functions */
+ int /*<<< orphan*/  HW_VAR_DM_FUNC_OP ; 
+ int /*<<< orphan*/  _FALSE ; 
+ int /*<<< orphan*/  rtw_hal_set_hwreg (int /*<<< orphan*/ *,int /*<<< orphan*/ ,int /*<<< orphan*/ *) ; 
+
+void Restore_DM_Func_Flag(_adapter *padapter)
+{
+	u8	bSaveFlag = _FALSE;
+#ifdef CONFIG_CONCURRENT_MODE	
+	_adapter *pbuddy_adapter = padapter->pbuddy_adapter;
+	if(pbuddy_adapter)
+	rtw_hal_set_hwreg(pbuddy_adapter, HW_VAR_DM_FUNC_OP, (u8 *)(&bSaveFlag));
+#endif
+	rtw_hal_set_hwreg(padapter, HW_VAR_DM_FUNC_OP, (u8 *)(&bSaveFlag));
+}

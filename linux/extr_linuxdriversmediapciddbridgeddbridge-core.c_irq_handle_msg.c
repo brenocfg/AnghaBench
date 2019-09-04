@@ -1,0 +1,23 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+typedef  int /*<<< orphan*/  u32 ;
+struct ddb {int /*<<< orphan*/  i2c_irq; } ;
+
+/* Variables and functions */
+ int /*<<< orphan*/  IRQ_HANDLE_NIBBLE (int /*<<< orphan*/ ) ; 
+
+__attribute__((used)) static void irq_handle_msg(struct ddb *dev, u32 s)
+{
+	dev->i2c_irq++;
+	IRQ_HANDLE_NIBBLE(0);
+}

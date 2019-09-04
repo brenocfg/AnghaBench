@@ -1,0 +1,19 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+
+/* Variables and functions */
+ void* rpc_proxy_all_news_on_start (int) ; 
+
+void *rpc_proxy_cnews_on_start (void) {
+  return rpc_proxy_all_news_on_start (1);
+}

@@ -1,0 +1,31 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+typedef  struct TYPE_2__   TYPE_1__ ;
+
+/* Type definitions */
+struct vo {TYPE_1__* driver; int /*<<< orphan*/  opts_cache; } ;
+struct TYPE_2__ {int (* control ) (struct vo*,int,void*) ;} ;
+
+/* Variables and functions */
+ int /*<<< orphan*/  m_config_cache_update (int /*<<< orphan*/ ) ; 
+ int stub1 (struct vo*,int,void*) ; 
+
+__attribute__((used)) static void run_control(void *p)
+{
+    void **pp = p;
+    struct vo *vo = pp[0];
+    int request = (intptr_t)pp[1];
+    void *data = pp[2];
+    m_config_cache_update(vo->opts_cache);
+    int ret = vo->driver->control(vo, request, data);
+    if (pp[3])
+        *(int *)pp[3] = ret;
+}

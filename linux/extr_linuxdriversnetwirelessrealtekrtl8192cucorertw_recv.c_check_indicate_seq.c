@@ -1,0 +1,90 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+typedef  int u8 ;
+typedef  int u16 ;
+struct recv_reorder_ctrl {int wsize_b; int indicate_seq; } ;
+
+/* Variables and functions */
+ scalar_t__ SN_EQUAL (int,int) ; 
+ scalar_t__ SN_LESS (int,int) ; 
+ int _FALSE ; 
+ int _TRUE ; 
+
+int check_indicate_seq(struct recv_reorder_ctrl *preorder_ctrl, u16 seq_num)
+{
+	u8	wsize = preorder_ctrl->wsize_b;
+	u16	wend = (preorder_ctrl->indicate_seq + wsize -1) & 0xFFF;//% 4096;
+
+	// Rx Reorder initialize condition.
+	if (preorder_ctrl->indicate_seq == 0xFFFF)
+	{
+		preorder_ctrl->indicate_seq = seq_num;
+		#ifdef DBG_RX_SEQ
+		DBG_871X("DBG_RX_SEQ %s:%d init IndicateSeq: %d, NewSeq: %d\n", __FUNCTION__, __LINE__,
+			preorder_ctrl->indicate_seq, seq_num);
+		#endif
+
+		//DbgPrint("check_indicate_seq, 1st->indicate_seq=%d\n", precvpriv->indicate_seq);
+	}
+
+	//DbgPrint("enter->check_indicate_seq(): IndicateSeq: %d, NewSeq: %d\n", precvpriv->indicate_seq, seq_num);
+
+	// Drop out the packet which SeqNum is smaller than WinStart
+	if( SN_LESS(seq_num, preorder_ctrl->indicate_seq) )
+	{
+		//RT_TRACE(COMP_RX_REORDER, DBG_LOUD, ("CheckRxTsIndicateSeq(): Packet Drop! IndicateSeq: %d, NewSeq: %d\n", pTS->RxIndicateSeq, NewSeqNum));
+		//DbgPrint("CheckRxTsIndicateSeq(): Packet Drop! IndicateSeq: %d, NewSeq: %d\n", precvpriv->indicate_seq, seq_num);
+
+		#ifdef DBG_RX_DROP_FRAME
+		DBG_871X("%s IndicateSeq: %d > NewSeq: %d\n", __FUNCTION__, 
+			preorder_ctrl->indicate_seq, seq_num);
+		#endif
+
+
+		return _FALSE;
+	}
+
+	//
+	// Sliding window manipulation. Conditions includes:
+	// 1. Incoming SeqNum is equal to WinStart =>Window shift 1
+	// 2. Incoming SeqNum is larger than the WinEnd => Window shift N
+	//
+	if( SN_EQUAL(seq_num, preorder_ctrl->indicate_seq) )
+	{
+		preorder_ctrl->indicate_seq = (preorder_ctrl->indicate_seq + 1) & 0xFFF;
+		#ifdef DBG_RX_SEQ
+		DBG_871X("DBG_RX_SEQ %s:%d SN_EQUAL IndicateSeq: %d, NewSeq: %d\n", __FUNCTION__, __LINE__,
+			preorder_ctrl->indicate_seq, seq_num);
+		#endif
+	}
+	else if(SN_LESS(wend, seq_num))
+	{
+		//RT_TRACE(COMP_RX_REORDER, DBG_LOUD, ("CheckRxTsIndicateSeq(): Window Shift! IndicateSeq: %d, NewSeq: %d\n", pTS->RxIndicateSeq, NewSeqNum));
+		//DbgPrint("CheckRxTsIndicateSeq(): Window Shift! IndicateSeq: %d, NewSeq: %d\n", precvpriv->indicate_seq, seq_num);
+
+		// boundary situation, when seq_num cross 0xFFF
+		if(seq_num >= (wsize - 1))
+			preorder_ctrl->indicate_seq = seq_num + 1 -wsize;
+		else
+			preorder_ctrl->indicate_seq = 0xFFF - (wsize - (seq_num + 1)) + 1;
+
+		#ifdef DBG_RX_SEQ
+		DBG_871X("DBG_RX_SEQ %s:%d SN_LESS(wend, seq_num) IndicateSeq: %d, NewSeq: %d\n", __FUNCTION__, __LINE__,
+			preorder_ctrl->indicate_seq, seq_num);
+		#endif
+	}
+
+	//DbgPrint("exit->check_indicate_seq(): IndicateSeq: %d, NewSeq: %d\n", precvpriv->indicate_seq, seq_num);
+
+	return _TRUE;
+}

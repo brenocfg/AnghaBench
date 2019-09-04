@@ -1,0 +1,26 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+typedef  struct TYPE_3__   TYPE_1__ ;
+
+/* Type definitions */
+typedef  int /*<<< orphan*/  zend_op_array ;
+struct TYPE_3__ {int /*<<< orphan*/  (* op_array_dtor ) (int /*<<< orphan*/ *) ;} ;
+typedef  TYPE_1__ zend_extension ;
+
+/* Variables and functions */
+ int /*<<< orphan*/  stub1 (int /*<<< orphan*/ *) ; 
+
+__attribute__((used)) static void zend_extension_op_array_dtor_handler(zend_extension *extension, zend_op_array *op_array)
+{
+	if (extension->op_array_dtor) {
+		extension->op_array_dtor(op_array);
+	}
+}

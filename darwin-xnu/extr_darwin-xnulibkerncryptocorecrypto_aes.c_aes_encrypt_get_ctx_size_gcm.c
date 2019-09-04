@@ -1,0 +1,29 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+typedef  struct TYPE_2__   TYPE_1__ ;
+
+/* Type definitions */
+struct ccmode_gcm {int /*<<< orphan*/  size; } ;
+struct TYPE_2__ {struct ccmode_gcm* ccaes_gcm_encrypt; } ;
+
+/* Variables and functions */
+ int cc_ctx_sizeof (int /*<<< orphan*/ ,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  ccgcm_ctx ; 
+ TYPE_1__* g_crypto_funcs ; 
+
+unsigned aes_encrypt_get_ctx_size_gcm(void)
+{
+	const struct ccmode_gcm *gcm = g_crypto_funcs->ccaes_gcm_encrypt;
+	if (!gcm) {
+	        return 0;
+	}
+	return (cc_ctx_sizeof(ccgcm_ctx, gcm->size));
+}

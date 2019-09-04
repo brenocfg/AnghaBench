@@ -1,0 +1,43 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+typedef  enum wined3d_swap_effect { ____Placeholder_wined3d_swap_effect } wined3d_swap_effect ;
+typedef  int D3DSWAPEFFECT ;
+
+/* Variables and functions */
+#define  D3DSWAPEFFECT_COPY 131 
+#define  D3DSWAPEFFECT_COPY_VSYNC 130 
+#define  D3DSWAPEFFECT_DISCARD 129 
+#define  D3DSWAPEFFECT_FLIP 128 
+ int /*<<< orphan*/  FIXME (char*,int) ; 
+ int WINED3D_SWAP_EFFECT_COPY ; 
+ int WINED3D_SWAP_EFFECT_COPY_VSYNC ; 
+ int WINED3D_SWAP_EFFECT_DISCARD ; 
+ int WINED3D_SWAP_EFFECT_SEQUENTIAL ; 
+
+__attribute__((used)) static enum wined3d_swap_effect wined3dswapeffect_from_d3dswapeffect(D3DSWAPEFFECT effect)
+{
+    switch (effect)
+    {
+        case D3DSWAPEFFECT_DISCARD:
+            return WINED3D_SWAP_EFFECT_DISCARD;
+        case D3DSWAPEFFECT_FLIP:
+            return WINED3D_SWAP_EFFECT_SEQUENTIAL;
+        case D3DSWAPEFFECT_COPY:
+            return WINED3D_SWAP_EFFECT_COPY;
+        case D3DSWAPEFFECT_COPY_VSYNC:
+            return WINED3D_SWAP_EFFECT_COPY_VSYNC;
+        default:
+            FIXME("Unhandled swap effect %#x.\n", effect);
+            return WINED3D_SWAP_EFFECT_SEQUENTIAL;
+    }
+}

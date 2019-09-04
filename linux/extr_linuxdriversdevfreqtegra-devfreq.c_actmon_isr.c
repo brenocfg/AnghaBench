@@ -1,0 +1,45 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+typedef  struct TYPE_5__   TYPE_2__ ;
+typedef  struct TYPE_4__   TYPE_1__ ;
+
+/* Type definitions */
+typedef  int u32 ;
+struct tegra_devfreq {TYPE_2__* devices; } ;
+typedef  int /*<<< orphan*/  irqreturn_t ;
+struct TYPE_5__ {TYPE_1__* config; } ;
+struct TYPE_4__ {int irq_mask; } ;
+
+/* Variables and functions */
+ int /*<<< orphan*/  ACTMON_GLB_STATUS ; 
+ unsigned int ARRAY_SIZE (TYPE_2__*) ; 
+ int /*<<< orphan*/  IRQ_NONE ; 
+ int /*<<< orphan*/  IRQ_WAKE_THREAD ; 
+ int /*<<< orphan*/  actmon_isr_device (struct tegra_devfreq*,TYPE_2__*) ; 
+ int actmon_readl (struct tegra_devfreq*,int /*<<< orphan*/ ) ; 
+
+__attribute__((used)) static irqreturn_t actmon_isr(int irq, void *data)
+{
+	struct tegra_devfreq *tegra = data;
+	bool handled = false;
+	unsigned int i;
+	u32 val;
+
+	val = actmon_readl(tegra, ACTMON_GLB_STATUS);
+	for (i = 0; i < ARRAY_SIZE(tegra->devices); i++) {
+		if (val & tegra->devices[i].config->irq_mask) {
+			actmon_isr_device(tegra, tegra->devices + i);
+			handled = true;
+		}
+	}
+
+	return handled ? IRQ_WAKE_THREAD : IRQ_NONE;
+}

@@ -1,0 +1,27 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+struct nfsd4_compound_state {int /*<<< orphan*/  current_stateid; } ;
+typedef  int /*<<< orphan*/  stateid_t ;
+
+/* Variables and functions */
+ scalar_t__ CURRENT_STATEID (int /*<<< orphan*/ *) ; 
+ int /*<<< orphan*/  CURRENT_STATE_ID_FLAG ; 
+ scalar_t__ HAS_STATE_ID (struct nfsd4_compound_state*,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  memcpy (int /*<<< orphan*/ *,int /*<<< orphan*/ *,int) ; 
+
+__attribute__((used)) static void
+get_stateid(struct nfsd4_compound_state *cstate, stateid_t *stateid)
+{
+	if (HAS_STATE_ID(cstate, CURRENT_STATE_ID_FLAG) && CURRENT_STATEID(stateid))
+		memcpy(stateid, &cstate->current_stateid, sizeof(stateid_t));
+}

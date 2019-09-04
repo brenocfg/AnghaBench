@@ -1,0 +1,130 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+struct tsi108_prv_data {int dummy; } ;
+struct net_device {int dummy; } ;
+
+/* Variables and functions */
+ int /*<<< orphan*/  TSI108_EC_INTMASK ; 
+ int /*<<< orphan*/  TSI108_EC_PORTCTRL ; 
+ int TSI108_EC_PORTCTRL_STATEN ; 
+ int /*<<< orphan*/  TSI108_EC_RXCFG ; 
+ int TSI108_EC_RXCFG_BFE ; 
+ int TSI108_EC_RXCFG_SE ; 
+ int /*<<< orphan*/  TSI108_EC_RXQ_BUFCFG ; 
+ int TSI108_EC_RXQ_BUFCFG_BSWP ; 
+ int TSI108_EC_RXQ_BUFCFG_BURST256 ; 
+ int TSI108_EC_RXQ_BUFCFG_SFNPORT ; 
+ int /*<<< orphan*/  TSI108_EC_RXQ_CFG ; 
+ int TSI108_EC_RXQ_CFG_DESC_INT ; 
+ int TSI108_EC_RXQ_CFG_EOQ_OWN_INT ; 
+ int TSI108_EC_RXQ_CFG_SFNPORT ; 
+ int TSI108_EC_RXQ_CFG_WSWP ; 
+ int /*<<< orphan*/  TSI108_EC_TXQ_BUFCFG ; 
+ int TSI108_EC_TXQ_BUFCFG_BSWP ; 
+ int TSI108_EC_TXQ_BUFCFG_BURST256 ; 
+ int TSI108_EC_TXQ_BUFCFG_SFNPORT ; 
+ int /*<<< orphan*/  TSI108_EC_TXQ_CFG ; 
+ int TSI108_EC_TXQ_CFG_DESC_INT ; 
+ int TSI108_EC_TXQ_CFG_EOQ_OWN_INT ; 
+ int TSI108_EC_TXQ_CFG_SFNPORT ; 
+ int TSI108_EC_TXQ_CFG_WSWP ; 
+ int /*<<< orphan*/  TSI108_EC_TXTHRESH ; 
+ int TSI108_EC_TXTHRESH_STARTFILL ; 
+ int TSI108_EC_TXTHRESH_STOPFILL ; 
+ int /*<<< orphan*/  TSI108_MAC_CFG1 ; 
+ int /*<<< orphan*/  TSI108_MAC_CFG2 ; 
+ int TSI108_MAC_CFG2_DFLT_PREAMBLE ; 
+ int TSI108_MAC_CFG2_PADCRC ; 
+ int TSI108_PBM_PORT ; 
+ int TSI108_STAT_CARRY1_RXALIGN ; 
+ int TSI108_STAT_CARRY1_RXBYTES ; 
+ int TSI108_STAT_CARRY1_RXDROP ; 
+ int TSI108_STAT_CARRY1_RXFCS ; 
+ int TSI108_STAT_CARRY1_RXFRAG ; 
+ int TSI108_STAT_CARRY1_RXJABBER ; 
+ int TSI108_STAT_CARRY1_RXJUMBO ; 
+ int TSI108_STAT_CARRY1_RXLENGTH ; 
+ int TSI108_STAT_CARRY1_RXMCAST ; 
+ int TSI108_STAT_CARRY1_RXPKTS ; 
+ int TSI108_STAT_CARRY1_RXRUNT ; 
+ int TSI108_STAT_CARRY2_TXBYTES ; 
+ int TSI108_STAT_CARRY2_TXEXCOL ; 
+ int TSI108_STAT_CARRY2_TXEXDEF ; 
+ int TSI108_STAT_CARRY2_TXPAUSE ; 
+ int TSI108_STAT_CARRY2_TXPKTS ; 
+ int TSI108_STAT_CARRY2_TXTCOL ; 
+ int /*<<< orphan*/  TSI108_STAT_CARRYMASK1 ; 
+ int /*<<< orphan*/  TSI108_STAT_CARRYMASK2 ; 
+ int /*<<< orphan*/  TSI_WRITE (int /*<<< orphan*/ ,int) ; 
+ struct tsi108_prv_data* netdev_priv (struct net_device*) ; 
+
+__attribute__((used)) static void tsi108_init_mac(struct net_device *dev)
+{
+	struct tsi108_prv_data *data = netdev_priv(dev);
+
+	TSI_WRITE(TSI108_MAC_CFG2, TSI108_MAC_CFG2_DFLT_PREAMBLE |
+			     TSI108_MAC_CFG2_PADCRC);
+
+	TSI_WRITE(TSI108_EC_TXTHRESH,
+			     (192 << TSI108_EC_TXTHRESH_STARTFILL) |
+			     (192 << TSI108_EC_TXTHRESH_STOPFILL));
+
+	TSI_WRITE(TSI108_STAT_CARRYMASK1,
+			     ~(TSI108_STAT_CARRY1_RXBYTES |
+			       TSI108_STAT_CARRY1_RXPKTS |
+			       TSI108_STAT_CARRY1_RXFCS |
+			       TSI108_STAT_CARRY1_RXMCAST |
+			       TSI108_STAT_CARRY1_RXALIGN |
+			       TSI108_STAT_CARRY1_RXLENGTH |
+			       TSI108_STAT_CARRY1_RXRUNT |
+			       TSI108_STAT_CARRY1_RXJUMBO |
+			       TSI108_STAT_CARRY1_RXFRAG |
+			       TSI108_STAT_CARRY1_RXJABBER |
+			       TSI108_STAT_CARRY1_RXDROP));
+
+	TSI_WRITE(TSI108_STAT_CARRYMASK2,
+			     ~(TSI108_STAT_CARRY2_TXBYTES |
+			       TSI108_STAT_CARRY2_TXPKTS |
+			       TSI108_STAT_CARRY2_TXEXDEF |
+			       TSI108_STAT_CARRY2_TXEXCOL |
+			       TSI108_STAT_CARRY2_TXTCOL |
+			       TSI108_STAT_CARRY2_TXPAUSE));
+
+	TSI_WRITE(TSI108_EC_PORTCTRL, TSI108_EC_PORTCTRL_STATEN);
+	TSI_WRITE(TSI108_MAC_CFG1, 0);
+
+	TSI_WRITE(TSI108_EC_RXCFG,
+			     TSI108_EC_RXCFG_SE | TSI108_EC_RXCFG_BFE);
+
+	TSI_WRITE(TSI108_EC_TXQ_CFG, TSI108_EC_TXQ_CFG_DESC_INT |
+			     TSI108_EC_TXQ_CFG_EOQ_OWN_INT |
+			     TSI108_EC_TXQ_CFG_WSWP | (TSI108_PBM_PORT <<
+						TSI108_EC_TXQ_CFG_SFNPORT));
+
+	TSI_WRITE(TSI108_EC_RXQ_CFG, TSI108_EC_RXQ_CFG_DESC_INT |
+			     TSI108_EC_RXQ_CFG_EOQ_OWN_INT |
+			     TSI108_EC_RXQ_CFG_WSWP | (TSI108_PBM_PORT <<
+						TSI108_EC_RXQ_CFG_SFNPORT));
+
+	TSI_WRITE(TSI108_EC_TXQ_BUFCFG,
+			     TSI108_EC_TXQ_BUFCFG_BURST256 |
+			     TSI108_EC_TXQ_BUFCFG_BSWP | (TSI108_PBM_PORT <<
+						TSI108_EC_TXQ_BUFCFG_SFNPORT));
+
+	TSI_WRITE(TSI108_EC_RXQ_BUFCFG,
+			     TSI108_EC_RXQ_BUFCFG_BURST256 |
+			     TSI108_EC_RXQ_BUFCFG_BSWP | (TSI108_PBM_PORT <<
+						TSI108_EC_RXQ_BUFCFG_SFNPORT));
+
+	TSI_WRITE(TSI108_EC_INTMASK, ~0);
+}

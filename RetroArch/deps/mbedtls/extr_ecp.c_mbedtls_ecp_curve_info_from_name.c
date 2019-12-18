@@ -1,0 +1,35 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+typedef  struct TYPE_4__   TYPE_1__ ;
+
+/* Type definitions */
+struct TYPE_4__ {scalar_t__ grp_id; int /*<<< orphan*/  name; } ;
+typedef  TYPE_1__ mbedtls_ecp_curve_info ;
+
+/* Variables and functions */
+ scalar_t__ MBEDTLS_ECP_DP_NONE ; 
+ TYPE_1__* mbedtls_ecp_curve_list () ; 
+ scalar_t__ strcmp (int /*<<< orphan*/ ,char const*) ; 
+
+const mbedtls_ecp_curve_info *mbedtls_ecp_curve_info_from_name( const char *name )
+{
+    const mbedtls_ecp_curve_info *curve_info;
+
+    for( curve_info = mbedtls_ecp_curve_list();
+         curve_info->grp_id != MBEDTLS_ECP_DP_NONE;
+         curve_info++ )
+    {
+        if( strcmp( curve_info->name, name ) == 0 )
+            return( curve_info );
+    }
+
+    return( NULL );
+}

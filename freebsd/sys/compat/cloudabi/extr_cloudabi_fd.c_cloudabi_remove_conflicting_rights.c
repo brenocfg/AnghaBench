@@ -1,0 +1,170 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+typedef  int cloudabi_rights_t ;
+typedef  int cloudabi_filetype_t ;
+
+/* Variables and functions */
+#define  CLOUDABI_FILETYPE_DIRECTORY 133 
+#define  CLOUDABI_FILETYPE_PROCESS 132 
+#define  CLOUDABI_FILETYPE_REGULAR_FILE 131 
+#define  CLOUDABI_FILETYPE_SHARED_MEMORY 130 
+#define  CLOUDABI_FILETYPE_SOCKET_DGRAM 129 
+#define  CLOUDABI_FILETYPE_SOCKET_STREAM 128 
+ int CLOUDABI_RIGHT_FD_DATASYNC ; 
+ int CLOUDABI_RIGHT_FD_READ ; 
+ int CLOUDABI_RIGHT_FD_SEEK ; 
+ int CLOUDABI_RIGHT_FD_STAT_PUT_FLAGS ; 
+ int CLOUDABI_RIGHT_FD_SYNC ; 
+ int CLOUDABI_RIGHT_FD_TELL ; 
+ int CLOUDABI_RIGHT_FD_WRITE ; 
+ int CLOUDABI_RIGHT_FILE_ADVISE ; 
+ int CLOUDABI_RIGHT_FILE_ALLOCATE ; 
+ int CLOUDABI_RIGHT_FILE_CREATE_DIRECTORY ; 
+ int CLOUDABI_RIGHT_FILE_CREATE_FILE ; 
+ int CLOUDABI_RIGHT_FILE_LINK_SOURCE ; 
+ int CLOUDABI_RIGHT_FILE_LINK_TARGET ; 
+ int CLOUDABI_RIGHT_FILE_OPEN ; 
+ int CLOUDABI_RIGHT_FILE_READDIR ; 
+ int CLOUDABI_RIGHT_FILE_READLINK ; 
+ int CLOUDABI_RIGHT_FILE_RENAME_SOURCE ; 
+ int CLOUDABI_RIGHT_FILE_RENAME_TARGET ; 
+ int CLOUDABI_RIGHT_FILE_STAT_FGET ; 
+ int CLOUDABI_RIGHT_FILE_STAT_FPUT_SIZE ; 
+ int CLOUDABI_RIGHT_FILE_STAT_FPUT_TIMES ; 
+ int CLOUDABI_RIGHT_FILE_STAT_GET ; 
+ int CLOUDABI_RIGHT_FILE_STAT_PUT_TIMES ; 
+ int CLOUDABI_RIGHT_FILE_SYMLINK ; 
+ int CLOUDABI_RIGHT_FILE_UNLINK ; 
+ int CLOUDABI_RIGHT_MEM_MAP ; 
+ int CLOUDABI_RIGHT_MEM_MAP_EXEC ; 
+ int CLOUDABI_RIGHT_POLL_FD_READWRITE ; 
+ int CLOUDABI_RIGHT_PROC_EXEC ; 
+ int CLOUDABI_RIGHT_SOCK_SHUTDOWN ; 
+
+void
+cloudabi_remove_conflicting_rights(cloudabi_filetype_t filetype,
+    cloudabi_rights_t *base, cloudabi_rights_t *inheriting)
+{
+
+	/*
+	 * CloudABI has a small number of additional rights bits to
+	 * disambiguate between multiple purposes. Remove the bits that
+	 * don't apply to the type of the file descriptor.
+	 *
+	 * As file descriptor access modes (O_ACCMODE) has been fully
+	 * replaced by rights bits, CloudABI distinguishes between
+	 * rights that apply to the file descriptor itself (base) versus
+	 * rights of new file descriptors derived from them
+	 * (inheriting). The code below approximates the pair by
+	 * decomposing depending on the file descriptor type.
+	 *
+	 * We need to be somewhat accurate about which actions can
+	 * actually be performed on the file descriptor, as functions
+	 * like fcntl(fd, F_GETFL) are emulated on top of this.
+	 */
+	switch (filetype) {
+	case CLOUDABI_FILETYPE_DIRECTORY:
+		*base &= CLOUDABI_RIGHT_FD_STAT_PUT_FLAGS |
+		    CLOUDABI_RIGHT_FD_SYNC | CLOUDABI_RIGHT_FILE_ADVISE |
+		    CLOUDABI_RIGHT_FILE_CREATE_DIRECTORY |
+		    CLOUDABI_RIGHT_FILE_CREATE_FILE |
+		    CLOUDABI_RIGHT_FILE_LINK_SOURCE |
+		    CLOUDABI_RIGHT_FILE_LINK_TARGET |
+		    CLOUDABI_RIGHT_FILE_OPEN |
+		    CLOUDABI_RIGHT_FILE_READDIR |
+		    CLOUDABI_RIGHT_FILE_READLINK |
+		    CLOUDABI_RIGHT_FILE_RENAME_SOURCE |
+		    CLOUDABI_RIGHT_FILE_RENAME_TARGET |
+		    CLOUDABI_RIGHT_FILE_STAT_FGET |
+		    CLOUDABI_RIGHT_FILE_STAT_FPUT_TIMES |
+		    CLOUDABI_RIGHT_FILE_STAT_GET |
+		    CLOUDABI_RIGHT_FILE_STAT_PUT_TIMES |
+		    CLOUDABI_RIGHT_FILE_SYMLINK |
+		    CLOUDABI_RIGHT_FILE_UNLINK |
+		    CLOUDABI_RIGHT_POLL_FD_READWRITE;
+		*inheriting &= CLOUDABI_RIGHT_FD_DATASYNC |
+		    CLOUDABI_RIGHT_FD_READ |
+		    CLOUDABI_RIGHT_FD_SEEK |
+		    CLOUDABI_RIGHT_FD_STAT_PUT_FLAGS |
+		    CLOUDABI_RIGHT_FD_SYNC |
+		    CLOUDABI_RIGHT_FD_TELL |
+		    CLOUDABI_RIGHT_FD_WRITE |
+		    CLOUDABI_RIGHT_FILE_ADVISE |
+		    CLOUDABI_RIGHT_FILE_ALLOCATE |
+		    CLOUDABI_RIGHT_FILE_CREATE_DIRECTORY |
+		    CLOUDABI_RIGHT_FILE_CREATE_FILE |
+		    CLOUDABI_RIGHT_FILE_LINK_SOURCE |
+		    CLOUDABI_RIGHT_FILE_LINK_TARGET |
+		    CLOUDABI_RIGHT_FILE_OPEN |
+		    CLOUDABI_RIGHT_FILE_READDIR |
+		    CLOUDABI_RIGHT_FILE_READLINK |
+		    CLOUDABI_RIGHT_FILE_RENAME_SOURCE |
+		    CLOUDABI_RIGHT_FILE_RENAME_TARGET |
+		    CLOUDABI_RIGHT_FILE_STAT_FGET |
+		    CLOUDABI_RIGHT_FILE_STAT_FPUT_SIZE |
+		    CLOUDABI_RIGHT_FILE_STAT_FPUT_TIMES |
+		    CLOUDABI_RIGHT_FILE_STAT_GET |
+		    CLOUDABI_RIGHT_FILE_STAT_PUT_TIMES |
+		    CLOUDABI_RIGHT_FILE_SYMLINK |
+		    CLOUDABI_RIGHT_FILE_UNLINK |
+		    CLOUDABI_RIGHT_MEM_MAP |
+		    CLOUDABI_RIGHT_MEM_MAP_EXEC |
+		    CLOUDABI_RIGHT_POLL_FD_READWRITE |
+		    CLOUDABI_RIGHT_PROC_EXEC;
+		break;
+	case CLOUDABI_FILETYPE_PROCESS:
+		*base &= ~(CLOUDABI_RIGHT_FILE_ADVISE |
+		    CLOUDABI_RIGHT_POLL_FD_READWRITE);
+		*inheriting = 0;
+		break;
+	case CLOUDABI_FILETYPE_REGULAR_FILE:
+		*base &= CLOUDABI_RIGHT_FD_DATASYNC |
+		    CLOUDABI_RIGHT_FD_READ |
+		    CLOUDABI_RIGHT_FD_SEEK |
+		    CLOUDABI_RIGHT_FD_STAT_PUT_FLAGS |
+		    CLOUDABI_RIGHT_FD_SYNC |
+		    CLOUDABI_RIGHT_FD_TELL |
+		    CLOUDABI_RIGHT_FD_WRITE |
+		    CLOUDABI_RIGHT_FILE_ADVISE |
+		    CLOUDABI_RIGHT_FILE_ALLOCATE |
+		    CLOUDABI_RIGHT_FILE_STAT_FGET |
+		    CLOUDABI_RIGHT_FILE_STAT_FPUT_SIZE |
+		    CLOUDABI_RIGHT_FILE_STAT_FPUT_TIMES |
+		    CLOUDABI_RIGHT_MEM_MAP |
+		    CLOUDABI_RIGHT_MEM_MAP_EXEC |
+		    CLOUDABI_RIGHT_POLL_FD_READWRITE |
+		    CLOUDABI_RIGHT_PROC_EXEC;
+		*inheriting = 0;
+		break;
+	case CLOUDABI_FILETYPE_SHARED_MEMORY:
+		*base &= ~(CLOUDABI_RIGHT_FD_SEEK |
+		    CLOUDABI_RIGHT_FD_TELL |
+		    CLOUDABI_RIGHT_FILE_ADVISE |
+		    CLOUDABI_RIGHT_FILE_ALLOCATE |
+		    CLOUDABI_RIGHT_FILE_READDIR);
+		*inheriting = 0;
+		break;
+	case CLOUDABI_FILETYPE_SOCKET_DGRAM:
+	case CLOUDABI_FILETYPE_SOCKET_STREAM:
+		*base &= CLOUDABI_RIGHT_FD_READ |
+		    CLOUDABI_RIGHT_FD_STAT_PUT_FLAGS |
+		    CLOUDABI_RIGHT_FD_WRITE |
+		    CLOUDABI_RIGHT_FILE_STAT_FGET |
+		    CLOUDABI_RIGHT_POLL_FD_READWRITE |
+		    CLOUDABI_RIGHT_SOCK_SHUTDOWN;
+		break;
+	default:
+		*inheriting = 0;
+		break;
+	}
+}

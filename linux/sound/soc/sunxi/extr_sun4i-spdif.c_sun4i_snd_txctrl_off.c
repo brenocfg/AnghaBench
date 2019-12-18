@@ -1,0 +1,39 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+struct sun4i_spdif_dev {int /*<<< orphan*/  regmap; } ;
+struct snd_pcm_substream {int dummy; } ;
+
+/* Variables and functions */
+ int /*<<< orphan*/  SUN4I_SPDIF_CTL ; 
+ int /*<<< orphan*/  SUN4I_SPDIF_CTL_GEN ; 
+ int /*<<< orphan*/  SUN4I_SPDIF_INT ; 
+ int /*<<< orphan*/  SUN4I_SPDIF_INT_TXDRQEN ; 
+ int /*<<< orphan*/  SUN4I_SPDIF_TXCFG ; 
+ int /*<<< orphan*/  SUN4I_SPDIF_TXCFG_TXEN ; 
+ int /*<<< orphan*/  regmap_update_bits (int /*<<< orphan*/ ,int /*<<< orphan*/ ,int /*<<< orphan*/ ,int /*<<< orphan*/ ) ; 
+
+__attribute__((used)) static void sun4i_snd_txctrl_off(struct snd_pcm_substream *substream,
+				 struct sun4i_spdif_dev *host)
+{
+	/* SPDIF TX DISABLE */
+	regmap_update_bits(host->regmap, SUN4I_SPDIF_TXCFG,
+			   SUN4I_SPDIF_TXCFG_TXEN, 0);
+
+	/* DRQ DISABLE */
+	regmap_update_bits(host->regmap, SUN4I_SPDIF_INT,
+			   SUN4I_SPDIF_INT_TXDRQEN, 0);
+
+	/* Global disable */
+	regmap_update_bits(host->regmap, SUN4I_SPDIF_CTL,
+			   SUN4I_SPDIF_CTL_GEN, 0);
+}

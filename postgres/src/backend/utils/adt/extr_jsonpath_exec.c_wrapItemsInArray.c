@@ -1,0 +1,40 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+typedef  int /*<<< orphan*/  JsonbValue ;
+typedef  int /*<<< orphan*/  JsonbParseState ;
+typedef  int /*<<< orphan*/  JsonValueListIterator ;
+typedef  int /*<<< orphan*/  JsonValueList ;
+
+/* Variables and functions */
+ int /*<<< orphan*/  JsonValueListInitIterator (int /*<<< orphan*/  const*,int /*<<< orphan*/ *) ; 
+ int /*<<< orphan*/ * JsonValueListNext (int /*<<< orphan*/  const*,int /*<<< orphan*/ *) ; 
+ int /*<<< orphan*/  WJB_BEGIN_ARRAY ; 
+ int /*<<< orphan*/  WJB_ELEM ; 
+ int /*<<< orphan*/  WJB_END_ARRAY ; 
+ int /*<<< orphan*/ * pushJsonbValue (int /*<<< orphan*/ **,int /*<<< orphan*/ ,int /*<<< orphan*/ *) ; 
+
+__attribute__((used)) static JsonbValue *
+wrapItemsInArray(const JsonValueList *items)
+{
+	JsonbParseState *ps = NULL;
+	JsonValueListIterator it;
+	JsonbValue *jbv;
+
+	pushJsonbValue(&ps, WJB_BEGIN_ARRAY, NULL);
+
+	JsonValueListInitIterator(items, &it);
+	while ((jbv = JsonValueListNext(items, &it)))
+		pushJsonbValue(&ps, WJB_ELEM, jbv);
+
+	return pushJsonbValue(&ps, WJB_END_ARRAY, NULL);
+}

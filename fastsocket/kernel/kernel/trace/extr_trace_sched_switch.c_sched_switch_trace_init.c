@@ -1,0 +1,26 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+struct trace_array {int dummy; } ;
+
+/* Variables and functions */
+ struct trace_array* ctx_trace ; 
+ int /*<<< orphan*/  tracing_reset_online_cpus (struct trace_array*) ; 
+ int /*<<< orphan*/  tracing_start_sched_switch_record () ; 
+
+__attribute__((used)) static int sched_switch_trace_init(struct trace_array *tr)
+{
+	ctx_trace = tr;
+	tracing_reset_online_cpus(tr);
+	tracing_start_sched_switch_record();
+	return 0;
+}

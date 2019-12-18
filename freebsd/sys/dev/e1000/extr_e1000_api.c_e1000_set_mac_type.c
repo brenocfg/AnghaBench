@@ -1,0 +1,453 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+struct e1000_mac_info {int /*<<< orphan*/  type; } ;
+struct e1000_hw {int device_id; struct e1000_mac_info mac; } ;
+typedef  int /*<<< orphan*/  s32 ;
+
+/* Variables and functions */
+ int /*<<< orphan*/  DEBUGFUNC (char*) ; 
+#define  E1000_DEV_ID_80003ES2LAN_COPPER_DPT 282 
+#define  E1000_DEV_ID_80003ES2LAN_COPPER_SPT 281 
+#define  E1000_DEV_ID_80003ES2LAN_SERDES_DPT 280 
+#define  E1000_DEV_ID_80003ES2LAN_SERDES_SPT 279 
+#define  E1000_DEV_ID_82540EM 278 
+#define  E1000_DEV_ID_82540EM_LOM 277 
+#define  E1000_DEV_ID_82540EP 276 
+#define  E1000_DEV_ID_82540EP_LOM 275 
+#define  E1000_DEV_ID_82540EP_LP 274 
+#define  E1000_DEV_ID_82541EI 273 
+#define  E1000_DEV_ID_82541EI_MOBILE 272 
+#define  E1000_DEV_ID_82541ER 271 
+#define  E1000_DEV_ID_82541ER_LOM 270 
+#define  E1000_DEV_ID_82541GI 269 
+#define  E1000_DEV_ID_82541GI_LF 268 
+#define  E1000_DEV_ID_82541GI_MOBILE 267 
+#define  E1000_DEV_ID_82542 266 
+#define  E1000_DEV_ID_82543GC_COPPER 265 
+#define  E1000_DEV_ID_82543GC_FIBER 264 
+#define  E1000_DEV_ID_82544EI_COPPER 263 
+#define  E1000_DEV_ID_82544EI_FIBER 262 
+#define  E1000_DEV_ID_82544GC_COPPER 261 
+#define  E1000_DEV_ID_82544GC_LOM 260 
+#define  E1000_DEV_ID_82545EM_COPPER 259 
+#define  E1000_DEV_ID_82545EM_FIBER 258 
+#define  E1000_DEV_ID_82545GM_COPPER 257 
+#define  E1000_DEV_ID_82545GM_FIBER 256 
+#define  E1000_DEV_ID_82545GM_SERDES 255 
+#define  E1000_DEV_ID_82546EB_COPPER 254 
+#define  E1000_DEV_ID_82546EB_FIBER 253 
+#define  E1000_DEV_ID_82546EB_QUAD_COPPER 252 
+#define  E1000_DEV_ID_82546GB_COPPER 251 
+#define  E1000_DEV_ID_82546GB_FIBER 250 
+#define  E1000_DEV_ID_82546GB_PCIE 249 
+#define  E1000_DEV_ID_82546GB_QUAD_COPPER 248 
+#define  E1000_DEV_ID_82546GB_QUAD_COPPER_KSP3 247 
+#define  E1000_DEV_ID_82546GB_SERDES 246 
+#define  E1000_DEV_ID_82547EI 245 
+#define  E1000_DEV_ID_82547EI_MOBILE 244 
+#define  E1000_DEV_ID_82547GI 243 
+#define  E1000_DEV_ID_82571EB_COPPER 242 
+#define  E1000_DEV_ID_82571EB_FIBER 241 
+#define  E1000_DEV_ID_82571EB_QUAD_COPPER 240 
+#define  E1000_DEV_ID_82571EB_QUAD_COPPER_LP 239 
+#define  E1000_DEV_ID_82571EB_QUAD_FIBER 238 
+#define  E1000_DEV_ID_82571EB_SERDES 237 
+#define  E1000_DEV_ID_82571EB_SERDES_DUAL 236 
+#define  E1000_DEV_ID_82571EB_SERDES_QUAD 235 
+#define  E1000_DEV_ID_82571PT_QUAD_COPPER 234 
+#define  E1000_DEV_ID_82572EI 233 
+#define  E1000_DEV_ID_82572EI_COPPER 232 
+#define  E1000_DEV_ID_82572EI_FIBER 231 
+#define  E1000_DEV_ID_82572EI_SERDES 230 
+#define  E1000_DEV_ID_82573E 229 
+#define  E1000_DEV_ID_82573E_IAMT 228 
+#define  E1000_DEV_ID_82573L 227 
+#define  E1000_DEV_ID_82574L 226 
+#define  E1000_DEV_ID_82574LA 225 
+#define  E1000_DEV_ID_82575EB_COPPER 224 
+#define  E1000_DEV_ID_82575EB_FIBER_SERDES 223 
+#define  E1000_DEV_ID_82575GB_QUAD_COPPER 222 
+#define  E1000_DEV_ID_82576 221 
+#define  E1000_DEV_ID_82576_FIBER 220 
+#define  E1000_DEV_ID_82576_NS 219 
+#define  E1000_DEV_ID_82576_NS_SERDES 218 
+#define  E1000_DEV_ID_82576_QUAD_COPPER 217 
+#define  E1000_DEV_ID_82576_QUAD_COPPER_ET2 216 
+#define  E1000_DEV_ID_82576_SERDES 215 
+#define  E1000_DEV_ID_82576_SERDES_QUAD 214 
+#define  E1000_DEV_ID_82576_VF 213 
+#define  E1000_DEV_ID_82576_VF_HV 212 
+#define  E1000_DEV_ID_82580_COPPER 211 
+#define  E1000_DEV_ID_82580_COPPER_DUAL 210 
+#define  E1000_DEV_ID_82580_FIBER 209 
+#define  E1000_DEV_ID_82580_QUAD_FIBER 208 
+#define  E1000_DEV_ID_82580_SERDES 207 
+#define  E1000_DEV_ID_82580_SGMII 206 
+#define  E1000_DEV_ID_82583V 205 
+#define  E1000_DEV_ID_DH89XXCC_BACKPLANE 204 
+#define  E1000_DEV_ID_DH89XXCC_SERDES 203 
+#define  E1000_DEV_ID_DH89XXCC_SFP 202 
+#define  E1000_DEV_ID_DH89XXCC_SGMII 201 
+#define  E1000_DEV_ID_I210_COPPER 200 
+#define  E1000_DEV_ID_I210_COPPER_FLASHLESS 199 
+#define  E1000_DEV_ID_I210_COPPER_IT 198 
+#define  E1000_DEV_ID_I210_COPPER_OEM1 197 
+#define  E1000_DEV_ID_I210_FIBER 196 
+#define  E1000_DEV_ID_I210_SERDES 195 
+#define  E1000_DEV_ID_I210_SERDES_FLASHLESS 194 
+#define  E1000_DEV_ID_I210_SGMII 193 
+#define  E1000_DEV_ID_I211_COPPER 192 
+#define  E1000_DEV_ID_I350_COPPER 191 
+#define  E1000_DEV_ID_I350_DA4 190 
+#define  E1000_DEV_ID_I350_FIBER 189 
+#define  E1000_DEV_ID_I350_SERDES 188 
+#define  E1000_DEV_ID_I350_SGMII 187 
+#define  E1000_DEV_ID_I350_VF 186 
+#define  E1000_DEV_ID_I350_VF_HV 185 
+#define  E1000_DEV_ID_I354_BACKPLANE_1GBPS 184 
+#define  E1000_DEV_ID_I354_BACKPLANE_2_5GBPS 183 
+#define  E1000_DEV_ID_I354_SGMII 182 
+#define  E1000_DEV_ID_ICH10_D_BM_LF 181 
+#define  E1000_DEV_ID_ICH10_D_BM_LM 180 
+#define  E1000_DEV_ID_ICH10_D_BM_V 179 
+#define  E1000_DEV_ID_ICH10_R_BM_LF 178 
+#define  E1000_DEV_ID_ICH10_R_BM_LM 177 
+#define  E1000_DEV_ID_ICH10_R_BM_V 176 
+#define  E1000_DEV_ID_ICH8_82567V_3 175 
+#define  E1000_DEV_ID_ICH8_IFE 174 
+#define  E1000_DEV_ID_ICH8_IFE_G 173 
+#define  E1000_DEV_ID_ICH8_IFE_GT 172 
+#define  E1000_DEV_ID_ICH8_IGP_AMT 171 
+#define  E1000_DEV_ID_ICH8_IGP_C 170 
+#define  E1000_DEV_ID_ICH8_IGP_M 169 
+#define  E1000_DEV_ID_ICH8_IGP_M_AMT 168 
+#define  E1000_DEV_ID_ICH9_BM 167 
+#define  E1000_DEV_ID_ICH9_IFE 166 
+#define  E1000_DEV_ID_ICH9_IFE_G 165 
+#define  E1000_DEV_ID_ICH9_IFE_GT 164 
+#define  E1000_DEV_ID_ICH9_IGP_AMT 163 
+#define  E1000_DEV_ID_ICH9_IGP_C 162 
+#define  E1000_DEV_ID_ICH9_IGP_M 161 
+#define  E1000_DEV_ID_ICH9_IGP_M_AMT 160 
+#define  E1000_DEV_ID_ICH9_IGP_M_V 159 
+#define  E1000_DEV_ID_PCH2_LV_LM 158 
+#define  E1000_DEV_ID_PCH2_LV_V 157 
+#define  E1000_DEV_ID_PCH_CNP_I219_LM6 156 
+#define  E1000_DEV_ID_PCH_CNP_I219_LM7 155 
+#define  E1000_DEV_ID_PCH_CNP_I219_V6 154 
+#define  E1000_DEV_ID_PCH_CNP_I219_V7 153 
+#define  E1000_DEV_ID_PCH_D_HV_DC 152 
+#define  E1000_DEV_ID_PCH_D_HV_DM 151 
+#define  E1000_DEV_ID_PCH_I218_LM2 150 
+#define  E1000_DEV_ID_PCH_I218_LM3 149 
+#define  E1000_DEV_ID_PCH_I218_V2 148 
+#define  E1000_DEV_ID_PCH_I218_V3 147 
+#define  E1000_DEV_ID_PCH_ICP_I219_LM8 146 
+#define  E1000_DEV_ID_PCH_ICP_I219_LM9 145 
+#define  E1000_DEV_ID_PCH_ICP_I219_V8 144 
+#define  E1000_DEV_ID_PCH_ICP_I219_V9 143 
+#define  E1000_DEV_ID_PCH_LBG_I219_LM3 142 
+#define  E1000_DEV_ID_PCH_LPTLP_I218_LM 141 
+#define  E1000_DEV_ID_PCH_LPTLP_I218_V 140 
+#define  E1000_DEV_ID_PCH_LPT_I217_LM 139 
+#define  E1000_DEV_ID_PCH_LPT_I217_V 138 
+#define  E1000_DEV_ID_PCH_M_HV_LC 137 
+#define  E1000_DEV_ID_PCH_M_HV_LM 136 
+#define  E1000_DEV_ID_PCH_SPT_I219_LM 135 
+#define  E1000_DEV_ID_PCH_SPT_I219_LM2 134 
+#define  E1000_DEV_ID_PCH_SPT_I219_LM4 133 
+#define  E1000_DEV_ID_PCH_SPT_I219_LM5 132 
+#define  E1000_DEV_ID_PCH_SPT_I219_V 131 
+#define  E1000_DEV_ID_PCH_SPT_I219_V2 130 
+#define  E1000_DEV_ID_PCH_SPT_I219_V4 129 
+#define  E1000_DEV_ID_PCH_SPT_I219_V5 128 
+ int /*<<< orphan*/  E1000_ERR_MAC_INIT ; 
+ int /*<<< orphan*/  E1000_SUCCESS ; 
+ int /*<<< orphan*/  e1000_80003es2lan ; 
+ int /*<<< orphan*/  e1000_82540 ; 
+ int /*<<< orphan*/  e1000_82541 ; 
+ int /*<<< orphan*/  e1000_82541_rev_2 ; 
+ int /*<<< orphan*/  e1000_82542 ; 
+ int /*<<< orphan*/  e1000_82543 ; 
+ int /*<<< orphan*/  e1000_82544 ; 
+ int /*<<< orphan*/  e1000_82545 ; 
+ int /*<<< orphan*/  e1000_82545_rev_3 ; 
+ int /*<<< orphan*/  e1000_82546 ; 
+ int /*<<< orphan*/  e1000_82546_rev_3 ; 
+ int /*<<< orphan*/  e1000_82547 ; 
+ int /*<<< orphan*/  e1000_82547_rev_2 ; 
+ int /*<<< orphan*/  e1000_82571 ; 
+ int /*<<< orphan*/  e1000_82572 ; 
+ int /*<<< orphan*/  e1000_82573 ; 
+ int /*<<< orphan*/  e1000_82574 ; 
+ int /*<<< orphan*/  e1000_82575 ; 
+ int /*<<< orphan*/  e1000_82576 ; 
+ int /*<<< orphan*/  e1000_82580 ; 
+ int /*<<< orphan*/  e1000_82583 ; 
+ int /*<<< orphan*/  e1000_i210 ; 
+ int /*<<< orphan*/  e1000_i211 ; 
+ int /*<<< orphan*/  e1000_i350 ; 
+ int /*<<< orphan*/  e1000_i354 ; 
+ int /*<<< orphan*/  e1000_ich10lan ; 
+ int /*<<< orphan*/  e1000_ich8lan ; 
+ int /*<<< orphan*/  e1000_ich9lan ; 
+ int /*<<< orphan*/  e1000_pch2lan ; 
+ int /*<<< orphan*/  e1000_pch_cnp ; 
+ int /*<<< orphan*/  e1000_pch_lpt ; 
+ int /*<<< orphan*/  e1000_pch_spt ; 
+ int /*<<< orphan*/  e1000_pchlan ; 
+ int /*<<< orphan*/  e1000_vfadapt ; 
+ int /*<<< orphan*/  e1000_vfadapt_i350 ; 
+
+s32 e1000_set_mac_type(struct e1000_hw *hw)
+{
+	struct e1000_mac_info *mac = &hw->mac;
+	s32 ret_val = E1000_SUCCESS;
+
+	DEBUGFUNC("e1000_set_mac_type");
+
+	switch (hw->device_id) {
+	case E1000_DEV_ID_82542:
+		mac->type = e1000_82542;
+		break;
+	case E1000_DEV_ID_82543GC_FIBER:
+	case E1000_DEV_ID_82543GC_COPPER:
+		mac->type = e1000_82543;
+		break;
+	case E1000_DEV_ID_82544EI_COPPER:
+	case E1000_DEV_ID_82544EI_FIBER:
+	case E1000_DEV_ID_82544GC_COPPER:
+	case E1000_DEV_ID_82544GC_LOM:
+		mac->type = e1000_82544;
+		break;
+	case E1000_DEV_ID_82540EM:
+	case E1000_DEV_ID_82540EM_LOM:
+	case E1000_DEV_ID_82540EP:
+	case E1000_DEV_ID_82540EP_LOM:
+	case E1000_DEV_ID_82540EP_LP:
+		mac->type = e1000_82540;
+		break;
+	case E1000_DEV_ID_82545EM_COPPER:
+	case E1000_DEV_ID_82545EM_FIBER:
+		mac->type = e1000_82545;
+		break;
+	case E1000_DEV_ID_82545GM_COPPER:
+	case E1000_DEV_ID_82545GM_FIBER:
+	case E1000_DEV_ID_82545GM_SERDES:
+		mac->type = e1000_82545_rev_3;
+		break;
+	case E1000_DEV_ID_82546EB_COPPER:
+	case E1000_DEV_ID_82546EB_FIBER:
+	case E1000_DEV_ID_82546EB_QUAD_COPPER:
+		mac->type = e1000_82546;
+		break;
+	case E1000_DEV_ID_82546GB_COPPER:
+	case E1000_DEV_ID_82546GB_FIBER:
+	case E1000_DEV_ID_82546GB_SERDES:
+	case E1000_DEV_ID_82546GB_PCIE:
+	case E1000_DEV_ID_82546GB_QUAD_COPPER:
+	case E1000_DEV_ID_82546GB_QUAD_COPPER_KSP3:
+		mac->type = e1000_82546_rev_3;
+		break;
+	case E1000_DEV_ID_82541EI:
+	case E1000_DEV_ID_82541EI_MOBILE:
+	case E1000_DEV_ID_82541ER_LOM:
+		mac->type = e1000_82541;
+		break;
+	case E1000_DEV_ID_82541ER:
+	case E1000_DEV_ID_82541GI:
+	case E1000_DEV_ID_82541GI_LF:
+	case E1000_DEV_ID_82541GI_MOBILE:
+		mac->type = e1000_82541_rev_2;
+		break;
+	case E1000_DEV_ID_82547EI:
+	case E1000_DEV_ID_82547EI_MOBILE:
+		mac->type = e1000_82547;
+		break;
+	case E1000_DEV_ID_82547GI:
+		mac->type = e1000_82547_rev_2;
+		break;
+	case E1000_DEV_ID_82571EB_COPPER:
+	case E1000_DEV_ID_82571EB_FIBER:
+	case E1000_DEV_ID_82571EB_SERDES:
+	case E1000_DEV_ID_82571EB_SERDES_DUAL:
+	case E1000_DEV_ID_82571EB_SERDES_QUAD:
+	case E1000_DEV_ID_82571EB_QUAD_COPPER:
+	case E1000_DEV_ID_82571PT_QUAD_COPPER:
+	case E1000_DEV_ID_82571EB_QUAD_FIBER:
+	case E1000_DEV_ID_82571EB_QUAD_COPPER_LP:
+		mac->type = e1000_82571;
+		break;
+	case E1000_DEV_ID_82572EI:
+	case E1000_DEV_ID_82572EI_COPPER:
+	case E1000_DEV_ID_82572EI_FIBER:
+	case E1000_DEV_ID_82572EI_SERDES:
+		mac->type = e1000_82572;
+		break;
+	case E1000_DEV_ID_82573E:
+	case E1000_DEV_ID_82573E_IAMT:
+	case E1000_DEV_ID_82573L:
+		mac->type = e1000_82573;
+		break;
+	case E1000_DEV_ID_82574L:
+	case E1000_DEV_ID_82574LA:
+		mac->type = e1000_82574;
+		break;
+	case E1000_DEV_ID_82583V:
+		mac->type = e1000_82583;
+		break;
+	case E1000_DEV_ID_80003ES2LAN_COPPER_DPT:
+	case E1000_DEV_ID_80003ES2LAN_SERDES_DPT:
+	case E1000_DEV_ID_80003ES2LAN_COPPER_SPT:
+	case E1000_DEV_ID_80003ES2LAN_SERDES_SPT:
+		mac->type = e1000_80003es2lan;
+		break;
+	case E1000_DEV_ID_ICH8_IFE:
+	case E1000_DEV_ID_ICH8_IFE_GT:
+	case E1000_DEV_ID_ICH8_IFE_G:
+	case E1000_DEV_ID_ICH8_IGP_M:
+	case E1000_DEV_ID_ICH8_IGP_M_AMT:
+	case E1000_DEV_ID_ICH8_IGP_AMT:
+	case E1000_DEV_ID_ICH8_IGP_C:
+	case E1000_DEV_ID_ICH8_82567V_3:
+		mac->type = e1000_ich8lan;
+		break;
+	case E1000_DEV_ID_ICH9_IFE:
+	case E1000_DEV_ID_ICH9_IFE_GT:
+	case E1000_DEV_ID_ICH9_IFE_G:
+	case E1000_DEV_ID_ICH9_IGP_M:
+	case E1000_DEV_ID_ICH9_IGP_M_AMT:
+	case E1000_DEV_ID_ICH9_IGP_M_V:
+	case E1000_DEV_ID_ICH9_IGP_AMT:
+	case E1000_DEV_ID_ICH9_BM:
+	case E1000_DEV_ID_ICH9_IGP_C:
+	case E1000_DEV_ID_ICH10_R_BM_LM:
+	case E1000_DEV_ID_ICH10_R_BM_LF:
+	case E1000_DEV_ID_ICH10_R_BM_V:
+		mac->type = e1000_ich9lan;
+		break;
+	case E1000_DEV_ID_ICH10_D_BM_LM:
+	case E1000_DEV_ID_ICH10_D_BM_LF:
+	case E1000_DEV_ID_ICH10_D_BM_V:
+		mac->type = e1000_ich10lan;
+		break;
+	case E1000_DEV_ID_PCH_D_HV_DM:
+	case E1000_DEV_ID_PCH_D_HV_DC:
+	case E1000_DEV_ID_PCH_M_HV_LM:
+	case E1000_DEV_ID_PCH_M_HV_LC:
+		mac->type = e1000_pchlan;
+		break;
+	case E1000_DEV_ID_PCH2_LV_LM:
+	case E1000_DEV_ID_PCH2_LV_V:
+		mac->type = e1000_pch2lan;
+		break;
+	case E1000_DEV_ID_PCH_LPT_I217_LM:
+	case E1000_DEV_ID_PCH_LPT_I217_V:
+	case E1000_DEV_ID_PCH_LPTLP_I218_LM:
+	case E1000_DEV_ID_PCH_LPTLP_I218_V:
+	case E1000_DEV_ID_PCH_I218_LM2:
+	case E1000_DEV_ID_PCH_I218_V2:
+	case E1000_DEV_ID_PCH_I218_LM3:
+	case E1000_DEV_ID_PCH_I218_V3:
+		mac->type = e1000_pch_lpt;
+		break;
+	case E1000_DEV_ID_PCH_SPT_I219_LM:
+	case E1000_DEV_ID_PCH_SPT_I219_V:
+	case E1000_DEV_ID_PCH_SPT_I219_LM2:
+	case E1000_DEV_ID_PCH_SPT_I219_V2:
+	case E1000_DEV_ID_PCH_LBG_I219_LM3:
+	case E1000_DEV_ID_PCH_SPT_I219_LM4:
+	case E1000_DEV_ID_PCH_SPT_I219_V4:
+	case E1000_DEV_ID_PCH_SPT_I219_LM5:
+	case E1000_DEV_ID_PCH_SPT_I219_V5:
+		mac->type = e1000_pch_spt;
+		break;
+	case E1000_DEV_ID_PCH_CNP_I219_LM6:
+	case E1000_DEV_ID_PCH_CNP_I219_V6:
+	case E1000_DEV_ID_PCH_CNP_I219_LM7:
+	case E1000_DEV_ID_PCH_CNP_I219_V7:
+	case E1000_DEV_ID_PCH_ICP_I219_LM8:
+	case E1000_DEV_ID_PCH_ICP_I219_V8:
+	case E1000_DEV_ID_PCH_ICP_I219_LM9:
+	case E1000_DEV_ID_PCH_ICP_I219_V9:
+		mac->type = e1000_pch_cnp;
+		break;
+	case E1000_DEV_ID_82575EB_COPPER:
+	case E1000_DEV_ID_82575EB_FIBER_SERDES:
+	case E1000_DEV_ID_82575GB_QUAD_COPPER:
+		mac->type = e1000_82575;
+		break;
+	case E1000_DEV_ID_82576:
+	case E1000_DEV_ID_82576_FIBER:
+	case E1000_DEV_ID_82576_SERDES:
+	case E1000_DEV_ID_82576_QUAD_COPPER:
+	case E1000_DEV_ID_82576_QUAD_COPPER_ET2:
+	case E1000_DEV_ID_82576_NS:
+	case E1000_DEV_ID_82576_NS_SERDES:
+	case E1000_DEV_ID_82576_SERDES_QUAD:
+		mac->type = e1000_82576;
+		break;
+	case E1000_DEV_ID_82580_COPPER:
+	case E1000_DEV_ID_82580_FIBER:
+	case E1000_DEV_ID_82580_SERDES:
+	case E1000_DEV_ID_82580_SGMII:
+	case E1000_DEV_ID_82580_COPPER_DUAL:
+	case E1000_DEV_ID_82580_QUAD_FIBER:
+	case E1000_DEV_ID_DH89XXCC_SGMII:
+	case E1000_DEV_ID_DH89XXCC_SERDES:
+	case E1000_DEV_ID_DH89XXCC_BACKPLANE:
+	case E1000_DEV_ID_DH89XXCC_SFP:
+		mac->type = e1000_82580;
+		break;
+	case E1000_DEV_ID_I350_COPPER:
+	case E1000_DEV_ID_I350_FIBER:
+	case E1000_DEV_ID_I350_SERDES:
+	case E1000_DEV_ID_I350_SGMII:
+	case E1000_DEV_ID_I350_DA4:
+		mac->type = e1000_i350;
+		break;
+	case E1000_DEV_ID_I210_COPPER_FLASHLESS:
+	case E1000_DEV_ID_I210_SERDES_FLASHLESS:
+	case E1000_DEV_ID_I210_COPPER:
+	case E1000_DEV_ID_I210_COPPER_OEM1:
+	case E1000_DEV_ID_I210_COPPER_IT:
+	case E1000_DEV_ID_I210_FIBER:
+	case E1000_DEV_ID_I210_SERDES:
+	case E1000_DEV_ID_I210_SGMII:
+		mac->type = e1000_i210;
+		break;
+	case E1000_DEV_ID_I211_COPPER:
+		mac->type = e1000_i211;
+		break;
+	case E1000_DEV_ID_82576_VF:
+	case E1000_DEV_ID_82576_VF_HV:
+		mac->type = e1000_vfadapt;
+		break;
+	case E1000_DEV_ID_I350_VF:
+	case E1000_DEV_ID_I350_VF_HV:
+		mac->type = e1000_vfadapt_i350;
+		break;
+
+	case E1000_DEV_ID_I354_BACKPLANE_1GBPS:
+	case E1000_DEV_ID_I354_SGMII:
+	case E1000_DEV_ID_I354_BACKPLANE_2_5GBPS:
+		mac->type = e1000_i354;
+		break;
+	default:
+		/* Should never have loaded on this device */
+		ret_val = -E1000_ERR_MAC_INIT;
+		break;
+	}
+
+	return ret_val;
+}

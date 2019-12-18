@@ -1,0 +1,184 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+typedef  int CURLoption ;
+
+/* Variables and functions */
+#define  CURLOPT_COOKIE 178 
+#define  CURLOPT_COOKIEFILE 177 
+#define  CURLOPT_COOKIEJAR 176 
+#define  CURLOPT_COOKIESESSION 175 
+#define  CURLOPT_FTPPORT 174 
+#define  CURLOPT_FTP_ACCOUNT 173 
+#define  CURLOPT_FTP_ALTERNATIVE_TO_USER 172 
+#define  CURLOPT_FTP_FILEMETHOD 171 
+#define  CURLOPT_FTP_SKIP_PASV_IP 170 
+#define  CURLOPT_FTP_USE_EPRT 169 
+#define  CURLOPT_FTP_USE_EPSV 168 
+#define  CURLOPT_FTP_USE_PRET 167 
+#define  CURLOPT_HAPROXYPROTOCOL 166 
+#define  CURLOPT_HTTPPROXYTUNNEL 165 
+#define  CURLOPT_INTERLEAVEDATA 164 
+#define  CURLOPT_KRBLEVEL 163 
+#define  CURLOPT_NETRC 162 
+#define  CURLOPT_NETRC_FILE 161 
+#define  CURLOPT_NOPROXY 160 
+#define  CURLOPT_PRE_PROXY 159 
+#define  CURLOPT_PROXY 158 
+#define  CURLOPT_PROXYAUTH 157 
+#define  CURLOPT_PROXYHEADER 156 
+#define  CURLOPT_PROXYPASSWORD 155 
+#define  CURLOPT_PROXYPORT 154 
+#define  CURLOPT_PROXYTYPE 153 
+#define  CURLOPT_PROXYUSERNAME 152 
+#define  CURLOPT_PROXYUSERPWD 151 
+#define  CURLOPT_PROXY_CAINFO 150 
+#define  CURLOPT_PROXY_CAPATH 149 
+#define  CURLOPT_PROXY_CRLFILE 148 
+#define  CURLOPT_PROXY_KEYPASSWD 147 
+#define  CURLOPT_PROXY_PINNEDPUBLICKEY 146 
+#define  CURLOPT_PROXY_SERVICE_NAME 145 
+#define  CURLOPT_PROXY_SSLCERT 144 
+#define  CURLOPT_PROXY_SSLCERTTYPE 143 
+#define  CURLOPT_PROXY_SSLKEY 142 
+#define  CURLOPT_PROXY_SSLKEYTYPE 141 
+#define  CURLOPT_PROXY_SSLVERSION 140 
+#define  CURLOPT_PROXY_SSL_CIPHER_LIST 139 
+#define  CURLOPT_PROXY_SSL_OPTIONS 138 
+#define  CURLOPT_PROXY_SSL_VERIFYHOST 137 
+#define  CURLOPT_PROXY_SSL_VERIFYPEER 136 
+#define  CURLOPT_PROXY_TLS13_CIPHERS 135 
+#define  CURLOPT_PROXY_TLSAUTH_PASSWORD 134 
+#define  CURLOPT_PROXY_TLSAUTH_TYPE 133 
+#define  CURLOPT_PROXY_TLSAUTH_USERNAME 132 
+#define  CURLOPT_PROXY_TRANSFER_MODE 131 
+#define  CURLOPT_TELNETOPTIONS 130 
+#define  CURLOPT_TFTP_BLKSIZE 129 
+#define  CURLOPT_TFTP_NO_OPTIONS 128 
+ int FALSE ; 
+ int TRUE ; 
+
+bool tool_setopt_skip(CURLoption tag)
+{
+#ifdef CURL_DISABLE_PROXY
+#define USED_TAG
+  switch(tag) {
+  case CURLOPT_HAPROXYPROTOCOL:
+  case CURLOPT_HTTPPROXYTUNNEL:
+  case CURLOPT_NOPROXY:
+  case CURLOPT_PRE_PROXY:
+  case CURLOPT_PROXY:
+  case CURLOPT_PROXYAUTH:
+  case CURLOPT_PROXY_CAINFO:
+  case CURLOPT_PROXY_CAPATH:
+  case CURLOPT_PROXY_CRLFILE:
+  case CURLOPT_PROXYHEADER:
+  case CURLOPT_PROXY_KEYPASSWD:
+  case CURLOPT_PROXYPASSWORD:
+  case CURLOPT_PROXY_PINNEDPUBLICKEY:
+  case CURLOPT_PROXYPORT:
+  case CURLOPT_PROXY_SERVICE_NAME:
+  case CURLOPT_PROXY_SSLCERT:
+  case CURLOPT_PROXY_SSLCERTTYPE:
+  case CURLOPT_PROXY_SSL_CIPHER_LIST:
+  case CURLOPT_PROXY_SSLKEY:
+  case CURLOPT_PROXY_SSLKEYTYPE:
+  case CURLOPT_PROXY_SSL_OPTIONS:
+  case CURLOPT_PROXY_SSL_VERIFYHOST:
+  case CURLOPT_PROXY_SSL_VERIFYPEER:
+  case CURLOPT_PROXY_SSLVERSION:
+  case CURLOPT_PROXY_TLS13_CIPHERS:
+  case CURLOPT_PROXY_TLSAUTH_PASSWORD:
+  case CURLOPT_PROXY_TLSAUTH_TYPE:
+  case CURLOPT_PROXY_TLSAUTH_USERNAME:
+  case CURLOPT_PROXY_TRANSFER_MODE:
+  case CURLOPT_PROXYTYPE:
+  case CURLOPT_PROXYUSERNAME:
+  case CURLOPT_PROXYUSERPWD:
+    return TRUE;
+  default:
+    break;
+  }
+#endif
+#ifdef CURL_DISABLE_FTP
+#define USED_TAG
+  switch(tag) {
+  case CURLOPT_FTPPORT:
+  case CURLOPT_FTP_ACCOUNT:
+  case CURLOPT_FTP_ALTERNATIVE_TO_USER:
+  case CURLOPT_FTP_FILEMETHOD:
+  case CURLOPT_FTP_SKIP_PASV_IP:
+  case CURLOPT_FTP_USE_EPRT:
+  case CURLOPT_FTP_USE_EPSV:
+  case CURLOPT_FTP_USE_PRET:
+  case CURLOPT_KRBLEVEL:
+    return TRUE;
+  default:
+    break;
+  }
+#endif
+#ifdef CURL_DISABLE_RTSP
+#define USED_TAG
+  switch(tag) {
+  case CURLOPT_INTERLEAVEDATA:
+    return TRUE;
+  default:
+    break;
+  }
+#endif
+#if defined(CURL_DISABLE_HTTP) || defined(CURL_DISABLE_COOKIES)
+#define USED_TAG
+  switch(tag) {
+  case CURLOPT_COOKIE:
+  case CURLOPT_COOKIEFILE:
+  case CURLOPT_COOKIEJAR:
+  case CURLOPT_COOKIESESSION:
+    return TRUE;
+  default:
+    break;
+  }
+#endif
+#if defined(CURL_DISABLE_TELNET)
+#define USED_TAG
+  switch(tag) {
+  case CURLOPT_TELNETOPTIONS:
+    return TRUE;
+  default:
+    break;
+  }
+#endif
+#ifdef CURL_DISABLE_TFTP
+#define USED_TAG
+  switch(tag) {
+  case CURLOPT_TFTP_BLKSIZE:
+  case CURLOPT_TFTP_NO_OPTIONS:
+    return TRUE;
+  default:
+    break;
+  }
+#endif
+#ifdef CURL_DISABLE_NETRC
+#define USED_TAG
+  switch(tag) {
+  case CURLOPT_NETRC:
+  case CURLOPT_NETRC_FILE:
+    return TRUE;
+  default:
+    break;
+  }
+#endif
+
+#ifndef USED_TAG
+  (void)tag;
+#endif
+  return FALSE;
+}

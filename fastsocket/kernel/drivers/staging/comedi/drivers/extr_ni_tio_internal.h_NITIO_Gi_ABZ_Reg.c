@@ -1,0 +1,34 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+typedef  enum ni_gpct_register { ____Placeholder_ni_gpct_register } ni_gpct_register ;
+
+/* Variables and functions */
+ int /*<<< orphan*/  BUG () ; 
+ int NITIO_G0_ABZ_Reg ; 
+ int NITIO_G1_ABZ_Reg ; 
+
+__attribute__((used)) static inline enum ni_gpct_register NITIO_Gi_ABZ_Reg(int counter_index)
+{
+	switch (counter_index) {
+	case 0:
+		return NITIO_G0_ABZ_Reg;
+		break;
+	case 1:
+		return NITIO_G1_ABZ_Reg;
+		break;
+	default:
+		BUG();
+		break;
+	}
+	return 0;
+}

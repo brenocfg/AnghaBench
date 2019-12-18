@@ -1,0 +1,31 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+typedef  struct TYPE_5__   TYPE_2__ ;
+typedef  struct TYPE_4__   TYPE_1__ ;
+
+/* Type definitions */
+typedef  scalar_t__ uptrval ;
+struct TYPE_4__ {int lowLimit; int /*<<< orphan*/  compressionLevel; int /*<<< orphan*/ * base; } ;
+struct TYPE_5__ {TYPE_1__ internal_donotuse; } ;
+typedef  TYPE_2__ LZ4_streamHC_t ;
+typedef  int /*<<< orphan*/  BYTE ;
+
+/* Variables and functions */
+ int /*<<< orphan*/  LZ4_resetStreamHC_fast (TYPE_2__*,int /*<<< orphan*/ ) ; 
+
+char* LZ4_slideInputBufferHC(void* LZ4HC_Data)
+{
+    LZ4_streamHC_t *ctx = (LZ4_streamHC_t*)LZ4HC_Data;
+    const BYTE *bufferStart = ctx->internal_donotuse.base + ctx->internal_donotuse.lowLimit;
+    LZ4_resetStreamHC_fast(ctx, ctx->internal_donotuse.compressionLevel);
+    /* avoid const char * -> char * conversion warning :( */
+    return (char *)(uptrval)bufferStart;
+}

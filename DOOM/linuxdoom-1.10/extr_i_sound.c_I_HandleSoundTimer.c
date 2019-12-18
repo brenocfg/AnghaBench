@@ -1,0 +1,43 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+
+/* Variables and functions */
+ int BUFMUL ; 
+ int SAMPLECOUNT ; 
+ int /*<<< orphan*/  audio_fd ; 
+ scalar_t__ flag ; 
+ int /*<<< orphan*/  mixbuffer ; 
+ int /*<<< orphan*/  write (int /*<<< orphan*/ ,int /*<<< orphan*/ ,int) ; 
+
+void I_HandleSoundTimer( int ignore )
+{
+  // Debug.
+  //fprintf( stderr, "%c", '+' ); fflush( stderr );
+  
+  // Feed sound device if necesary.
+  if ( flag )
+  {
+    // See I_SubmitSound().
+    // Write it to DSP device.
+    write(audio_fd, mixbuffer, SAMPLECOUNT*BUFMUL);
+
+    // Reset flag counter.
+    flag = 0;
+  }
+  else
+    return;
+  
+  // UNUSED, but required.
+  ignore = 0;
+  return;
+}

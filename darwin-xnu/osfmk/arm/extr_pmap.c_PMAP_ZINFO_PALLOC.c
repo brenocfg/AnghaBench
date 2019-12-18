@@ -1,0 +1,26 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+typedef  struct TYPE_2__   TYPE_1__ ;
+
+/* Type definitions */
+typedef  int /*<<< orphan*/  pmap_t ;
+struct TYPE_2__ {int /*<<< orphan*/  tkm_private; } ;
+
+/* Variables and functions */
+ int /*<<< orphan*/  pmap_ledger_credit (int /*<<< orphan*/ ,int /*<<< orphan*/ ,int) ; 
+ TYPE_1__ task_ledgers ; 
+
+__attribute__((used)) static inline void
+PMAP_ZINFO_PALLOC(
+	pmap_t pmap, int bytes)
+{
+	pmap_ledger_credit(pmap, task_ledgers.tkm_private, bytes);
+}

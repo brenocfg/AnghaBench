@@ -1,0 +1,29 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+typedef  struct TYPE_2__   TYPE_1__ ;
+
+/* Type definitions */
+struct azx {int num_streams; int /*<<< orphan*/  reg_lock; TYPE_1__* azx_dev; } ;
+struct TYPE_2__ {scalar_t__ irq_pending; } ;
+
+/* Variables and functions */
+ int /*<<< orphan*/  spin_lock_irq (int /*<<< orphan*/ *) ; 
+ int /*<<< orphan*/  spin_unlock_irq (int /*<<< orphan*/ *) ; 
+
+__attribute__((used)) static void azx_clear_irq_pending(struct azx *chip)
+{
+	int i;
+
+	spin_lock_irq(&chip->reg_lock);
+	for (i = 0; i < chip->num_streams; i++)
+		chip->azx_dev[i].irq_pending = 0;
+	spin_unlock_irq(&chip->reg_lock);
+}

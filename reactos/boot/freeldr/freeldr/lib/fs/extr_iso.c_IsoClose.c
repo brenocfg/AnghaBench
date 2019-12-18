@@ -1,0 +1,28 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+typedef  int /*<<< orphan*/  ULONG ;
+typedef  int /*<<< orphan*/  PISO_FILE_INFO ;
+typedef  int /*<<< orphan*/  ARC_STATUS ;
+
+/* Variables and functions */
+ int /*<<< orphan*/  ESUCCESS ; 
+ int /*<<< orphan*/  FrLdrTempFree (int /*<<< orphan*/ ,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  FsGetDeviceSpecific (int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  TAG_ISO_FILE ; 
+
+ARC_STATUS IsoClose(ULONG FileId)
+{
+    PISO_FILE_INFO FileHandle = FsGetDeviceSpecific(FileId);
+    FrLdrTempFree(FileHandle, TAG_ISO_FILE);
+    return ESUCCESS;
+}

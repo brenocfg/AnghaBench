@@ -1,0 +1,174 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+typedef  struct TYPE_54__   TYPE_1__ ;
+
+/* Type definitions */
+struct TYPE_54__ {int /*<<< orphan*/  (* DeleteGlobalRef ) (TYPE_1__**,int /*<<< orphan*/ ) ;} ;
+typedef  TYPE_1__* JNIEnv ;
+
+/* Variables and functions */
+ int /*<<< orphan*/  cls_Buffer ; 
+ int /*<<< orphan*/  cls_ColorSpace ; 
+ int /*<<< orphan*/  cls_Cookie ; 
+ int /*<<< orphan*/  cls_Device ; 
+ int /*<<< orphan*/  cls_DisplayList ; 
+ int /*<<< orphan*/  cls_Document ; 
+ int /*<<< orphan*/  cls_DocumentWriter ; 
+ int /*<<< orphan*/  cls_FloatArray ; 
+ int /*<<< orphan*/  cls_Font ; 
+ int /*<<< orphan*/  cls_IOException ; 
+ int /*<<< orphan*/  cls_IllegalArgumentException ; 
+ int /*<<< orphan*/  cls_Image ; 
+ int /*<<< orphan*/  cls_IndexOutOfBoundsException ; 
+ int /*<<< orphan*/  cls_IntegerArray ; 
+ int /*<<< orphan*/  cls_Link ; 
+ int /*<<< orphan*/  cls_Location ; 
+ int /*<<< orphan*/  cls_Matrix ; 
+ int /*<<< orphan*/  cls_NativeDevice ; 
+ int /*<<< orphan*/  cls_NullPointerException ; 
+ int /*<<< orphan*/  cls_Object ; 
+ int /*<<< orphan*/  cls_OutOfMemoryError ; 
+ int /*<<< orphan*/  cls_Outline ; 
+ int /*<<< orphan*/  cls_PDFAnnotation ; 
+ int /*<<< orphan*/  cls_PDFDocument ; 
+ int /*<<< orphan*/  cls_PDFDocument_JsEventListener ; 
+ int /*<<< orphan*/  cls_PDFGraftMap ; 
+ int /*<<< orphan*/  cls_PDFObject ; 
+ int /*<<< orphan*/  cls_PDFPage ; 
+ int /*<<< orphan*/  cls_PDFWidget ; 
+ int /*<<< orphan*/  cls_Page ; 
+ int /*<<< orphan*/  cls_Path ; 
+ int /*<<< orphan*/  cls_PathWalker ; 
+ int /*<<< orphan*/  cls_Pixmap ; 
+ int /*<<< orphan*/  cls_Point ; 
+ int /*<<< orphan*/  cls_Quad ; 
+ int /*<<< orphan*/  cls_Rect ; 
+ int /*<<< orphan*/  cls_RuntimeException ; 
+ int /*<<< orphan*/  cls_SeekableInputStream ; 
+ int /*<<< orphan*/  cls_SeekableOutputStream ; 
+ int /*<<< orphan*/  cls_SeekableStream ; 
+ int /*<<< orphan*/  cls_Shade ; 
+ int /*<<< orphan*/  cls_String ; 
+ int /*<<< orphan*/  cls_StrokeState ; 
+ int /*<<< orphan*/  cls_StructuredText ; 
+ int /*<<< orphan*/  cls_StructuredTextWalker ; 
+ int /*<<< orphan*/  cls_Text ; 
+ int /*<<< orphan*/  cls_TextBlock ; 
+ int /*<<< orphan*/  cls_TextChar ; 
+ int /*<<< orphan*/  cls_TextLine ; 
+ int /*<<< orphan*/  cls_TextWalker ; 
+ int /*<<< orphan*/  cls_TryLaterException ; 
+ int /*<<< orphan*/  stub1 (TYPE_1__**,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  stub10 (TYPE_1__**,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  stub11 (TYPE_1__**,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  stub12 (TYPE_1__**,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  stub13 (TYPE_1__**,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  stub14 (TYPE_1__**,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  stub15 (TYPE_1__**,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  stub16 (TYPE_1__**,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  stub17 (TYPE_1__**,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  stub18 (TYPE_1__**,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  stub19 (TYPE_1__**,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  stub2 (TYPE_1__**,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  stub20 (TYPE_1__**,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  stub21 (TYPE_1__**,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  stub22 (TYPE_1__**,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  stub23 (TYPE_1__**,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  stub24 (TYPE_1__**,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  stub25 (TYPE_1__**,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  stub26 (TYPE_1__**,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  stub27 (TYPE_1__**,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  stub28 (TYPE_1__**,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  stub29 (TYPE_1__**,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  stub3 (TYPE_1__**,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  stub30 (TYPE_1__**,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  stub31 (TYPE_1__**,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  stub32 (TYPE_1__**,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  stub33 (TYPE_1__**,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  stub34 (TYPE_1__**,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  stub35 (TYPE_1__**,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  stub36 (TYPE_1__**,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  stub37 (TYPE_1__**,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  stub38 (TYPE_1__**,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  stub39 (TYPE_1__**,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  stub4 (TYPE_1__**,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  stub40 (TYPE_1__**,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  stub41 (TYPE_1__**,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  stub42 (TYPE_1__**,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  stub43 (TYPE_1__**,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  stub44 (TYPE_1__**,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  stub45 (TYPE_1__**,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  stub46 (TYPE_1__**,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  stub47 (TYPE_1__**,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  stub48 (TYPE_1__**,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  stub49 (TYPE_1__**,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  stub5 (TYPE_1__**,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  stub50 (TYPE_1__**,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  stub51 (TYPE_1__**,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  stub6 (TYPE_1__**,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  stub7 (TYPE_1__**,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  stub8 (TYPE_1__**,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  stub9 (TYPE_1__**,int /*<<< orphan*/ ) ; 
+
+__attribute__((used)) static void lose_fids(JNIEnv *env)
+{
+	(*env)->DeleteGlobalRef(env, cls_Buffer);
+	(*env)->DeleteGlobalRef(env, cls_ColorSpace);
+	(*env)->DeleteGlobalRef(env, cls_Cookie);
+	(*env)->DeleteGlobalRef(env, cls_Device);
+	(*env)->DeleteGlobalRef(env, cls_DisplayList);
+	(*env)->DeleteGlobalRef(env, cls_Document);
+	(*env)->DeleteGlobalRef(env, cls_DocumentWriter);
+	(*env)->DeleteGlobalRef(env, cls_FloatArray);
+	(*env)->DeleteGlobalRef(env, cls_Font);
+	(*env)->DeleteGlobalRef(env, cls_IllegalArgumentException);
+	(*env)->DeleteGlobalRef(env, cls_Image);
+	(*env)->DeleteGlobalRef(env, cls_IndexOutOfBoundsException);
+	(*env)->DeleteGlobalRef(env, cls_IntegerArray);
+	(*env)->DeleteGlobalRef(env, cls_IOException);
+	(*env)->DeleteGlobalRef(env, cls_Link);
+	(*env)->DeleteGlobalRef(env, cls_Location);
+	(*env)->DeleteGlobalRef(env, cls_Matrix);
+	(*env)->DeleteGlobalRef(env, cls_NativeDevice);
+	(*env)->DeleteGlobalRef(env, cls_NullPointerException);
+	(*env)->DeleteGlobalRef(env, cls_Object);
+	(*env)->DeleteGlobalRef(env, cls_Outline);
+	(*env)->DeleteGlobalRef(env, cls_OutOfMemoryError);
+	(*env)->DeleteGlobalRef(env, cls_Page);
+	(*env)->DeleteGlobalRef(env, cls_Path);
+	(*env)->DeleteGlobalRef(env, cls_PathWalker);
+	(*env)->DeleteGlobalRef(env, cls_PDFAnnotation);
+	(*env)->DeleteGlobalRef(env, cls_PDFDocument);
+	(*env)->DeleteGlobalRef(env, cls_PDFDocument_JsEventListener);
+	(*env)->DeleteGlobalRef(env, cls_PDFPage);
+	(*env)->DeleteGlobalRef(env, cls_PDFGraftMap);
+	(*env)->DeleteGlobalRef(env, cls_PDFObject);
+	(*env)->DeleteGlobalRef(env, cls_Pixmap);
+	(*env)->DeleteGlobalRef(env, cls_Point);
+	(*env)->DeleteGlobalRef(env, cls_Quad);
+	(*env)->DeleteGlobalRef(env, cls_Rect);
+	(*env)->DeleteGlobalRef(env, cls_RuntimeException);
+	(*env)->DeleteGlobalRef(env, cls_SeekableStream);
+	(*env)->DeleteGlobalRef(env, cls_SeekableInputStream);
+	(*env)->DeleteGlobalRef(env, cls_SeekableOutputStream);
+	(*env)->DeleteGlobalRef(env, cls_Shade);
+	(*env)->DeleteGlobalRef(env, cls_String);
+	(*env)->DeleteGlobalRef(env, cls_StrokeState);
+	(*env)->DeleteGlobalRef(env, cls_StructuredText);
+	(*env)->DeleteGlobalRef(env, cls_StructuredTextWalker);
+	(*env)->DeleteGlobalRef(env, cls_Text);
+	(*env)->DeleteGlobalRef(env, cls_TextBlock);
+	(*env)->DeleteGlobalRef(env, cls_TextChar);
+	(*env)->DeleteGlobalRef(env, cls_TextLine);
+	(*env)->DeleteGlobalRef(env, cls_TextWalker);
+	(*env)->DeleteGlobalRef(env, cls_TryLaterException);
+	(*env)->DeleteGlobalRef(env, cls_PDFWidget);
+}

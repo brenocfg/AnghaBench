@@ -1,0 +1,32 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+typedef  struct TYPE_3__   TYPE_1__ ;
+
+/* Type definitions */
+typedef  int /*<<< orphan*/  timestruc_t ;
+struct TYPE_3__ {int /*<<< orphan*/  dd_lock; int /*<<< orphan*/  dd_snap_cmtime; } ;
+typedef  TYPE_1__ dsl_dir_t ;
+
+/* Variables and functions */
+ int /*<<< orphan*/  mutex_enter (int /*<<< orphan*/ *) ; 
+ int /*<<< orphan*/  mutex_exit (int /*<<< orphan*/ *) ; 
+
+timestruc_t
+dsl_dir_snap_cmtime(dsl_dir_t *dd)
+{
+	timestruc_t t;
+
+	mutex_enter(&dd->dd_lock);
+	t = dd->dd_snap_cmtime;
+	mutex_exit(&dd->dd_lock);
+
+	return (t);
+}

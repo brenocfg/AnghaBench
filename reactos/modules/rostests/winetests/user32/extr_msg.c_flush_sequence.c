@@ -1,0 +1,31 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+
+/* Variables and functions */
+ int /*<<< orphan*/  EnterCriticalSection (int /*<<< orphan*/ *) ; 
+ int /*<<< orphan*/  GetProcessHeap () ; 
+ int /*<<< orphan*/  HeapFree (int /*<<< orphan*/ ,int /*<<< orphan*/ ,scalar_t__) ; 
+ int /*<<< orphan*/  LeaveCriticalSection (int /*<<< orphan*/ *) ; 
+ scalar_t__ sequence ; 
+ scalar_t__ sequence_cnt ; 
+ int /*<<< orphan*/  sequence_cs ; 
+ scalar_t__ sequence_size ; 
+
+__attribute__((used)) static void flush_sequence(void)
+{
+    EnterCriticalSection( &sequence_cs );
+    HeapFree(GetProcessHeap(), 0, sequence);
+    sequence = 0;
+    sequence_cnt = sequence_size = 0;
+    LeaveCriticalSection( &sequence_cs );
+}

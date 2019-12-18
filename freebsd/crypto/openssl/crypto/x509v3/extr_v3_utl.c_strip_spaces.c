@@ -1,0 +1,35 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+
+/* Variables and functions */
+ scalar_t__ ossl_isspace (char) ; 
+ int strlen (char*) ; 
+
+__attribute__((used)) static char *strip_spaces(char *name)
+{
+    char *p, *q;
+    /* Skip over leading spaces */
+    p = name;
+    while (*p && ossl_isspace(*p))
+        p++;
+    if (!*p)
+        return NULL;
+    q = p + strlen(p) - 1;
+    while ((q != p) && ossl_isspace(*q))
+        q--;
+    if (p != q)
+        q[1] = 0;
+    if (!*p)
+        return NULL;
+    return p;
+}

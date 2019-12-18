@@ -1,0 +1,32 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+typedef  struct TYPE_2__   TYPE_1__ ;
+
+/* Type definitions */
+typedef  int /*<<< orphan*/  ptid_t ;
+struct TYPE_2__ {int /*<<< orphan*/  h; } ;
+
+/* Variables and functions */
+ int FALSE ; 
+ int PIDGET (int /*<<< orphan*/ ) ; 
+ int TRUE ; 
+ scalar_t__ WAIT_OBJECT_0 ; 
+ scalar_t__ WaitForSingleObject (int /*<<< orphan*/ ,int /*<<< orphan*/ ) ; 
+ TYPE_1__* thread_rec (int,int) ; 
+
+__attribute__((used)) static int
+win32_child_thread_alive (ptid_t ptid)
+{
+  int pid = PIDGET (ptid);
+
+  return WaitForSingleObject (thread_rec (pid, FALSE)->h, 0) == WAIT_OBJECT_0 ?
+    FALSE : TRUE;
+}

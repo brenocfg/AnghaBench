@@ -1,0 +1,173 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+typedef  scalar_t__ PFNGLVERTEXP4UIVPROC ;
+typedef  scalar_t__ PFNGLVERTEXP4UIPROC ;
+typedef  scalar_t__ PFNGLVERTEXP3UIVPROC ;
+typedef  scalar_t__ PFNGLVERTEXP3UIPROC ;
+typedef  scalar_t__ PFNGLVERTEXP2UIVPROC ;
+typedef  scalar_t__ PFNGLVERTEXP2UIPROC ;
+typedef  scalar_t__ PFNGLVERTEXATTRIBP4UIVPROC ;
+typedef  scalar_t__ PFNGLVERTEXATTRIBP4UIPROC ;
+typedef  scalar_t__ PFNGLVERTEXATTRIBP3UIVPROC ;
+typedef  scalar_t__ PFNGLVERTEXATTRIBP3UIPROC ;
+typedef  scalar_t__ PFNGLVERTEXATTRIBP2UIVPROC ;
+typedef  scalar_t__ PFNGLVERTEXATTRIBP2UIPROC ;
+typedef  scalar_t__ PFNGLVERTEXATTRIBP1UIVPROC ;
+typedef  scalar_t__ PFNGLVERTEXATTRIBP1UIPROC ;
+typedef  scalar_t__ PFNGLTEXCOORDP4UIVPROC ;
+typedef  scalar_t__ PFNGLTEXCOORDP4UIPROC ;
+typedef  scalar_t__ PFNGLTEXCOORDP3UIVPROC ;
+typedef  scalar_t__ PFNGLTEXCOORDP3UIPROC ;
+typedef  scalar_t__ PFNGLTEXCOORDP2UIVPROC ;
+typedef  scalar_t__ PFNGLTEXCOORDP2UIPROC ;
+typedef  scalar_t__ PFNGLTEXCOORDP1UIVPROC ;
+typedef  scalar_t__ PFNGLTEXCOORDP1UIPROC ;
+typedef  scalar_t__ PFNGLSECONDARYCOLORP3UIVPROC ;
+typedef  scalar_t__ PFNGLSECONDARYCOLORP3UIPROC ;
+typedef  scalar_t__ PFNGLNORMALP3UIVPROC ;
+typedef  scalar_t__ PFNGLNORMALP3UIPROC ;
+typedef  scalar_t__ PFNGLMULTITEXCOORDP4UIVPROC ;
+typedef  scalar_t__ PFNGLMULTITEXCOORDP4UIPROC ;
+typedef  scalar_t__ PFNGLMULTITEXCOORDP3UIVPROC ;
+typedef  scalar_t__ PFNGLMULTITEXCOORDP3UIPROC ;
+typedef  scalar_t__ PFNGLMULTITEXCOORDP2UIVPROC ;
+typedef  scalar_t__ PFNGLMULTITEXCOORDP2UIPROC ;
+typedef  scalar_t__ PFNGLMULTITEXCOORDP1UIVPROC ;
+typedef  scalar_t__ PFNGLMULTITEXCOORDP1UIPROC ;
+typedef  scalar_t__ PFNGLCOLORP4UIVPROC ;
+typedef  scalar_t__ PFNGLCOLORP4UIPROC ;
+typedef  scalar_t__ PFNGLCOLORP3UIVPROC ;
+typedef  scalar_t__ PFNGLCOLORP3UIPROC ;
+
+/* Variables and functions */
+ scalar_t__ IntGetProcAddress (char*) ; 
+ scalar_t__ _funcptr_glColorP3ui ; 
+ scalar_t__ _funcptr_glColorP3uiv ; 
+ scalar_t__ _funcptr_glColorP4ui ; 
+ scalar_t__ _funcptr_glColorP4uiv ; 
+ scalar_t__ _funcptr_glMultiTexCoordP1ui ; 
+ scalar_t__ _funcptr_glMultiTexCoordP1uiv ; 
+ scalar_t__ _funcptr_glMultiTexCoordP2ui ; 
+ scalar_t__ _funcptr_glMultiTexCoordP2uiv ; 
+ scalar_t__ _funcptr_glMultiTexCoordP3ui ; 
+ scalar_t__ _funcptr_glMultiTexCoordP3uiv ; 
+ scalar_t__ _funcptr_glMultiTexCoordP4ui ; 
+ scalar_t__ _funcptr_glMultiTexCoordP4uiv ; 
+ scalar_t__ _funcptr_glNormalP3ui ; 
+ scalar_t__ _funcptr_glNormalP3uiv ; 
+ scalar_t__ _funcptr_glSecondaryColorP3ui ; 
+ scalar_t__ _funcptr_glSecondaryColorP3uiv ; 
+ scalar_t__ _funcptr_glTexCoordP1ui ; 
+ scalar_t__ _funcptr_glTexCoordP1uiv ; 
+ scalar_t__ _funcptr_glTexCoordP2ui ; 
+ scalar_t__ _funcptr_glTexCoordP2uiv ; 
+ scalar_t__ _funcptr_glTexCoordP3ui ; 
+ scalar_t__ _funcptr_glTexCoordP3uiv ; 
+ scalar_t__ _funcptr_glTexCoordP4ui ; 
+ scalar_t__ _funcptr_glTexCoordP4uiv ; 
+ scalar_t__ _funcptr_glVertexAttribP1ui ; 
+ scalar_t__ _funcptr_glVertexAttribP1uiv ; 
+ scalar_t__ _funcptr_glVertexAttribP2ui ; 
+ scalar_t__ _funcptr_glVertexAttribP2uiv ; 
+ scalar_t__ _funcptr_glVertexAttribP3ui ; 
+ scalar_t__ _funcptr_glVertexAttribP3uiv ; 
+ scalar_t__ _funcptr_glVertexAttribP4ui ; 
+ scalar_t__ _funcptr_glVertexAttribP4uiv ; 
+ scalar_t__ _funcptr_glVertexP2ui ; 
+ scalar_t__ _funcptr_glVertexP2uiv ; 
+ scalar_t__ _funcptr_glVertexP3ui ; 
+ scalar_t__ _funcptr_glVertexP3uiv ; 
+ scalar_t__ _funcptr_glVertexP4ui ; 
+ scalar_t__ _funcptr_glVertexP4uiv ; 
+
+__attribute__((used)) static int LoadExt_ARB_vertex_type_2_10_10_10_rev()
+{
+	int numFailed = 0;
+	_funcptr_glColorP3ui = (PFNGLCOLORP3UIPROC)IntGetProcAddress("glColorP3ui");
+	if(!_funcptr_glColorP3ui) ++numFailed;
+	_funcptr_glColorP3uiv = (PFNGLCOLORP3UIVPROC)IntGetProcAddress("glColorP3uiv");
+	if(!_funcptr_glColorP3uiv) ++numFailed;
+	_funcptr_glColorP4ui = (PFNGLCOLORP4UIPROC)IntGetProcAddress("glColorP4ui");
+	if(!_funcptr_glColorP4ui) ++numFailed;
+	_funcptr_glColorP4uiv = (PFNGLCOLORP4UIVPROC)IntGetProcAddress("glColorP4uiv");
+	if(!_funcptr_glColorP4uiv) ++numFailed;
+	_funcptr_glMultiTexCoordP1ui = (PFNGLMULTITEXCOORDP1UIPROC)IntGetProcAddress("glMultiTexCoordP1ui");
+	if(!_funcptr_glMultiTexCoordP1ui) ++numFailed;
+	_funcptr_glMultiTexCoordP1uiv = (PFNGLMULTITEXCOORDP1UIVPROC)IntGetProcAddress("glMultiTexCoordP1uiv");
+	if(!_funcptr_glMultiTexCoordP1uiv) ++numFailed;
+	_funcptr_glMultiTexCoordP2ui = (PFNGLMULTITEXCOORDP2UIPROC)IntGetProcAddress("glMultiTexCoordP2ui");
+	if(!_funcptr_glMultiTexCoordP2ui) ++numFailed;
+	_funcptr_glMultiTexCoordP2uiv = (PFNGLMULTITEXCOORDP2UIVPROC)IntGetProcAddress("glMultiTexCoordP2uiv");
+	if(!_funcptr_glMultiTexCoordP2uiv) ++numFailed;
+	_funcptr_glMultiTexCoordP3ui = (PFNGLMULTITEXCOORDP3UIPROC)IntGetProcAddress("glMultiTexCoordP3ui");
+	if(!_funcptr_glMultiTexCoordP3ui) ++numFailed;
+	_funcptr_glMultiTexCoordP3uiv = (PFNGLMULTITEXCOORDP3UIVPROC)IntGetProcAddress("glMultiTexCoordP3uiv");
+	if(!_funcptr_glMultiTexCoordP3uiv) ++numFailed;
+	_funcptr_glMultiTexCoordP4ui = (PFNGLMULTITEXCOORDP4UIPROC)IntGetProcAddress("glMultiTexCoordP4ui");
+	if(!_funcptr_glMultiTexCoordP4ui) ++numFailed;
+	_funcptr_glMultiTexCoordP4uiv = (PFNGLMULTITEXCOORDP4UIVPROC)IntGetProcAddress("glMultiTexCoordP4uiv");
+	if(!_funcptr_glMultiTexCoordP4uiv) ++numFailed;
+	_funcptr_glNormalP3ui = (PFNGLNORMALP3UIPROC)IntGetProcAddress("glNormalP3ui");
+	if(!_funcptr_glNormalP3ui) ++numFailed;
+	_funcptr_glNormalP3uiv = (PFNGLNORMALP3UIVPROC)IntGetProcAddress("glNormalP3uiv");
+	if(!_funcptr_glNormalP3uiv) ++numFailed;
+	_funcptr_glSecondaryColorP3ui = (PFNGLSECONDARYCOLORP3UIPROC)IntGetProcAddress("glSecondaryColorP3ui");
+	if(!_funcptr_glSecondaryColorP3ui) ++numFailed;
+	_funcptr_glSecondaryColorP3uiv = (PFNGLSECONDARYCOLORP3UIVPROC)IntGetProcAddress("glSecondaryColorP3uiv");
+	if(!_funcptr_glSecondaryColorP3uiv) ++numFailed;
+	_funcptr_glTexCoordP1ui = (PFNGLTEXCOORDP1UIPROC)IntGetProcAddress("glTexCoordP1ui");
+	if(!_funcptr_glTexCoordP1ui) ++numFailed;
+	_funcptr_glTexCoordP1uiv = (PFNGLTEXCOORDP1UIVPROC)IntGetProcAddress("glTexCoordP1uiv");
+	if(!_funcptr_glTexCoordP1uiv) ++numFailed;
+	_funcptr_glTexCoordP2ui = (PFNGLTEXCOORDP2UIPROC)IntGetProcAddress("glTexCoordP2ui");
+	if(!_funcptr_glTexCoordP2ui) ++numFailed;
+	_funcptr_glTexCoordP2uiv = (PFNGLTEXCOORDP2UIVPROC)IntGetProcAddress("glTexCoordP2uiv");
+	if(!_funcptr_glTexCoordP2uiv) ++numFailed;
+	_funcptr_glTexCoordP3ui = (PFNGLTEXCOORDP3UIPROC)IntGetProcAddress("glTexCoordP3ui");
+	if(!_funcptr_glTexCoordP3ui) ++numFailed;
+	_funcptr_glTexCoordP3uiv = (PFNGLTEXCOORDP3UIVPROC)IntGetProcAddress("glTexCoordP3uiv");
+	if(!_funcptr_glTexCoordP3uiv) ++numFailed;
+	_funcptr_glTexCoordP4ui = (PFNGLTEXCOORDP4UIPROC)IntGetProcAddress("glTexCoordP4ui");
+	if(!_funcptr_glTexCoordP4ui) ++numFailed;
+	_funcptr_glTexCoordP4uiv = (PFNGLTEXCOORDP4UIVPROC)IntGetProcAddress("glTexCoordP4uiv");
+	if(!_funcptr_glTexCoordP4uiv) ++numFailed;
+	_funcptr_glVertexAttribP1ui = (PFNGLVERTEXATTRIBP1UIPROC)IntGetProcAddress("glVertexAttribP1ui");
+	if(!_funcptr_glVertexAttribP1ui) ++numFailed;
+	_funcptr_glVertexAttribP1uiv = (PFNGLVERTEXATTRIBP1UIVPROC)IntGetProcAddress("glVertexAttribP1uiv");
+	if(!_funcptr_glVertexAttribP1uiv) ++numFailed;
+	_funcptr_glVertexAttribP2ui = (PFNGLVERTEXATTRIBP2UIPROC)IntGetProcAddress("glVertexAttribP2ui");
+	if(!_funcptr_glVertexAttribP2ui) ++numFailed;
+	_funcptr_glVertexAttribP2uiv = (PFNGLVERTEXATTRIBP2UIVPROC)IntGetProcAddress("glVertexAttribP2uiv");
+	if(!_funcptr_glVertexAttribP2uiv) ++numFailed;
+	_funcptr_glVertexAttribP3ui = (PFNGLVERTEXATTRIBP3UIPROC)IntGetProcAddress("glVertexAttribP3ui");
+	if(!_funcptr_glVertexAttribP3ui) ++numFailed;
+	_funcptr_glVertexAttribP3uiv = (PFNGLVERTEXATTRIBP3UIVPROC)IntGetProcAddress("glVertexAttribP3uiv");
+	if(!_funcptr_glVertexAttribP3uiv) ++numFailed;
+	_funcptr_glVertexAttribP4ui = (PFNGLVERTEXATTRIBP4UIPROC)IntGetProcAddress("glVertexAttribP4ui");
+	if(!_funcptr_glVertexAttribP4ui) ++numFailed;
+	_funcptr_glVertexAttribP4uiv = (PFNGLVERTEXATTRIBP4UIVPROC)IntGetProcAddress("glVertexAttribP4uiv");
+	if(!_funcptr_glVertexAttribP4uiv) ++numFailed;
+	_funcptr_glVertexP2ui = (PFNGLVERTEXP2UIPROC)IntGetProcAddress("glVertexP2ui");
+	if(!_funcptr_glVertexP2ui) ++numFailed;
+	_funcptr_glVertexP2uiv = (PFNGLVERTEXP2UIVPROC)IntGetProcAddress("glVertexP2uiv");
+	if(!_funcptr_glVertexP2uiv) ++numFailed;
+	_funcptr_glVertexP3ui = (PFNGLVERTEXP3UIPROC)IntGetProcAddress("glVertexP3ui");
+	if(!_funcptr_glVertexP3ui) ++numFailed;
+	_funcptr_glVertexP3uiv = (PFNGLVERTEXP3UIVPROC)IntGetProcAddress("glVertexP3uiv");
+	if(!_funcptr_glVertexP3uiv) ++numFailed;
+	_funcptr_glVertexP4ui = (PFNGLVERTEXP4UIPROC)IntGetProcAddress("glVertexP4ui");
+	if(!_funcptr_glVertexP4ui) ++numFailed;
+	_funcptr_glVertexP4uiv = (PFNGLVERTEXP4UIVPROC)IntGetProcAddress("glVertexP4uiv");
+	if(!_funcptr_glVertexP4uiv) ++numFailed;
+	return numFailed;
+}

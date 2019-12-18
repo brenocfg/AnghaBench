@@ -1,0 +1,35 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+typedef  int /*<<< orphan*/  atomic_t ;
+
+/* Variables and functions */
+ unsigned int atomic_cmpxchg (int /*<<< orphan*/ *,unsigned int,unsigned int) ; 
+ unsigned int atomic_read (int /*<<< orphan*/ *) ; 
+
+__attribute__((used)) static bool atomic_inc_below(atomic_t *v, unsigned int below)
+{
+	unsigned int cur = atomic_read(v);
+
+	for (;;) {
+		unsigned int old;
+
+		if (cur >= below)
+			return false;
+		old = atomic_cmpxchg(v, cur, cur + 1);
+		if (old == cur)
+			break;
+		cur = old;
+	}
+
+	return true;
+}

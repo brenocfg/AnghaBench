@@ -1,0 +1,105 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+typedef  struct TYPE_7__   TYPE_3__ ;
+typedef  struct TYPE_6__   TYPE_2__ ;
+typedef  struct TYPE_5__   TYPE_1__ ;
+
+/* Type definitions */
+struct bfa_fcs_rport_s {int pwwn; int pid; TYPE_3__* fcs; int /*<<< orphan*/  timer; int /*<<< orphan*/  fcxp_wqe; int /*<<< orphan*/  ns_retries; TYPE_2__* port; } ;
+typedef  enum rport_event { ____Placeholder_rport_event } rport_event ;
+struct TYPE_7__ {int /*<<< orphan*/  bfa; } ;
+struct TYPE_6__ {TYPE_1__* fcs; } ;
+struct TYPE_5__ {int /*<<< orphan*/  bfa; } ;
+
+/* Variables and functions */
+ int /*<<< orphan*/  BFA_PORT_TOPOLOGY_LOOP ; 
+#define  RPSM_EVENT_ADDRESS_CHANGE 134 
+#define  RPSM_EVENT_DELETE 133 
+#define  RPSM_EVENT_FAB_SCN 132 
+#define  RPSM_EVENT_FCXP_SENT 131 
+#define  RPSM_EVENT_LOGO_IMP 130 
+#define  RPSM_EVENT_PLOGI_RCVD 129 
+#define  RPSM_EVENT_SCN_OFFLINE 128 
+ int /*<<< orphan*/  WARN_ON (int) ; 
+ int /*<<< orphan*/  bfa_fcport_get_topology (int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  bfa_fcs_rport_del_timeout ; 
+ int /*<<< orphan*/  bfa_fcs_rport_free (struct bfa_fcs_rport_s*) ; 
+ int /*<<< orphan*/  bfa_fcs_rport_send_nsdisc (struct bfa_fcs_rport_s*,int /*<<< orphan*/ *) ; 
+ int /*<<< orphan*/  bfa_fcs_rport_send_plogiacc (struct bfa_fcs_rport_s*,int /*<<< orphan*/ *) ; 
+ int /*<<< orphan*/  bfa_fcs_rport_sm_nsdisc_sending ; 
+ int /*<<< orphan*/  bfa_fcs_rport_sm_offline ; 
+ int /*<<< orphan*/  bfa_fcs_rport_sm_plogi ; 
+ int /*<<< orphan*/  bfa_fcs_rport_sm_plogiacc_sending ; 
+ int /*<<< orphan*/  bfa_fcs_rport_sm_uninit ; 
+ int /*<<< orphan*/  bfa_fcs_rport_timeout ; 
+ int /*<<< orphan*/  bfa_fcxp_walloc_cancel (int /*<<< orphan*/ ,int /*<<< orphan*/ *) ; 
+ int /*<<< orphan*/  bfa_sm_fault (TYPE_3__*,int) ; 
+ int /*<<< orphan*/  bfa_sm_set_state (struct bfa_fcs_rport_s*,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  bfa_timer_start (int /*<<< orphan*/ ,int /*<<< orphan*/ *,int /*<<< orphan*/ ,struct bfa_fcs_rport_s*,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  bfa_trc (TYPE_3__*,int) ; 
+
+__attribute__((used)) static void
+bfa_fcs_rport_sm_plogi_sending(struct bfa_fcs_rport_s *rport,
+	 enum rport_event event)
+{
+	bfa_trc(rport->fcs, rport->pwwn);
+	bfa_trc(rport->fcs, rport->pid);
+	bfa_trc(rport->fcs, event);
+
+	switch (event) {
+	case RPSM_EVENT_FCXP_SENT:
+		bfa_sm_set_state(rport, bfa_fcs_rport_sm_plogi);
+		break;
+
+	case RPSM_EVENT_DELETE:
+		bfa_sm_set_state(rport, bfa_fcs_rport_sm_uninit);
+		bfa_fcxp_walloc_cancel(rport->fcs->bfa, &rport->fcxp_wqe);
+		bfa_fcs_rport_free(rport);
+		break;
+
+	case RPSM_EVENT_PLOGI_RCVD:
+		bfa_sm_set_state(rport, bfa_fcs_rport_sm_plogiacc_sending);
+		bfa_fcxp_walloc_cancel(rport->fcs->bfa, &rport->fcxp_wqe);
+		bfa_fcs_rport_send_plogiacc(rport, NULL);
+		break;
+
+	case RPSM_EVENT_SCN_OFFLINE:
+		bfa_sm_set_state(rport, bfa_fcs_rport_sm_offline);
+		bfa_fcxp_walloc_cancel(rport->fcs->bfa, &rport->fcxp_wqe);
+		bfa_timer_start(rport->fcs->bfa, &rport->timer,
+				bfa_fcs_rport_timeout, rport,
+				bfa_fcs_rport_del_timeout);
+		break;
+	case RPSM_EVENT_ADDRESS_CHANGE:
+	case RPSM_EVENT_FAB_SCN:
+		/* query the NS */
+		bfa_fcxp_walloc_cancel(rport->fcs->bfa, &rport->fcxp_wqe);
+		WARN_ON(!(bfa_fcport_get_topology(rport->port->fcs->bfa) !=
+					BFA_PORT_TOPOLOGY_LOOP));
+		bfa_sm_set_state(rport, bfa_fcs_rport_sm_nsdisc_sending);
+		rport->ns_retries = 0;
+		bfa_fcs_rport_send_nsdisc(rport, NULL);
+		break;
+
+	case RPSM_EVENT_LOGO_IMP:
+		rport->pid = 0;
+		bfa_sm_set_state(rport, bfa_fcs_rport_sm_offline);
+		bfa_fcxp_walloc_cancel(rport->fcs->bfa, &rport->fcxp_wqe);
+		bfa_timer_start(rport->fcs->bfa, &rport->timer,
+				bfa_fcs_rport_timeout, rport,
+				bfa_fcs_rport_del_timeout);
+		break;
+
+
+	default:
+		bfa_sm_fault(rport->fcs, event);
+	}
+}

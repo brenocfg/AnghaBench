@@ -1,0 +1,38 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+struct sockopt {int dummy; } ;
+struct socket {int /*<<< orphan*/  so_label; } ;
+typedef  int /*<<< orphan*/  socket_t ;
+typedef  int /*<<< orphan*/  kauth_cred_t ;
+
+/* Variables and functions */
+ int /*<<< orphan*/  MAC_CHECK (int /*<<< orphan*/ ,int /*<<< orphan*/ ,int /*<<< orphan*/ ,int /*<<< orphan*/ ,struct sockopt*) ; 
+ int /*<<< orphan*/  mac_socket_enforce ; 
+ int /*<<< orphan*/  socket_check_setsockopt ; 
+
+int
+mac_socket_check_setsockopt(kauth_cred_t cred, struct socket *so,
+			    struct sockopt *sopt)
+{
+	int error;
+
+#if SECURITY_MAC_CHECK_ENFORCE
+    /* 21167099 - only check if we allow write */
+    if (!mac_socket_enforce)
+        return 0;
+#endif
+
+	MAC_CHECK(socket_check_setsockopt, cred,
+		  (socket_t)so, so->so_label, sopt);
+	return (error);
+}

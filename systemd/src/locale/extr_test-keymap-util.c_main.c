@@ -1,0 +1,34 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+
+/* Variables and functions */
+ int /*<<< orphan*/  LOG_DEBUG ; 
+ int /*<<< orphan*/  test_find_converted_keymap () ; 
+ int /*<<< orphan*/  test_find_language_fallback () ; 
+ int /*<<< orphan*/  test_find_legacy_keymap () ; 
+ int /*<<< orphan*/  test_setup_logging (int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  test_vconsole_convert_to_x11 () ; 
+ int /*<<< orphan*/  test_x11_convert_to_vconsole () ; 
+
+int main(int argc, char **argv) {
+        test_setup_logging(LOG_DEBUG);
+
+        test_find_language_fallback();
+        test_find_converted_keymap();
+        test_find_legacy_keymap();
+
+        test_vconsole_convert_to_x11();
+        test_x11_convert_to_vconsole();
+
+        return 0;
+}

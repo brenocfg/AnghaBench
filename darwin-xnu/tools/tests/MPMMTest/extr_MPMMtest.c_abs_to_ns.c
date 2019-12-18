@@ -1,0 +1,23 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+typedef  struct TYPE_2__   TYPE_1__ ;
+
+/* Type definitions */
+typedef  int uint64_t ;
+struct TYPE_2__ {int numer; int denom; } ;
+
+/* Variables and functions */
+ TYPE_1__ g_timebase ; 
+
+__attribute__((used)) static inline uint64_t abs_to_ns(uint64_t abs)
+{
+	return abs * g_timebase.numer / g_timebase.denom;
+}

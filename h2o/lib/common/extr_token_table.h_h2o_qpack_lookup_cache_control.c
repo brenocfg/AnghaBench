@@ -1,0 +1,50 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+typedef  struct TYPE_3__   TYPE_1__ ;
+
+/* Type definitions */
+typedef  int int32_t ;
+struct TYPE_3__ {int /*<<< orphan*/  len; int /*<<< orphan*/  base; } ;
+typedef  TYPE_1__ h2o_iovec_t ;
+
+/* Variables and functions */
+ int /*<<< orphan*/  H2O_STRLIT (char*) ; 
+ scalar_t__ h2o_memis (int /*<<< orphan*/ ,int /*<<< orphan*/ ,int /*<<< orphan*/ ) ; 
+
+int32_t h2o_qpack_lookup_cache_control(h2o_iovec_t value, int *is_exact)
+{
+    if (h2o_memis(value.base, value.len, H2O_STRLIT("max-age=0"))) {
+        *is_exact = 1;
+        return 36;
+    }
+    if (h2o_memis(value.base, value.len, H2O_STRLIT("max-age=2592000"))) {
+        *is_exact = 1;
+        return 37;
+    }
+    if (h2o_memis(value.base, value.len, H2O_STRLIT("max-age=604800"))) {
+        *is_exact = 1;
+        return 38;
+    }
+    if (h2o_memis(value.base, value.len, H2O_STRLIT("no-cache"))) {
+        *is_exact = 1;
+        return 39;
+    }
+    if (h2o_memis(value.base, value.len, H2O_STRLIT("no-store"))) {
+        *is_exact = 1;
+        return 40;
+    }
+    if (h2o_memis(value.base, value.len, H2O_STRLIT("public, max-age=31536000"))) {
+        *is_exact = 1;
+        return 41;
+    }
+    *is_exact = 0;
+    return 36;
+}

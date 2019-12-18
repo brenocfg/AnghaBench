@@ -1,0 +1,26 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+struct device {int dummy; } ;
+struct clk {int dummy; } ;
+
+/* Variables and functions */
+ int /*<<< orphan*/  ENOENT ; 
+ struct clk* ERR_PTR (int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  dev_name (struct device*) ; 
+ scalar_t__ strcmp (int /*<<< orphan*/ ,char*) ; 
+
+struct clk *clk_get (struct device *dev, const char *id)
+{
+	return dev && strcmp(dev_name(dev), "cldc-lh7a40x") == 0
+		 ? NULL : ERR_PTR(-ENOENT);
+}

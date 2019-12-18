@@ -1,0 +1,30 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+typedef  struct TYPE_3__   TYPE_1__ ;
+
+/* Type definitions */
+struct TYPE_3__ {int size; int /*<<< orphan*/ * Operands; } ;
+typedef  int /*<<< orphan*/  MCOperand ;
+typedef  TYPE_1__ MCInst ;
+
+/* Variables and functions */
+
+void MCInst_insert0(MCInst *inst, int index, MCOperand *Op)
+{
+	int i;
+
+	for(i = inst->size; i > index; i--)
+		//memcpy(&(inst->Operands[i]), &(inst->Operands[i-1]), sizeof(MCOperand));
+		inst->Operands[i] = inst->Operands[i-1];
+
+	inst->Operands[index] = *Op;
+	inst->size++;
+}

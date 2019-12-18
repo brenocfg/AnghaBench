@@ -1,0 +1,27 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+struct dummy {int dummy; } ;
+struct device {int dummy; } ;
+
+/* Variables and functions */
+ int /*<<< orphan*/  dummy_to_hcd (struct dummy*) ; 
+ struct dummy* gadget_dev_to_dummy (struct device*) ; 
+ int /*<<< orphan*/  usb_put_hcd (int /*<<< orphan*/ ) ; 
+
+__attribute__((used)) static void
+dummy_gadget_release (struct device *dev)
+{
+	struct dummy	*dum = gadget_dev_to_dummy (dev);
+
+	usb_put_hcd (dummy_to_hcd (dum));
+}

@@ -1,0 +1,74 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+
+/* Variables and functions */
+ int CCAE_REMOTE_SHUTDOWN ; 
+ int CCAE_RNIC_CATASTROPHIC_ERROR ; 
+
+__attribute__((used)) static const char* to_event_str(int event)
+{
+	static const char* event_str[] = {
+		"CCAE_REMOTE_SHUTDOWN",
+		"CCAE_ACTIVE_CONNECT_RESULTS",
+		"CCAE_CONNECTION_REQUEST",
+		"CCAE_LLP_CLOSE_COMPLETE",
+		"CCAE_TERMINATE_MESSAGE_RECEIVED",
+		"CCAE_LLP_CONNECTION_RESET",
+		"CCAE_LLP_CONNECTION_LOST",
+		"CCAE_LLP_SEGMENT_SIZE_INVALID",
+		"CCAE_LLP_INVALID_CRC",
+		"CCAE_LLP_BAD_FPDU",
+		"CCAE_INVALID_DDP_VERSION",
+		"CCAE_INVALID_RDMA_VERSION",
+		"CCAE_UNEXPECTED_OPCODE",
+		"CCAE_INVALID_DDP_QUEUE_NUMBER",
+		"CCAE_RDMA_READ_NOT_ENABLED",
+		"CCAE_RDMA_WRITE_NOT_ENABLED",
+		"CCAE_RDMA_READ_TOO_SMALL",
+		"CCAE_NO_L_BIT",
+		"CCAE_TAGGED_INVALID_STAG",
+		"CCAE_TAGGED_BASE_BOUNDS_VIOLATION",
+		"CCAE_TAGGED_ACCESS_RIGHTS_VIOLATION",
+		"CCAE_TAGGED_INVALID_PD",
+		"CCAE_WRAP_ERROR",
+		"CCAE_BAD_CLOSE",
+		"CCAE_BAD_LLP_CLOSE",
+		"CCAE_INVALID_MSN_RANGE",
+		"CCAE_INVALID_MSN_GAP",
+		"CCAE_IRRQ_OVERFLOW",
+		"CCAE_IRRQ_MSN_GAP",
+		"CCAE_IRRQ_MSN_RANGE",
+		"CCAE_IRRQ_INVALID_STAG",
+		"CCAE_IRRQ_BASE_BOUNDS_VIOLATION",
+		"CCAE_IRRQ_ACCESS_RIGHTS_VIOLATION",
+		"CCAE_IRRQ_INVALID_PD",
+		"CCAE_IRRQ_WRAP_ERROR",
+		"CCAE_CQ_SQ_COMPLETION_OVERFLOW",
+		"CCAE_CQ_RQ_COMPLETION_ERROR",
+		"CCAE_QP_SRQ_WQE_ERROR",
+		"CCAE_QP_LOCAL_CATASTROPHIC_ERROR",
+		"CCAE_CQ_OVERFLOW",
+		"CCAE_CQ_OPERATION_ERROR",
+		"CCAE_SRQ_LIMIT_REACHED",
+		"CCAE_QP_RQ_LIMIT_REACHED",
+		"CCAE_SRQ_CATASTROPHIC_ERROR",
+		"CCAE_RNIC_CATASTROPHIC_ERROR"
+	};
+
+	if (event < CCAE_REMOTE_SHUTDOWN ||
+	    event > CCAE_RNIC_CATASTROPHIC_ERROR)
+		return "<invalid event>";
+
+	event -= CCAE_REMOTE_SHUTDOWN;
+	return event_str[event];
+}

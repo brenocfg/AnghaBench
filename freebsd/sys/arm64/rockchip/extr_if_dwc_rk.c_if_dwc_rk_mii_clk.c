@@ -1,0 +1,24 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+typedef  int /*<<< orphan*/  device_t ;
+
+/* Variables and functions */
+ int GMAC_MII_CLK_150_250M_DIV102 ; 
+
+__attribute__((used)) static int
+if_dwc_rk_mii_clk(device_t dev)
+{
+
+	/* Should be calculated from the clock */
+	return (GMAC_MII_CLK_150_250M_DIV102);
+}

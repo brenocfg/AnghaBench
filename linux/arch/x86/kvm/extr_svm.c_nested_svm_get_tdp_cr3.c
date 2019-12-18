@@ -1,0 +1,26 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+typedef  struct TYPE_2__   TYPE_1__ ;
+
+/* Type definitions */
+struct TYPE_2__ {unsigned long nested_cr3; } ;
+struct vcpu_svm {TYPE_1__ nested; } ;
+struct kvm_vcpu {int dummy; } ;
+
+/* Variables and functions */
+ struct vcpu_svm* to_svm (struct kvm_vcpu*) ; 
+
+__attribute__((used)) static unsigned long nested_svm_get_tdp_cr3(struct kvm_vcpu *vcpu)
+{
+	struct vcpu_svm *svm = to_svm(vcpu);
+
+	return svm->nested.nested_cr3;
+}

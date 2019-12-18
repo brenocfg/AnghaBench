@@ -1,0 +1,53 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+typedef  struct TYPE_2__   TYPE_1__ ;
+
+/* Type definitions */
+typedef  int /*<<< orphan*/  u32 ;
+struct TYPE_2__ {int /*<<< orphan*/  period; int /*<<< orphan*/  timer; } ;
+struct kvm_lapic {int divide_count; TYPE_1__ lapic_timer; } ;
+typedef  int /*<<< orphan*/  s64 ;
+typedef  int /*<<< orphan*/  ktime_t ;
+
+/* Variables and functions */
+ int APIC_BUS_CYCLE_NS ; 
+ int /*<<< orphan*/  APIC_TMICT ; 
+ int /*<<< orphan*/  ASSERT (int /*<<< orphan*/ ) ; 
+ scalar_t__ apic_get_reg (struct kvm_lapic*,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  div64_u64 (int /*<<< orphan*/ ,int) ; 
+ int /*<<< orphan*/  hrtimer_get_remaining (int /*<<< orphan*/ *) ; 
+ int /*<<< orphan*/  ktime_set (int /*<<< orphan*/ ,int /*<<< orphan*/ ) ; 
+ scalar_t__ ktime_to_ns (int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  mod_64 (scalar_t__,int /*<<< orphan*/ ) ; 
+
+__attribute__((used)) static u32 apic_get_tmcct(struct kvm_lapic *apic)
+{
+	ktime_t remaining;
+	s64 ns;
+	u32 tmcct;
+
+	ASSERT(apic != NULL);
+
+	/* if initial count is 0, current count should also be 0 */
+	if (apic_get_reg(apic, APIC_TMICT) == 0 ||
+	    apic->lapic_timer.period == 0)
+		return 0;
+
+	remaining = hrtimer_get_remaining(&apic->lapic_timer.timer);
+	if (ktime_to_ns(remaining) < 0)
+		remaining = ktime_set(0, 0);
+
+	ns = mod_64(ktime_to_ns(remaining), apic->lapic_timer.period);
+	tmcct = div64_u64(ns,
+			 (APIC_BUS_CYCLE_NS * apic->divide_count));
+
+	return tmcct;
+}

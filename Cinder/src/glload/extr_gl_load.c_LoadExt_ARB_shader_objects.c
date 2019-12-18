@@ -1,0 +1,177 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+typedef  scalar_t__ PFNGLVALIDATEPROGRAMARBPROC ;
+typedef  scalar_t__ PFNGLUSEPROGRAMOBJECTARBPROC ;
+typedef  scalar_t__ PFNGLUNIFORMMATRIX4FVARBPROC ;
+typedef  scalar_t__ PFNGLUNIFORMMATRIX3FVARBPROC ;
+typedef  scalar_t__ PFNGLUNIFORMMATRIX2FVARBPROC ;
+typedef  scalar_t__ PFNGLUNIFORM4IVARBPROC ;
+typedef  scalar_t__ PFNGLUNIFORM4IARBPROC ;
+typedef  scalar_t__ PFNGLUNIFORM4FVARBPROC ;
+typedef  scalar_t__ PFNGLUNIFORM4FARBPROC ;
+typedef  scalar_t__ PFNGLUNIFORM3IVARBPROC ;
+typedef  scalar_t__ PFNGLUNIFORM3IARBPROC ;
+typedef  scalar_t__ PFNGLUNIFORM3FVARBPROC ;
+typedef  scalar_t__ PFNGLUNIFORM3FARBPROC ;
+typedef  scalar_t__ PFNGLUNIFORM2IVARBPROC ;
+typedef  scalar_t__ PFNGLUNIFORM2IARBPROC ;
+typedef  scalar_t__ PFNGLUNIFORM2FVARBPROC ;
+typedef  scalar_t__ PFNGLUNIFORM2FARBPROC ;
+typedef  scalar_t__ PFNGLUNIFORM1IVARBPROC ;
+typedef  scalar_t__ PFNGLUNIFORM1IARBPROC ;
+typedef  scalar_t__ PFNGLUNIFORM1FVARBPROC ;
+typedef  scalar_t__ PFNGLUNIFORM1FARBPROC ;
+typedef  scalar_t__ PFNGLSHADERSOURCEARBPROC ;
+typedef  scalar_t__ PFNGLLINKPROGRAMARBPROC ;
+typedef  scalar_t__ PFNGLGETUNIFORMLOCATIONARBPROC ;
+typedef  scalar_t__ PFNGLGETUNIFORMIVARBPROC ;
+typedef  scalar_t__ PFNGLGETUNIFORMFVARBPROC ;
+typedef  scalar_t__ PFNGLGETSHADERSOURCEARBPROC ;
+typedef  scalar_t__ PFNGLGETOBJECTPARAMETERIVARBPROC ;
+typedef  scalar_t__ PFNGLGETOBJECTPARAMETERFVARBPROC ;
+typedef  scalar_t__ PFNGLGETINFOLOGARBPROC ;
+typedef  scalar_t__ PFNGLGETHANDLEARBPROC ;
+typedef  scalar_t__ PFNGLGETATTACHEDOBJECTSARBPROC ;
+typedef  scalar_t__ PFNGLGETACTIVEUNIFORMARBPROC ;
+typedef  scalar_t__ PFNGLDETACHOBJECTARBPROC ;
+typedef  scalar_t__ PFNGLDELETEOBJECTARBPROC ;
+typedef  scalar_t__ PFNGLCREATESHADEROBJECTARBPROC ;
+typedef  scalar_t__ PFNGLCREATEPROGRAMOBJECTARBPROC ;
+typedef  scalar_t__ PFNGLCOMPILESHADERARBPROC ;
+typedef  scalar_t__ PFNGLATTACHOBJECTARBPROC ;
+
+/* Variables and functions */
+ scalar_t__ IntGetProcAddress (char*) ; 
+ scalar_t__ _funcptr_glAttachObjectARB ; 
+ scalar_t__ _funcptr_glCompileShaderARB ; 
+ scalar_t__ _funcptr_glCreateProgramObjectARB ; 
+ scalar_t__ _funcptr_glCreateShaderObjectARB ; 
+ scalar_t__ _funcptr_glDeleteObjectARB ; 
+ scalar_t__ _funcptr_glDetachObjectARB ; 
+ scalar_t__ _funcptr_glGetActiveUniformARB ; 
+ scalar_t__ _funcptr_glGetAttachedObjectsARB ; 
+ scalar_t__ _funcptr_glGetHandleARB ; 
+ scalar_t__ _funcptr_glGetInfoLogARB ; 
+ scalar_t__ _funcptr_glGetObjectParameterfvARB ; 
+ scalar_t__ _funcptr_glGetObjectParameterivARB ; 
+ scalar_t__ _funcptr_glGetShaderSourceARB ; 
+ scalar_t__ _funcptr_glGetUniformLocationARB ; 
+ scalar_t__ _funcptr_glGetUniformfvARB ; 
+ scalar_t__ _funcptr_glGetUniformivARB ; 
+ scalar_t__ _funcptr_glLinkProgramARB ; 
+ scalar_t__ _funcptr_glShaderSourceARB ; 
+ scalar_t__ _funcptr_glUniform1fARB ; 
+ scalar_t__ _funcptr_glUniform1fvARB ; 
+ scalar_t__ _funcptr_glUniform1iARB ; 
+ scalar_t__ _funcptr_glUniform1ivARB ; 
+ scalar_t__ _funcptr_glUniform2fARB ; 
+ scalar_t__ _funcptr_glUniform2fvARB ; 
+ scalar_t__ _funcptr_glUniform2iARB ; 
+ scalar_t__ _funcptr_glUniform2ivARB ; 
+ scalar_t__ _funcptr_glUniform3fARB ; 
+ scalar_t__ _funcptr_glUniform3fvARB ; 
+ scalar_t__ _funcptr_glUniform3iARB ; 
+ scalar_t__ _funcptr_glUniform3ivARB ; 
+ scalar_t__ _funcptr_glUniform4fARB ; 
+ scalar_t__ _funcptr_glUniform4fvARB ; 
+ scalar_t__ _funcptr_glUniform4iARB ; 
+ scalar_t__ _funcptr_glUniform4ivARB ; 
+ scalar_t__ _funcptr_glUniformMatrix2fvARB ; 
+ scalar_t__ _funcptr_glUniformMatrix3fvARB ; 
+ scalar_t__ _funcptr_glUniformMatrix4fvARB ; 
+ scalar_t__ _funcptr_glUseProgramObjectARB ; 
+ scalar_t__ _funcptr_glValidateProgramARB ; 
+
+__attribute__((used)) static int LoadExt_ARB_shader_objects()
+{
+	int numFailed = 0;
+	_funcptr_glAttachObjectARB = (PFNGLATTACHOBJECTARBPROC)IntGetProcAddress("glAttachObjectARB");
+	if(!_funcptr_glAttachObjectARB) ++numFailed;
+	_funcptr_glCompileShaderARB = (PFNGLCOMPILESHADERARBPROC)IntGetProcAddress("glCompileShaderARB");
+	if(!_funcptr_glCompileShaderARB) ++numFailed;
+	_funcptr_glCreateProgramObjectARB = (PFNGLCREATEPROGRAMOBJECTARBPROC)IntGetProcAddress("glCreateProgramObjectARB");
+	if(!_funcptr_glCreateProgramObjectARB) ++numFailed;
+	_funcptr_glCreateShaderObjectARB = (PFNGLCREATESHADEROBJECTARBPROC)IntGetProcAddress("glCreateShaderObjectARB");
+	if(!_funcptr_glCreateShaderObjectARB) ++numFailed;
+	_funcptr_glDeleteObjectARB = (PFNGLDELETEOBJECTARBPROC)IntGetProcAddress("glDeleteObjectARB");
+	if(!_funcptr_glDeleteObjectARB) ++numFailed;
+	_funcptr_glDetachObjectARB = (PFNGLDETACHOBJECTARBPROC)IntGetProcAddress("glDetachObjectARB");
+	if(!_funcptr_glDetachObjectARB) ++numFailed;
+	_funcptr_glGetActiveUniformARB = (PFNGLGETACTIVEUNIFORMARBPROC)IntGetProcAddress("glGetActiveUniformARB");
+	if(!_funcptr_glGetActiveUniformARB) ++numFailed;
+	_funcptr_glGetAttachedObjectsARB = (PFNGLGETATTACHEDOBJECTSARBPROC)IntGetProcAddress("glGetAttachedObjectsARB");
+	if(!_funcptr_glGetAttachedObjectsARB) ++numFailed;
+	_funcptr_glGetHandleARB = (PFNGLGETHANDLEARBPROC)IntGetProcAddress("glGetHandleARB");
+	if(!_funcptr_glGetHandleARB) ++numFailed;
+	_funcptr_glGetInfoLogARB = (PFNGLGETINFOLOGARBPROC)IntGetProcAddress("glGetInfoLogARB");
+	if(!_funcptr_glGetInfoLogARB) ++numFailed;
+	_funcptr_glGetObjectParameterfvARB = (PFNGLGETOBJECTPARAMETERFVARBPROC)IntGetProcAddress("glGetObjectParameterfvARB");
+	if(!_funcptr_glGetObjectParameterfvARB) ++numFailed;
+	_funcptr_glGetObjectParameterivARB = (PFNGLGETOBJECTPARAMETERIVARBPROC)IntGetProcAddress("glGetObjectParameterivARB");
+	if(!_funcptr_glGetObjectParameterivARB) ++numFailed;
+	_funcptr_glGetShaderSourceARB = (PFNGLGETSHADERSOURCEARBPROC)IntGetProcAddress("glGetShaderSourceARB");
+	if(!_funcptr_glGetShaderSourceARB) ++numFailed;
+	_funcptr_glGetUniformLocationARB = (PFNGLGETUNIFORMLOCATIONARBPROC)IntGetProcAddress("glGetUniformLocationARB");
+	if(!_funcptr_glGetUniformLocationARB) ++numFailed;
+	_funcptr_glGetUniformfvARB = (PFNGLGETUNIFORMFVARBPROC)IntGetProcAddress("glGetUniformfvARB");
+	if(!_funcptr_glGetUniformfvARB) ++numFailed;
+	_funcptr_glGetUniformivARB = (PFNGLGETUNIFORMIVARBPROC)IntGetProcAddress("glGetUniformivARB");
+	if(!_funcptr_glGetUniformivARB) ++numFailed;
+	_funcptr_glLinkProgramARB = (PFNGLLINKPROGRAMARBPROC)IntGetProcAddress("glLinkProgramARB");
+	if(!_funcptr_glLinkProgramARB) ++numFailed;
+	_funcptr_glShaderSourceARB = (PFNGLSHADERSOURCEARBPROC)IntGetProcAddress("glShaderSourceARB");
+	if(!_funcptr_glShaderSourceARB) ++numFailed;
+	_funcptr_glUniform1fARB = (PFNGLUNIFORM1FARBPROC)IntGetProcAddress("glUniform1fARB");
+	if(!_funcptr_glUniform1fARB) ++numFailed;
+	_funcptr_glUniform1fvARB = (PFNGLUNIFORM1FVARBPROC)IntGetProcAddress("glUniform1fvARB");
+	if(!_funcptr_glUniform1fvARB) ++numFailed;
+	_funcptr_glUniform1iARB = (PFNGLUNIFORM1IARBPROC)IntGetProcAddress("glUniform1iARB");
+	if(!_funcptr_glUniform1iARB) ++numFailed;
+	_funcptr_glUniform1ivARB = (PFNGLUNIFORM1IVARBPROC)IntGetProcAddress("glUniform1ivARB");
+	if(!_funcptr_glUniform1ivARB) ++numFailed;
+	_funcptr_glUniform2fARB = (PFNGLUNIFORM2FARBPROC)IntGetProcAddress("glUniform2fARB");
+	if(!_funcptr_glUniform2fARB) ++numFailed;
+	_funcptr_glUniform2fvARB = (PFNGLUNIFORM2FVARBPROC)IntGetProcAddress("glUniform2fvARB");
+	if(!_funcptr_glUniform2fvARB) ++numFailed;
+	_funcptr_glUniform2iARB = (PFNGLUNIFORM2IARBPROC)IntGetProcAddress("glUniform2iARB");
+	if(!_funcptr_glUniform2iARB) ++numFailed;
+	_funcptr_glUniform2ivARB = (PFNGLUNIFORM2IVARBPROC)IntGetProcAddress("glUniform2ivARB");
+	if(!_funcptr_glUniform2ivARB) ++numFailed;
+	_funcptr_glUniform3fARB = (PFNGLUNIFORM3FARBPROC)IntGetProcAddress("glUniform3fARB");
+	if(!_funcptr_glUniform3fARB) ++numFailed;
+	_funcptr_glUniform3fvARB = (PFNGLUNIFORM3FVARBPROC)IntGetProcAddress("glUniform3fvARB");
+	if(!_funcptr_glUniform3fvARB) ++numFailed;
+	_funcptr_glUniform3iARB = (PFNGLUNIFORM3IARBPROC)IntGetProcAddress("glUniform3iARB");
+	if(!_funcptr_glUniform3iARB) ++numFailed;
+	_funcptr_glUniform3ivARB = (PFNGLUNIFORM3IVARBPROC)IntGetProcAddress("glUniform3ivARB");
+	if(!_funcptr_glUniform3ivARB) ++numFailed;
+	_funcptr_glUniform4fARB = (PFNGLUNIFORM4FARBPROC)IntGetProcAddress("glUniform4fARB");
+	if(!_funcptr_glUniform4fARB) ++numFailed;
+	_funcptr_glUniform4fvARB = (PFNGLUNIFORM4FVARBPROC)IntGetProcAddress("glUniform4fvARB");
+	if(!_funcptr_glUniform4fvARB) ++numFailed;
+	_funcptr_glUniform4iARB = (PFNGLUNIFORM4IARBPROC)IntGetProcAddress("glUniform4iARB");
+	if(!_funcptr_glUniform4iARB) ++numFailed;
+	_funcptr_glUniform4ivARB = (PFNGLUNIFORM4IVARBPROC)IntGetProcAddress("glUniform4ivARB");
+	if(!_funcptr_glUniform4ivARB) ++numFailed;
+	_funcptr_glUniformMatrix2fvARB = (PFNGLUNIFORMMATRIX2FVARBPROC)IntGetProcAddress("glUniformMatrix2fvARB");
+	if(!_funcptr_glUniformMatrix2fvARB) ++numFailed;
+	_funcptr_glUniformMatrix3fvARB = (PFNGLUNIFORMMATRIX3FVARBPROC)IntGetProcAddress("glUniformMatrix3fvARB");
+	if(!_funcptr_glUniformMatrix3fvARB) ++numFailed;
+	_funcptr_glUniformMatrix4fvARB = (PFNGLUNIFORMMATRIX4FVARBPROC)IntGetProcAddress("glUniformMatrix4fvARB");
+	if(!_funcptr_glUniformMatrix4fvARB) ++numFailed;
+	_funcptr_glUseProgramObjectARB = (PFNGLUSEPROGRAMOBJECTARBPROC)IntGetProcAddress("glUseProgramObjectARB");
+	if(!_funcptr_glUseProgramObjectARB) ++numFailed;
+	_funcptr_glValidateProgramARB = (PFNGLVALIDATEPROGRAMARBPROC)IntGetProcAddress("glValidateProgramARB");
+	if(!_funcptr_glValidateProgramARB) ++numFailed;
+	return numFailed;
+}

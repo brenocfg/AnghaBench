@@ -1,0 +1,32 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+typedef  int /*<<< orphan*/  svn_error_t ;
+struct compat2_baton {int /*<<< orphan*/  baton; int /*<<< orphan*/ * (* validator ) (int /*<<< orphan*/ ,char const*,char const*,int /*<<< orphan*/ ,int /*<<< orphan*/ *) ;} ;
+typedef  int /*<<< orphan*/  apr_pool_t ;
+
+/* Variables and functions */
+ int /*<<< orphan*/ * stub1 (int /*<<< orphan*/ ,char const*,char const*,int /*<<< orphan*/ ,int /*<<< orphan*/ *) ; 
+
+__attribute__((used)) static svn_error_t *
+compat2_validator(void *baton,
+                  const char *uuid,
+                  const char *url,
+                  const char *root_url,
+                  apr_pool_t *pool)
+{
+  struct compat2_baton *cb = baton;
+  /* The old callback type doesn't set root_url. */
+  return cb->validator(cb->baton, uuid,
+                       (root_url ? root_url : url), (root_url != NULL),
+                       pool);
+}

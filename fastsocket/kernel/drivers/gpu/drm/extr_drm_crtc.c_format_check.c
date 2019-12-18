@@ -1,0 +1,149 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+typedef  int uint32_t ;
+struct drm_mode_fb_cmd2 {int pixel_format; } ;
+
+/* Variables and functions */
+#define  DRM_FORMAT_ABGR1555 187 
+#define  DRM_FORMAT_ABGR2101010 186 
+#define  DRM_FORMAT_ABGR4444 185 
+#define  DRM_FORMAT_ABGR8888 184 
+#define  DRM_FORMAT_ARGB1555 183 
+#define  DRM_FORMAT_ARGB2101010 182 
+#define  DRM_FORMAT_ARGB4444 181 
+#define  DRM_FORMAT_ARGB8888 180 
+#define  DRM_FORMAT_AYUV 179 
+#define  DRM_FORMAT_BGR233 178 
+#define  DRM_FORMAT_BGR565 177 
+#define  DRM_FORMAT_BGR888 176 
+#define  DRM_FORMAT_BGRA1010102 175 
+#define  DRM_FORMAT_BGRA4444 174 
+#define  DRM_FORMAT_BGRA5551 173 
+#define  DRM_FORMAT_BGRA8888 172 
+#define  DRM_FORMAT_BGRX1010102 171 
+#define  DRM_FORMAT_BGRX4444 170 
+#define  DRM_FORMAT_BGRX5551 169 
+#define  DRM_FORMAT_BGRX8888 168 
+ int DRM_FORMAT_BIG_ENDIAN ; 
+#define  DRM_FORMAT_C8 167 
+#define  DRM_FORMAT_NV12 166 
+#define  DRM_FORMAT_NV16 165 
+#define  DRM_FORMAT_NV21 164 
+#define  DRM_FORMAT_NV24 163 
+#define  DRM_FORMAT_NV42 162 
+#define  DRM_FORMAT_NV61 161 
+#define  DRM_FORMAT_RGB332 160 
+#define  DRM_FORMAT_RGB565 159 
+#define  DRM_FORMAT_RGB888 158 
+#define  DRM_FORMAT_RGBA1010102 157 
+#define  DRM_FORMAT_RGBA4444 156 
+#define  DRM_FORMAT_RGBA5551 155 
+#define  DRM_FORMAT_RGBA8888 154 
+#define  DRM_FORMAT_RGBX1010102 153 
+#define  DRM_FORMAT_RGBX4444 152 
+#define  DRM_FORMAT_RGBX5551 151 
+#define  DRM_FORMAT_RGBX8888 150 
+#define  DRM_FORMAT_UYVY 149 
+#define  DRM_FORMAT_VYUY 148 
+#define  DRM_FORMAT_XBGR1555 147 
+#define  DRM_FORMAT_XBGR2101010 146 
+#define  DRM_FORMAT_XBGR4444 145 
+#define  DRM_FORMAT_XBGR8888 144 
+#define  DRM_FORMAT_XRGB1555 143 
+#define  DRM_FORMAT_XRGB2101010 142 
+#define  DRM_FORMAT_XRGB4444 141 
+#define  DRM_FORMAT_XRGB8888 140 
+#define  DRM_FORMAT_YUV410 139 
+#define  DRM_FORMAT_YUV411 138 
+#define  DRM_FORMAT_YUV420 137 
+#define  DRM_FORMAT_YUV422 136 
+#define  DRM_FORMAT_YUV444 135 
+#define  DRM_FORMAT_YUYV 134 
+#define  DRM_FORMAT_YVU410 133 
+#define  DRM_FORMAT_YVU411 132 
+#define  DRM_FORMAT_YVU420 131 
+#define  DRM_FORMAT_YVU422 130 
+#define  DRM_FORMAT_YVU444 129 
+#define  DRM_FORMAT_YVYU 128 
+ int EINVAL ; 
+
+__attribute__((used)) static int format_check(const struct drm_mode_fb_cmd2 *r)
+{
+	uint32_t format = r->pixel_format & ~DRM_FORMAT_BIG_ENDIAN;
+
+	switch (format) {
+	case DRM_FORMAT_C8:
+	case DRM_FORMAT_RGB332:
+	case DRM_FORMAT_BGR233:
+	case DRM_FORMAT_XRGB4444:
+	case DRM_FORMAT_XBGR4444:
+	case DRM_FORMAT_RGBX4444:
+	case DRM_FORMAT_BGRX4444:
+	case DRM_FORMAT_ARGB4444:
+	case DRM_FORMAT_ABGR4444:
+	case DRM_FORMAT_RGBA4444:
+	case DRM_FORMAT_BGRA4444:
+	case DRM_FORMAT_XRGB1555:
+	case DRM_FORMAT_XBGR1555:
+	case DRM_FORMAT_RGBX5551:
+	case DRM_FORMAT_BGRX5551:
+	case DRM_FORMAT_ARGB1555:
+	case DRM_FORMAT_ABGR1555:
+	case DRM_FORMAT_RGBA5551:
+	case DRM_FORMAT_BGRA5551:
+	case DRM_FORMAT_RGB565:
+	case DRM_FORMAT_BGR565:
+	case DRM_FORMAT_RGB888:
+	case DRM_FORMAT_BGR888:
+	case DRM_FORMAT_XRGB8888:
+	case DRM_FORMAT_XBGR8888:
+	case DRM_FORMAT_RGBX8888:
+	case DRM_FORMAT_BGRX8888:
+	case DRM_FORMAT_ARGB8888:
+	case DRM_FORMAT_ABGR8888:
+	case DRM_FORMAT_RGBA8888:
+	case DRM_FORMAT_BGRA8888:
+	case DRM_FORMAT_XRGB2101010:
+	case DRM_FORMAT_XBGR2101010:
+	case DRM_FORMAT_RGBX1010102:
+	case DRM_FORMAT_BGRX1010102:
+	case DRM_FORMAT_ARGB2101010:
+	case DRM_FORMAT_ABGR2101010:
+	case DRM_FORMAT_RGBA1010102:
+	case DRM_FORMAT_BGRA1010102:
+	case DRM_FORMAT_YUYV:
+	case DRM_FORMAT_YVYU:
+	case DRM_FORMAT_UYVY:
+	case DRM_FORMAT_VYUY:
+	case DRM_FORMAT_AYUV:
+	case DRM_FORMAT_NV12:
+	case DRM_FORMAT_NV21:
+	case DRM_FORMAT_NV16:
+	case DRM_FORMAT_NV61:
+	case DRM_FORMAT_NV24:
+	case DRM_FORMAT_NV42:
+	case DRM_FORMAT_YUV410:
+	case DRM_FORMAT_YVU410:
+	case DRM_FORMAT_YUV411:
+	case DRM_FORMAT_YVU411:
+	case DRM_FORMAT_YUV420:
+	case DRM_FORMAT_YVU420:
+	case DRM_FORMAT_YUV422:
+	case DRM_FORMAT_YVU422:
+	case DRM_FORMAT_YUV444:
+	case DRM_FORMAT_YVU444:
+		return 0;
+	default:
+		return -EINVAL;
+	}
+}

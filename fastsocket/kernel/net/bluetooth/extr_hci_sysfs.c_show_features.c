@@ -1,0 +1,31 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+struct hci_dev {int* features; } ;
+struct device_attribute {int dummy; } ;
+struct device {int dummy; } ;
+typedef  int /*<<< orphan*/  ssize_t ;
+
+/* Variables and functions */
+ struct hci_dev* dev_get_drvdata (struct device*) ; 
+ int /*<<< orphan*/  sprintf (char*,char*,int,int,int,int,int,int,int,int) ; 
+
+__attribute__((used)) static ssize_t show_features(struct device *dev, struct device_attribute *attr, char *buf)
+{
+	struct hci_dev *hdev = dev_get_drvdata(dev);
+
+	return sprintf(buf, "0x%02x%02x%02x%02x%02x%02x%02x%02x\n",
+				hdev->features[0], hdev->features[1],
+				hdev->features[2], hdev->features[3],
+				hdev->features[4], hdev->features[5],
+				hdev->features[6], hdev->features[7]);
+}

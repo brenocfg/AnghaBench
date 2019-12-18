@@ -1,0 +1,161 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+typedef  scalar_t__ PFNGLWINDOWPOS3SVPROC ;
+typedef  scalar_t__ PFNGLWINDOWPOS3SPROC ;
+typedef  scalar_t__ PFNGLWINDOWPOS3IVPROC ;
+typedef  scalar_t__ PFNGLWINDOWPOS3IPROC ;
+typedef  scalar_t__ PFNGLWINDOWPOS3FVPROC ;
+typedef  scalar_t__ PFNGLWINDOWPOS3FPROC ;
+typedef  scalar_t__ PFNGLWINDOWPOS3DVPROC ;
+typedef  scalar_t__ PFNGLWINDOWPOS3DPROC ;
+typedef  scalar_t__ PFNGLWINDOWPOS2SVPROC ;
+typedef  scalar_t__ PFNGLWINDOWPOS2SPROC ;
+typedef  scalar_t__ PFNGLWINDOWPOS2IVPROC ;
+typedef  scalar_t__ PFNGLWINDOWPOS2IPROC ;
+typedef  scalar_t__ PFNGLWINDOWPOS2FVPROC ;
+typedef  scalar_t__ PFNGLWINDOWPOS2FPROC ;
+typedef  scalar_t__ PFNGLWINDOWPOS2DVPROC ;
+typedef  scalar_t__ PFNGLWINDOWPOS2DPROC ;
+typedef  scalar_t__ PFNGLSECONDARYCOLORPOINTERPROC ;
+typedef  scalar_t__ PFNGLSECONDARYCOLOR3USVPROC ;
+typedef  scalar_t__ PFNGLSECONDARYCOLOR3USPROC ;
+typedef  scalar_t__ PFNGLSECONDARYCOLOR3UIVPROC ;
+typedef  scalar_t__ PFNGLSECONDARYCOLOR3UIPROC ;
+typedef  scalar_t__ PFNGLSECONDARYCOLOR3UBVPROC ;
+typedef  scalar_t__ PFNGLSECONDARYCOLOR3UBPROC ;
+typedef  scalar_t__ PFNGLSECONDARYCOLOR3SVPROC ;
+typedef  scalar_t__ PFNGLSECONDARYCOLOR3SPROC ;
+typedef  scalar_t__ PFNGLSECONDARYCOLOR3IVPROC ;
+typedef  scalar_t__ PFNGLSECONDARYCOLOR3IPROC ;
+typedef  scalar_t__ PFNGLSECONDARYCOLOR3FVPROC ;
+typedef  scalar_t__ PFNGLSECONDARYCOLOR3FPROC ;
+typedef  scalar_t__ PFNGLSECONDARYCOLOR3DVPROC ;
+typedef  scalar_t__ PFNGLSECONDARYCOLOR3DPROC ;
+typedef  scalar_t__ PFNGLSECONDARYCOLOR3BVPROC ;
+typedef  scalar_t__ PFNGLSECONDARYCOLOR3BPROC ;
+typedef  scalar_t__ PFNGLPOINTPARAMETERIVPROC ;
+typedef  scalar_t__ PFNGLPOINTPARAMETERIPROC ;
+typedef  scalar_t__ PFNGLPOINTPARAMETERFVPROC ;
+typedef  scalar_t__ PFNGLPOINTPARAMETERFPROC ;
+typedef  scalar_t__ PFNGLMULTIDRAWELEMENTSPROC ;
+typedef  scalar_t__ PFNGLMULTIDRAWARRAYSPROC ;
+typedef  scalar_t__ PFNGLFOGCOORDPOINTERPROC ;
+typedef  scalar_t__ PFNGLFOGCOORDFVPROC ;
+typedef  scalar_t__ PFNGLFOGCOORDFPROC ;
+typedef  scalar_t__ PFNGLFOGCOORDDVPROC ;
+typedef  scalar_t__ PFNGLFOGCOORDDPROC ;
+typedef  scalar_t__ PFNGLBLENDFUNCSEPARATEPROC ;
+typedef  scalar_t__ PFNGLBLENDEQUATIONPROC ;
+typedef  scalar_t__ PFNGLBLENDCOLORPROC ;
+typedef  scalar_t__ (* GLADloadproc ) (char*) ;
+
+/* Variables and functions */
+ int /*<<< orphan*/  GLAD_GL_VERSION_1_4 ; 
+ scalar_t__ glad_glBlendColor ; 
+ scalar_t__ glad_glBlendEquation ; 
+ scalar_t__ glad_glBlendFuncSeparate ; 
+ scalar_t__ glad_glFogCoordPointer ; 
+ scalar_t__ glad_glFogCoordd ; 
+ scalar_t__ glad_glFogCoorddv ; 
+ scalar_t__ glad_glFogCoordf ; 
+ scalar_t__ glad_glFogCoordfv ; 
+ scalar_t__ glad_glMultiDrawArrays ; 
+ scalar_t__ glad_glMultiDrawElements ; 
+ scalar_t__ glad_glPointParameterf ; 
+ scalar_t__ glad_glPointParameterfv ; 
+ scalar_t__ glad_glPointParameteri ; 
+ scalar_t__ glad_glPointParameteriv ; 
+ scalar_t__ glad_glSecondaryColor3b ; 
+ scalar_t__ glad_glSecondaryColor3bv ; 
+ scalar_t__ glad_glSecondaryColor3d ; 
+ scalar_t__ glad_glSecondaryColor3dv ; 
+ scalar_t__ glad_glSecondaryColor3f ; 
+ scalar_t__ glad_glSecondaryColor3fv ; 
+ scalar_t__ glad_glSecondaryColor3i ; 
+ scalar_t__ glad_glSecondaryColor3iv ; 
+ scalar_t__ glad_glSecondaryColor3s ; 
+ scalar_t__ glad_glSecondaryColor3sv ; 
+ scalar_t__ glad_glSecondaryColor3ub ; 
+ scalar_t__ glad_glSecondaryColor3ubv ; 
+ scalar_t__ glad_glSecondaryColor3ui ; 
+ scalar_t__ glad_glSecondaryColor3uiv ; 
+ scalar_t__ glad_glSecondaryColor3us ; 
+ scalar_t__ glad_glSecondaryColor3usv ; 
+ scalar_t__ glad_glSecondaryColorPointer ; 
+ scalar_t__ glad_glWindowPos2d ; 
+ scalar_t__ glad_glWindowPos2dv ; 
+ scalar_t__ glad_glWindowPos2f ; 
+ scalar_t__ glad_glWindowPos2fv ; 
+ scalar_t__ glad_glWindowPos2i ; 
+ scalar_t__ glad_glWindowPos2iv ; 
+ scalar_t__ glad_glWindowPos2s ; 
+ scalar_t__ glad_glWindowPos2sv ; 
+ scalar_t__ glad_glWindowPos3d ; 
+ scalar_t__ glad_glWindowPos3dv ; 
+ scalar_t__ glad_glWindowPos3f ; 
+ scalar_t__ glad_glWindowPos3fv ; 
+ scalar_t__ glad_glWindowPos3i ; 
+ scalar_t__ glad_glWindowPos3iv ; 
+ scalar_t__ glad_glWindowPos3s ; 
+ scalar_t__ glad_glWindowPos3sv ; 
+
+__attribute__((used)) static void load_GL_VERSION_1_4(GLADloadproc load) {
+	if(!GLAD_GL_VERSION_1_4) return;
+	glad_glBlendFuncSeparate = (PFNGLBLENDFUNCSEPARATEPROC)load("glBlendFuncSeparate");
+	glad_glMultiDrawArrays = (PFNGLMULTIDRAWARRAYSPROC)load("glMultiDrawArrays");
+	glad_glMultiDrawElements = (PFNGLMULTIDRAWELEMENTSPROC)load("glMultiDrawElements");
+	glad_glPointParameterf = (PFNGLPOINTPARAMETERFPROC)load("glPointParameterf");
+	glad_glPointParameterfv = (PFNGLPOINTPARAMETERFVPROC)load("glPointParameterfv");
+	glad_glPointParameteri = (PFNGLPOINTPARAMETERIPROC)load("glPointParameteri");
+	glad_glPointParameteriv = (PFNGLPOINTPARAMETERIVPROC)load("glPointParameteriv");
+	glad_glFogCoordf = (PFNGLFOGCOORDFPROC)load("glFogCoordf");
+	glad_glFogCoordfv = (PFNGLFOGCOORDFVPROC)load("glFogCoordfv");
+	glad_glFogCoordd = (PFNGLFOGCOORDDPROC)load("glFogCoordd");
+	glad_glFogCoorddv = (PFNGLFOGCOORDDVPROC)load("glFogCoorddv");
+	glad_glFogCoordPointer = (PFNGLFOGCOORDPOINTERPROC)load("glFogCoordPointer");
+	glad_glSecondaryColor3b = (PFNGLSECONDARYCOLOR3BPROC)load("glSecondaryColor3b");
+	glad_glSecondaryColor3bv = (PFNGLSECONDARYCOLOR3BVPROC)load("glSecondaryColor3bv");
+	glad_glSecondaryColor3d = (PFNGLSECONDARYCOLOR3DPROC)load("glSecondaryColor3d");
+	glad_glSecondaryColor3dv = (PFNGLSECONDARYCOLOR3DVPROC)load("glSecondaryColor3dv");
+	glad_glSecondaryColor3f = (PFNGLSECONDARYCOLOR3FPROC)load("glSecondaryColor3f");
+	glad_glSecondaryColor3fv = (PFNGLSECONDARYCOLOR3FVPROC)load("glSecondaryColor3fv");
+	glad_glSecondaryColor3i = (PFNGLSECONDARYCOLOR3IPROC)load("glSecondaryColor3i");
+	glad_glSecondaryColor3iv = (PFNGLSECONDARYCOLOR3IVPROC)load("glSecondaryColor3iv");
+	glad_glSecondaryColor3s = (PFNGLSECONDARYCOLOR3SPROC)load("glSecondaryColor3s");
+	glad_glSecondaryColor3sv = (PFNGLSECONDARYCOLOR3SVPROC)load("glSecondaryColor3sv");
+	glad_glSecondaryColor3ub = (PFNGLSECONDARYCOLOR3UBPROC)load("glSecondaryColor3ub");
+	glad_glSecondaryColor3ubv = (PFNGLSECONDARYCOLOR3UBVPROC)load("glSecondaryColor3ubv");
+	glad_glSecondaryColor3ui = (PFNGLSECONDARYCOLOR3UIPROC)load("glSecondaryColor3ui");
+	glad_glSecondaryColor3uiv = (PFNGLSECONDARYCOLOR3UIVPROC)load("glSecondaryColor3uiv");
+	glad_glSecondaryColor3us = (PFNGLSECONDARYCOLOR3USPROC)load("glSecondaryColor3us");
+	glad_glSecondaryColor3usv = (PFNGLSECONDARYCOLOR3USVPROC)load("glSecondaryColor3usv");
+	glad_glSecondaryColorPointer = (PFNGLSECONDARYCOLORPOINTERPROC)load("glSecondaryColorPointer");
+	glad_glWindowPos2d = (PFNGLWINDOWPOS2DPROC)load("glWindowPos2d");
+	glad_glWindowPos2dv = (PFNGLWINDOWPOS2DVPROC)load("glWindowPos2dv");
+	glad_glWindowPos2f = (PFNGLWINDOWPOS2FPROC)load("glWindowPos2f");
+	glad_glWindowPos2fv = (PFNGLWINDOWPOS2FVPROC)load("glWindowPos2fv");
+	glad_glWindowPos2i = (PFNGLWINDOWPOS2IPROC)load("glWindowPos2i");
+	glad_glWindowPos2iv = (PFNGLWINDOWPOS2IVPROC)load("glWindowPos2iv");
+	glad_glWindowPos2s = (PFNGLWINDOWPOS2SPROC)load("glWindowPos2s");
+	glad_glWindowPos2sv = (PFNGLWINDOWPOS2SVPROC)load("glWindowPos2sv");
+	glad_glWindowPos3d = (PFNGLWINDOWPOS3DPROC)load("glWindowPos3d");
+	glad_glWindowPos3dv = (PFNGLWINDOWPOS3DVPROC)load("glWindowPos3dv");
+	glad_glWindowPos3f = (PFNGLWINDOWPOS3FPROC)load("glWindowPos3f");
+	glad_glWindowPos3fv = (PFNGLWINDOWPOS3FVPROC)load("glWindowPos3fv");
+	glad_glWindowPos3i = (PFNGLWINDOWPOS3IPROC)load("glWindowPos3i");
+	glad_glWindowPos3iv = (PFNGLWINDOWPOS3IVPROC)load("glWindowPos3iv");
+	glad_glWindowPos3s = (PFNGLWINDOWPOS3SPROC)load("glWindowPos3s");
+	glad_glWindowPos3sv = (PFNGLWINDOWPOS3SVPROC)load("glWindowPos3sv");
+	glad_glBlendColor = (PFNGLBLENDCOLORPROC)load("glBlendColor");
+	glad_glBlendEquation = (PFNGLBLENDEQUATIONPROC)load("glBlendEquation");
+}

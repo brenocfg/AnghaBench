@@ -1,0 +1,22 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+typedef  int npy_uint64 ;
+typedef  int npy_uint32 ;
+
+/* Variables and functions */
+
+__attribute__((used)) static inline npy_uint64
+bitmask_u64(npy_uint32 n)
+{
+    return ~(~((npy_uint64)0) << n);
+}

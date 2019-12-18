@@ -1,0 +1,179 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+typedef  struct TYPE_25__   TYPE_9__ ;
+typedef  struct TYPE_24__   TYPE_6__ ;
+typedef  struct TYPE_23__   TYPE_5__ ;
+typedef  struct TYPE_22__   TYPE_4__ ;
+typedef  struct TYPE_21__   TYPE_3__ ;
+typedef  struct TYPE_20__   TYPE_2__ ;
+typedef  struct TYPE_19__   TYPE_1__ ;
+
+/* Type definitions */
+typedef  int uint32 ;
+typedef  int /*<<< orphan*/  instr_time ;
+typedef  int /*<<< orphan*/  XLogRecPtr ;
+struct TYPE_25__ {int /*<<< orphan*/  shared_blks_written; int /*<<< orphan*/  blk_write_time; } ;
+struct TYPE_19__ {int /*<<< orphan*/  blockNum; int /*<<< orphan*/  forkNum; int /*<<< orphan*/  rnode; } ;
+struct TYPE_24__ {TYPE_1__ tag; } ;
+struct TYPE_23__ {struct TYPE_23__* previous; void* arg; int /*<<< orphan*/  callback; } ;
+struct TYPE_20__ {int /*<<< orphan*/  relNode; int /*<<< orphan*/  dbNode; int /*<<< orphan*/  spcNode; } ;
+struct TYPE_21__ {TYPE_2__ node; } ;
+struct TYPE_22__ {TYPE_3__ smgr_rnode; } ;
+typedef  TYPE_4__* SMgrRelation ;
+typedef  int /*<<< orphan*/  Page ;
+typedef  TYPE_5__ ErrorContextCallback ;
+typedef  TYPE_6__ BufferDesc ;
+typedef  scalar_t__ Block ;
+
+/* Variables and functions */
+ int BM_JUST_DIRTIED ; 
+ int BM_PERMANENT ; 
+ scalar_t__ BufHdrGetBlock (TYPE_6__*) ; 
+ int /*<<< orphan*/  BufferGetLSN (TYPE_6__*) ; 
+ int /*<<< orphan*/  INSTR_TIME_ADD (int /*<<< orphan*/ ,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  INSTR_TIME_GET_MICROSEC (int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  INSTR_TIME_SET_CURRENT (int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  INSTR_TIME_SUBTRACT (int /*<<< orphan*/ ,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  InvalidBackendId ; 
+ int LockBufHdr (TYPE_6__*) ; 
+ char* PageSetChecksumCopy (int /*<<< orphan*/ ,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  StartBufferIO (TYPE_6__*,int) ; 
+ int /*<<< orphan*/  TRACE_POSTGRESQL_BUFFER_FLUSH_DONE (int /*<<< orphan*/ ,int /*<<< orphan*/ ,int /*<<< orphan*/ ,int /*<<< orphan*/ ,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  TRACE_POSTGRESQL_BUFFER_FLUSH_START (int /*<<< orphan*/ ,int /*<<< orphan*/ ,int /*<<< orphan*/ ,int /*<<< orphan*/ ,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  TerminateBufferIO (TYPE_6__*,int,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  UnlockBufHdr (TYPE_6__*,int) ; 
+ int /*<<< orphan*/  XLogFlush (int /*<<< orphan*/ ) ; 
+ TYPE_5__* error_context_stack ; 
+ TYPE_9__ pgBufferUsage ; 
+ int /*<<< orphan*/  pgstat_count_buffer_write_time (int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  shared_buffer_write_error_callback ; 
+ TYPE_4__* smgropen (int /*<<< orphan*/ ,int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  smgrwrite (TYPE_4__*,int /*<<< orphan*/ ,int /*<<< orphan*/ ,char*,int) ; 
+ scalar_t__ track_io_timing ; 
+
+__attribute__((used)) static void
+FlushBuffer(BufferDesc *buf, SMgrRelation reln)
+{
+	XLogRecPtr	recptr;
+	ErrorContextCallback errcallback;
+	instr_time	io_start,
+				io_time;
+	Block		bufBlock;
+	char	   *bufToWrite;
+	uint32		buf_state;
+
+	/*
+	 * Acquire the buffer's io_in_progress lock.  If StartBufferIO returns
+	 * false, then someone else flushed the buffer before we could, so we need
+	 * not do anything.
+	 */
+	if (!StartBufferIO(buf, false))
+		return;
+
+	/* Setup error traceback support for ereport() */
+	errcallback.callback = shared_buffer_write_error_callback;
+	errcallback.arg = (void *) buf;
+	errcallback.previous = error_context_stack;
+	error_context_stack = &errcallback;
+
+	/* Find smgr relation for buffer */
+	if (reln == NULL)
+		reln = smgropen(buf->tag.rnode, InvalidBackendId);
+
+	TRACE_POSTGRESQL_BUFFER_FLUSH_START(buf->tag.forkNum,
+										buf->tag.blockNum,
+										reln->smgr_rnode.node.spcNode,
+										reln->smgr_rnode.node.dbNode,
+										reln->smgr_rnode.node.relNode);
+
+	buf_state = LockBufHdr(buf);
+
+	/*
+	 * Run PageGetLSN while holding header lock, since we don't have the
+	 * buffer locked exclusively in all cases.
+	 */
+	recptr = BufferGetLSN(buf);
+
+	/* To check if block content changes while flushing. - vadim 01/17/97 */
+	buf_state &= ~BM_JUST_DIRTIED;
+	UnlockBufHdr(buf, buf_state);
+
+	/*
+	 * Force XLOG flush up to buffer's LSN.  This implements the basic WAL
+	 * rule that log updates must hit disk before any of the data-file changes
+	 * they describe do.
+	 *
+	 * However, this rule does not apply to unlogged relations, which will be
+	 * lost after a crash anyway.  Most unlogged relation pages do not bear
+	 * LSNs since we never emit WAL records for them, and therefore flushing
+	 * up through the buffer LSN would be useless, but harmless.  However,
+	 * GiST indexes use LSNs internally to track page-splits, and therefore
+	 * unlogged GiST pages bear "fake" LSNs generated by
+	 * GetFakeLSNForUnloggedRel.  It is unlikely but possible that the fake
+	 * LSN counter could advance past the WAL insertion point; and if it did
+	 * happen, attempting to flush WAL through that location would fail, with
+	 * disastrous system-wide consequences.  To make sure that can't happen,
+	 * skip the flush if the buffer isn't permanent.
+	 */
+	if (buf_state & BM_PERMANENT)
+		XLogFlush(recptr);
+
+	/*
+	 * Now it's safe to write buffer to disk. Note that no one else should
+	 * have been able to write it while we were busy with log flushing because
+	 * we have the io_in_progress lock.
+	 */
+	bufBlock = BufHdrGetBlock(buf);
+
+	/*
+	 * Update page checksum if desired.  Since we have only shared lock on the
+	 * buffer, other processes might be updating hint bits in it, so we must
+	 * copy the page to private storage if we do checksumming.
+	 */
+	bufToWrite = PageSetChecksumCopy((Page) bufBlock, buf->tag.blockNum);
+
+	if (track_io_timing)
+		INSTR_TIME_SET_CURRENT(io_start);
+
+	/*
+	 * bufToWrite is either the shared buffer or a copy, as appropriate.
+	 */
+	smgrwrite(reln,
+			  buf->tag.forkNum,
+			  buf->tag.blockNum,
+			  bufToWrite,
+			  false);
+
+	if (track_io_timing)
+	{
+		INSTR_TIME_SET_CURRENT(io_time);
+		INSTR_TIME_SUBTRACT(io_time, io_start);
+		pgstat_count_buffer_write_time(INSTR_TIME_GET_MICROSEC(io_time));
+		INSTR_TIME_ADD(pgBufferUsage.blk_write_time, io_time);
+	}
+
+	pgBufferUsage.shared_blks_written++;
+
+	/*
+	 * Mark the buffer as clean (unless BM_JUST_DIRTIED has become set) and
+	 * end the io_in_progress state.
+	 */
+	TerminateBufferIO(buf, true, 0);
+
+	TRACE_POSTGRESQL_BUFFER_FLUSH_DONE(buf->tag.forkNum,
+									   buf->tag.blockNum,
+									   reln->smgr_rnode.node.spcNode,
+									   reln->smgr_rnode.node.dbNode,
+									   reln->smgr_rnode.node.relNode);
+
+	/* Pop the error context stack */
+	error_context_stack = errcallback.previous;
+}

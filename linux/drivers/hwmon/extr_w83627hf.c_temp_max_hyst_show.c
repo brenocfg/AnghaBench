@@ -1,0 +1,38 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+typedef  struct TYPE_2__   TYPE_1__ ;
+
+/* Type definitions */
+typedef  int /*<<< orphan*/  u16 ;
+struct w83627hf_data {int /*<<< orphan*/ * temp_max_hyst; } ;
+struct device_attribute {int dummy; } ;
+struct device {int dummy; } ;
+typedef  int /*<<< orphan*/  ssize_t ;
+struct TYPE_2__ {int index; } ;
+
+/* Variables and functions */
+ scalar_t__ LM75_TEMP_FROM_REG (int /*<<< orphan*/ ) ; 
+ scalar_t__ TEMP_FROM_REG (int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  sprintf (char*,char*,long) ; 
+ TYPE_1__* to_sensor_dev_attr (struct device_attribute*) ; 
+ struct w83627hf_data* w83627hf_update_device (struct device*) ; 
+
+__attribute__((used)) static ssize_t
+temp_max_hyst_show(struct device *dev, struct device_attribute *devattr,
+		   char *buf)
+{
+	int nr = to_sensor_dev_attr(devattr)->index;
+	struct w83627hf_data *data = w83627hf_update_device(dev);
+
+	u16 tmp = data->temp_max_hyst[nr];
+	return sprintf(buf, "%ld\n", (nr) ? (long) LM75_TEMP_FROM_REG(tmp)
+					  : (long) TEMP_FROM_REG(tmp));
+}

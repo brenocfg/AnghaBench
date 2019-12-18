@@ -1,0 +1,28 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+typedef  int u32 ;
+struct i915_perf_stream {struct drm_i915_private* dev_priv; } ;
+struct drm_i915_private {int dummy; } ;
+
+/* Variables and functions */
+ int /*<<< orphan*/  GEN7_OASTATUS1 ; 
+ int GEN7_OASTATUS1_TAIL_MASK ; 
+ int I915_READ (int /*<<< orphan*/ ) ; 
+
+__attribute__((used)) static u32 gen7_oa_hw_tail_read(struct i915_perf_stream *stream)
+{
+	struct drm_i915_private *dev_priv = stream->dev_priv;
+	u32 oastatus1 = I915_READ(GEN7_OASTATUS1);
+
+	return oastatus1 & GEN7_OASTATUS1_TAIL_MASK;
+}

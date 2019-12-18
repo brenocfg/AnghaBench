@@ -1,0 +1,162 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+
+/* Variables and functions */
+ int /*<<< orphan*/  exit (int) ; 
+ int /*<<< orphan*/  fprintf (int /*<<< orphan*/ ,char*,char const*) ; 
+ int /*<<< orphan*/  stderr ; 
+
+__attribute__((used)) static void
+usage(int errcode)
+{
+/* This usage is generated from the pkt-gen man page:
+ *   $ man pkt-gen > x
+ * and pasted here adding the string terminators and endlines with simple
+ * regular expressions. */
+	const char *cmd = "pkt-gen";
+	fprintf(stderr,
+		"Usage:\n"
+		"%s arguments\n"
+"     -h      Show program usage and exit.\n"
+"\n"
+"     -i interface\n"
+"             Name of the network interface that pkt-gen operates on.  It can be a system network interface\n"
+"             (e.g., em0), the name of a vale(4) port (e.g., valeSSS:PPP), the name of a netmap pipe or\n"
+"             monitor, or any valid netmap port name accepted by the nm_open library function, as docu-\n"
+"             mented in netmap(4) (NIOCREGIF section).\n"
+"\n"
+"     -f function\n"
+"             The function to be executed by pkt-gen.  Specify tx for transmission, rx for reception, ping\n"
+"             for client-side ping-pong operation, and pong for server-side ping-pong operation.\n"
+"\n"
+"     -n count\n"
+"             Number of iterations of the pkt-gen function, with 0 meaning infinite).  In case of tx or rx,\n"
+"             count is the number of packets to receive or transmit.  In case of ping or pong, count is the\n"
+"             number of ping-pong transactions.\n"
+"\n"
+"     -l pkt_size\n"
+"             Packet size in bytes excluding CRC.  If passed a second time, use random sizes larger or\n"
+"             equal than the second one and lower than the first one.\n"
+"\n"
+"     -b burst_size\n"
+"             Transmit or receive up to burst_size packets at a time.\n"
+"\n"
+"     -4      Use IPv4 addresses.\n"
+"\n"
+"     -6      Use IPv6 addresses.\n"
+"\n"
+"     -d dst_ip[:port[-dst_ip:port]]\n"
+"             Destination IPv4/IPv6 address and port, single or range.\n"
+"\n"
+"     -s src_ip[:port[-src_ip:port]]\n"
+"             Source IPv4/IPv6 address and port, single or range.\n"
+"\n"
+"     -D dst_mac\n"
+"             Destination MAC address in colon notation (e.g., aa:bb:cc:dd:ee:00).\n"
+"\n"
+"     -S src_mac\n"
+"             Source MAC address in colon notation.\n"
+"\n"
+"     -a cpu_id\n"
+"             Pin the first thread of pkt-gen to a particular CPU using pthread_setaffinity_np(3).  If more\n"
+"             threads are used, they are pinned to the subsequent CPUs, one per thread.\n"
+"\n"
+"     -c cpus\n"
+"             Maximum number of CPUs to use (0 means to use all the available ones).\n"
+"\n"
+"     -p threads\n"
+"             Number of threads to use.  By default, only a single thread is used to handle all the netmap\n"
+"             rings.  If threads is larger than one, each thread handles a single TX ring (in tx mode), a\n"
+"             single RX ring (in rx mode), or a TX/RX ring couple.  The number of threads must be less or\n"
+"             equal than the number of TX (or RX) ring available in the device specified by interface.\n"
+"\n"
+"     -T report_ms\n"
+"             Number of milliseconds between reports.\n"
+"\n"
+"     -w wait_for_link_time\n"
+"             Number of seconds to wait before starting the pkt-gen function, useuful to make sure that the\n"
+"             network link is up.  A network device driver may take some time to enter netmap mode, or to\n"
+"             create a new transmit/receive ring pair when netmap(4) requests one.\n"
+"\n"
+"     -R rate\n"
+"             Packet transmission rate.  Not setting the packet transmission rate tells pkt-gen to transmit\n"
+"             packets as quickly as possible.  On servers from 2010 on-wards netmap(4) is able to com-\n"
+"             pletely use all of the bandwidth of a 10 or 40Gbps link, so this option should be used unless\n"
+"             your intention is to saturate the link.\n"
+"\n"
+"     -X      Dump payload of each packet transmitted or received.\n"
+"\n"
+"     -H len  Add empty virtio-net-header with size 'len'.  Valid sizes are 0, 10 and 12.  This option is\n"
+"             only used with Virtual Machine technologies that use virtio as a network interface.\n"
+"\n"
+"     -P file\n"
+"             Load the packet to be transmitted from a pcap file rather than constructing it within\n"
+"             pkt-gen.\n"
+"\n"
+"     -z      Use random IPv4/IPv6 src address/port.\n"
+"\n"
+"     -Z      Use random IPv4/IPv6 dst address/port.\n"
+"\n"
+"     -N      Do not normalize units (i.e., use bps, pps instead of Mbps, Kpps, etc.).\n"
+"\n"
+"     -F num_frags\n"
+"             Send multi-slot packets, each one with num_frags fragments.  A multi-slot packet is repre-\n"
+"             sented by two or more consecutive netmap slots with the NS_MOREFRAG flag set (except for the\n"
+"             last slot).  This is useful to transmit or receive packets larger than the netmap buffer\n"
+"             size.\n"
+"\n"
+"     -M frag_size\n"
+"             In multi-slot mode, frag_size specifies the size of each fragment, if smaller than the packet\n"
+"             length divided by num_frags.\n"
+"\n"
+"     -I      Use indirect buffers.  It is only valid for transmitting on VALE ports, and it is implemented\n"
+"             by setting the NS_INDIRECT flag in the netmap slots.\n"
+"\n"
+"     -W      Exit immediately if all the RX rings are empty the first time they are examined.\n"
+"\n"
+"     -v      Increase the verbosity level.\n"
+"\n"
+"     -r      In tx mode, do not initialize packets, but send whatever the content of the uninitialized\n"
+"             netmap buffers is (rubbish mode).\n"
+"\n"
+"     -A      Compute mean and standard deviation (over a sliding window) for the transmit or receive rate.\n"
+"\n"
+"     -B      Take Ethernet framing and CRC into account when computing the average bps.  This adds 4 bytes\n"
+"             of CRC and 20 bytes of framing to each packet.\n"
+"\n"
+"     -C tx_slots[,rx_slots[,tx_rings[,rx_rings]]]\n"
+"             Configuration in terms of number of rings and slots to be used when opening the netmap port.\n"
+"             Such configuration has effect on software ports created on the fly, such as VALE ports and\n"
+"             netmap pipes.  The configuration may consist of 1 to 4 numbers separated by commas: tx_slots,\n"
+"             rx_slots, tx_rings, rx_rings.  Missing numbers or zeroes stand for default values.  As an\n"
+"             additional convenience, if exactly one number is specified, then this is assigned to both\n"
+"             tx_slots and rx_slots.  If there is no fourth number, then the third one is assigned to both\n"
+"             tx_rings and rx_rings.\n"
+"\n"
+"     -o options		data generation options (parsed using atoi)\n"
+"				OPT_PREFETCH	1\n"
+"				OPT_ACCESS	2\n"
+"				OPT_COPY	4\n"
+"				OPT_MEMCPY	8\n"
+"				OPT_TS		16 (add a timestamp)\n"
+"				OPT_INDIRECT	32 (use indirect buffers)\n"
+"				OPT_DUMP	64 (dump rx/tx traffic)\n"
+"				OPT_RUBBISH	256\n"
+"					(send wathever the buffers contain)\n"
+"				OPT_RANDOM_SRC  512\n"
+"				OPT_RANDOM_DST  1024\n"
+"				OPT_PPS_STATS   2048\n"
+		     "",
+		cmd);
+	exit(errcode);
+}

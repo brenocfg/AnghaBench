@@ -1,0 +1,83 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+typedef  struct TYPE_3__   TYPE_1__ ;
+
+/* Type definitions */
+struct TYPE_3__ {int val; char const* name; } ;
+typedef  TYPE_1__ wininet_flag_info ;
+typedef  int /*<<< orphan*/  internet_status ;
+typedef  int DWORD ;
+
+/* Variables and functions */
+ TYPE_1__ const FE (int /*<<< orphan*/ ) ; 
+#define  INTERNET_STATUS_CLOSING_CONNECTION 152 
+#define  INTERNET_STATUS_CONNECTED_TO_SERVER 151 
+#define  INTERNET_STATUS_CONNECTING_TO_SERVER 150 
+#define  INTERNET_STATUS_CONNECTION_CLOSED 149 
+#define  INTERNET_STATUS_COOKIE_HISTORY 148 
+#define  INTERNET_STATUS_COOKIE_RECEIVED 147 
+#define  INTERNET_STATUS_COOKIE_SENT 146 
+#define  INTERNET_STATUS_CTL_RESPONSE_RECEIVED 145 
+#define  INTERNET_STATUS_HANDLE_CLOSING 144 
+#define  INTERNET_STATUS_HANDLE_CREATED 143 
+#define  INTERNET_STATUS_INTERMEDIATE_RESPONSE 142 
+#define  INTERNET_STATUS_NAME_RESOLVED 141 
+#define  INTERNET_STATUS_P3P_HEADER 140 
+#define  INTERNET_STATUS_P3P_POLICYREF 139 
+#define  INTERNET_STATUS_PREFETCH 138 
+#define  INTERNET_STATUS_PRIVACY_IMPACTED 137 
+#define  INTERNET_STATUS_RECEIVING_RESPONSE 136 
+#define  INTERNET_STATUS_REDIRECT 135 
+#define  INTERNET_STATUS_REQUEST_COMPLETE 134 
+#define  INTERNET_STATUS_REQUEST_SENT 133 
+#define  INTERNET_STATUS_RESOLVING_NAME 132 
+#define  INTERNET_STATUS_RESPONSE_RECEIVED 131 
+#define  INTERNET_STATUS_SENDING_REQUEST 130 
+#define  INTERNET_STATUS_STATE_CHANGE 129 
+#define  INTERNET_STATUS_USER_INPUT_REQUIRED 128 
+
+__attribute__((used)) static const char *get_callback_name(DWORD dwInternetStatus) {
+    static const wininet_flag_info internet_status[] = {
+#define FE(x) { x, #x }
+	FE(INTERNET_STATUS_RESOLVING_NAME),
+	FE(INTERNET_STATUS_NAME_RESOLVED),
+	FE(INTERNET_STATUS_CONNECTING_TO_SERVER),
+	FE(INTERNET_STATUS_CONNECTED_TO_SERVER),
+	FE(INTERNET_STATUS_SENDING_REQUEST),
+	FE(INTERNET_STATUS_REQUEST_SENT),
+	FE(INTERNET_STATUS_RECEIVING_RESPONSE),
+	FE(INTERNET_STATUS_RESPONSE_RECEIVED),
+	FE(INTERNET_STATUS_CTL_RESPONSE_RECEIVED),
+	FE(INTERNET_STATUS_PREFETCH),
+	FE(INTERNET_STATUS_CLOSING_CONNECTION),
+	FE(INTERNET_STATUS_CONNECTION_CLOSED),
+	FE(INTERNET_STATUS_HANDLE_CREATED),
+	FE(INTERNET_STATUS_HANDLE_CLOSING),
+	FE(INTERNET_STATUS_REQUEST_COMPLETE),
+	FE(INTERNET_STATUS_REDIRECT),
+	FE(INTERNET_STATUS_INTERMEDIATE_RESPONSE),
+	FE(INTERNET_STATUS_USER_INPUT_REQUIRED),
+	FE(INTERNET_STATUS_STATE_CHANGE),
+	FE(INTERNET_STATUS_COOKIE_SENT),
+	FE(INTERNET_STATUS_COOKIE_RECEIVED),
+	FE(INTERNET_STATUS_PRIVACY_IMPACTED),
+	FE(INTERNET_STATUS_P3P_HEADER),
+	FE(INTERNET_STATUS_P3P_POLICYREF),
+	FE(INTERNET_STATUS_COOKIE_HISTORY)
+#undef FE
+    };
+    DWORD i;
+
+    for (i = 0; i < (sizeof(internet_status) / sizeof(internet_status[0])); i++) {
+	if (internet_status[i].val == dwInternetStatus) return internet_status[i].name;
+    }
+    return "Unknown";
+}

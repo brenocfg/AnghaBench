@@ -1,0 +1,24 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+struct buf_sparse_priv {int /*<<< orphan*/  sparse; } ;
+typedef  int /*<<< orphan*/  RList ;
+typedef  int /*<<< orphan*/  RBuffer ;
+
+/* Variables and functions */
+ struct buf_sparse_priv* get_priv_sparse (int /*<<< orphan*/ *) ; 
+ int /*<<< orphan*/ * r_list_clone (int /*<<< orphan*/ ) ; 
+
+__attribute__((used)) static RList *buf_sparse_nonempty_list(RBuffer *b) {
+	struct buf_sparse_priv *priv = get_priv_sparse (b);
+	return r_list_clone (priv->sparse);
+}

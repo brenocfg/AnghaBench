@@ -1,0 +1,37 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+typedef  struct TYPE_3__   TYPE_1__ ;
+
+/* Type definitions */
+struct TYPE_3__ {scalar_t__ mode; int /*<<< orphan*/  saved_r2; int /*<<< orphan*/  saved_r0; } ;
+typedef  TYPE_1__ PIA ;
+
+/* Variables and functions */
+ int /*<<< orphan*/  CCP (int) ; 
+ int /*<<< orphan*/  P1 ; 
+ int /*<<< orphan*/  P2 ; 
+ int /*<<< orphan*/  r0 () ; 
+ int /*<<< orphan*/  r2 () ; 
+ int /*<<< orphan*/  w0 (int) ; 
+
+__attribute__((used)) static void on26_connect ( PIA *pi )
+
+{       int	x;
+
+	pi->saved_r0 = r0();
+        pi->saved_r2 = r2();
+
+        CCP(0x20);
+	x = 8; if (pi->mode) x = 9;
+
+	w0(2); P1; w0(8); P2;
+	w0(2); P1; w0(x); P2;
+}

@@ -1,0 +1,45 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+typedef  struct TYPE_4__   TYPE_2__ ;
+typedef  struct TYPE_3__   TYPE_1__ ;
+
+/* Type definitions */
+typedef  int /*<<< orphan*/  msg ;
+struct TYPE_4__ {int /*<<< orphan*/  type; } ;
+struct TYPE_3__ {TYPE_2__ header; int /*<<< orphan*/  stream; int /*<<< orphan*/  context; } ;
+typedef  TYPE_1__ WFC_IPC_MSG_SET_DEFERRAL_STREAM_T ;
+typedef  int /*<<< orphan*/  WFCNativeStreamType ;
+typedef  int /*<<< orphan*/  WFCContext ;
+typedef  scalar_t__ VCOS_STATUS_T ;
+
+/* Variables and functions */
+ int /*<<< orphan*/  VCOS_FUNCTION ; 
+ scalar_t__ VCOS_SUCCESS ; 
+ int /*<<< orphan*/  WFC_IPC_MSG_SET_DEFERRAL_STREAM ; 
+ int /*<<< orphan*/  vcos_assert (int) ; 
+ int /*<<< orphan*/  vcos_log_trace (char*,int /*<<< orphan*/ ,int /*<<< orphan*/ ,int /*<<< orphan*/ ) ; 
+ scalar_t__ wfc_client_ipc_send (TYPE_2__*,int) ; 
+
+void wfc_server_set_deferral_stream(WFCContext context, WFCNativeStreamType stream)
+{
+   WFC_IPC_MSG_SET_DEFERRAL_STREAM_T msg;
+   VCOS_STATUS_T status;
+
+   vcos_log_trace("%s: context 0x%x stream 0x%x", VCOS_FUNCTION, context, stream);
+
+   msg.header.type = WFC_IPC_MSG_SET_DEFERRAL_STREAM;
+   msg.context = context;
+   msg.stream = stream;
+
+   status = wfc_client_ipc_send(&msg.header, sizeof(msg));
+
+   vcos_assert(status == VCOS_SUCCESS);
+}

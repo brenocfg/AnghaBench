@@ -1,0 +1,37 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+typedef  int /*<<< orphan*/  svn_ra_session_t ;
+typedef  int /*<<< orphan*/  svn_error_t ;
+typedef  int /*<<< orphan*/  svn_client_ctx_t ;
+typedef  int /*<<< orphan*/  apr_pool_t ;
+
+/* Variables and functions */
+ int /*<<< orphan*/  FALSE ; 
+ int /*<<< orphan*/  svn_client__open_ra_session_internal (int /*<<< orphan*/ **,int /*<<< orphan*/ *,char const*,char const*,int /*<<< orphan*/ *,int /*<<< orphan*/ ,int /*<<< orphan*/ ,int /*<<< orphan*/ *,int /*<<< orphan*/ *,int /*<<< orphan*/ *) ; 
+ int /*<<< orphan*/ * svn_error_trace (int /*<<< orphan*/ ) ; 
+
+svn_error_t *
+svn_client_open_ra_session2(svn_ra_session_t **session,
+                            const char *url,
+                            const char *wri_abspath,
+                            svn_client_ctx_t *ctx,
+                            apr_pool_t *result_pool,
+                            apr_pool_t *scratch_pool)
+{
+  return svn_error_trace(
+             svn_client__open_ra_session_internal(session, NULL, url,
+                                                  wri_abspath, NULL,
+                                                  FALSE, FALSE,
+                                                  ctx, result_pool,
+                                                  scratch_pool));
+}

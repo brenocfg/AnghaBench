@@ -1,0 +1,35 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+typedef  int uint32_t ;
+typedef  int /*<<< orphan*/  Buffer ;
+
+/* Variables and functions */
+ int /*<<< orphan*/ * make_buffer () ; 
+ int /*<<< orphan*/  read_rune (int*,char*,char*) ; 
+ int /*<<< orphan*/  write16 (int /*<<< orphan*/ *,int) ; 
+
+Buffer *to_utf16(char *p, int len) {
+    Buffer *b = make_buffer();
+    char *end = p + len;
+    while (p != end) {
+        uint32_t rune;
+        p += read_rune(&rune, p, end);
+        if (rune < 0x10000) {
+            write16(b, rune);
+        } else {
+            write16(b, (rune >> 10) + 0xD7C0);
+            write16(b, (rune & 0x3FF) + 0xDC00);
+        }
+    }
+    return b;
+}

@@ -1,0 +1,28 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+typedef  struct TYPE_2__   TYPE_1__ ;
+
+/* Type definitions */
+struct ra_swapchain {int /*<<< orphan*/  ctx; struct priv* priv; } ;
+struct TYPE_2__ {int /*<<< orphan*/  (* swap_buffers ) (int /*<<< orphan*/ ) ;} ;
+struct priv {TYPE_1__ params; int /*<<< orphan*/  swapchain; } ;
+
+/* Variables and functions */
+ int /*<<< orphan*/  pl_swapchain_swap_buffers (int /*<<< orphan*/ ) ; 
+ int /*<<< orphan*/  stub1 (int /*<<< orphan*/ ) ; 
+
+__attribute__((used)) static void swap_buffers(struct ra_swapchain *sw)
+{
+    struct priv *p = sw->priv;
+    pl_swapchain_swap_buffers(p->swapchain);
+    if (p->params.swap_buffers)
+        p->params.swap_buffers(sw->ctx);
+}

@@ -1,0 +1,24 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+typedef  int /*<<< orphan*/  TIFF ;
+
+/* Variables and functions */
+ int /*<<< orphan*/  CmpLongTag (int /*<<< orphan*/ *,int /*<<< orphan*/ *,int) ; 
+ int /*<<< orphan*/  FatalError (char*,char const*) ; 
+
+__attribute__((used)) static
+void EqualLongTag(TIFF* tif1, TIFF* tif2, int tag, const char* Error)
+{
+    if (!CmpLongTag(tif1, tif2, tag))
+        FatalError("%s is different", Error);
+}

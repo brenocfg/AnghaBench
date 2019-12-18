@@ -1,0 +1,22 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+typedef  int /*<<< orphan*/  uint8_t ;
+
+/* Variables and functions */
+ int /*<<< orphan*/  led_set_user (int /*<<< orphan*/ ) ; 
+
+void led_set_kb(uint8_t usb_led) {
+  // Code for caps lock LED as reported by the OS
+  // Set this per keymap, instead of globally
+  led_set_user(usb_led);
+}

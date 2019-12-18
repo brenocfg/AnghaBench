@@ -1,0 +1,23 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+typedef  enum cable_selections { ____Placeholder_cable_selections } cable_selections ;
+
+/* Variables and functions */
+
+__attribute__((used)) static enum cable_selections decode_selection_byte(
+	int phy,
+	unsigned char selection_byte)
+{
+	return ((selection_byte & (1 << phy)) ? 1 : 0)
+		+ (selection_byte & (1 << (phy + 4)) ? 2 : 0);
+}

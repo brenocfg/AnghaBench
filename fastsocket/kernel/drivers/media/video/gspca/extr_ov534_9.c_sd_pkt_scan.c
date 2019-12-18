@@ -1,0 +1,101 @@
+#define NULL ((void*)0)
+typedef unsigned long size_t;  // Customize by platform.
+typedef long intptr_t; typedef unsigned long uintptr_t;
+typedef long scalar_t__;  // Either arithmetic or pointer type.
+/* By default, we understand bool (as a convenience). */
+typedef int bool;
+#define false 0
+#define true 1
+
+/* Forward declarations */
+
+/* Type definitions */
+typedef  int u8 ;
+struct sd {int last_pts; int last_fid; } ;
+struct gspca_dev {scalar_t__ last_packet_type; } ;
+typedef  int __u32 ;
+
+/* Variables and functions */
+ scalar_t__ DISCARD_PACKET ; 
+ int /*<<< orphan*/  D_PACK ; 
+ scalar_t__ FIRST_PACKET ; 
+ scalar_t__ INTER_PACKET ; 
+ scalar_t__ LAST_PACKET ; 
+ int /*<<< orphan*/  PDEBUG (int /*<<< orphan*/ ,char*) ; 
+ int UVC_STREAM_EOF ; 
+ int UVC_STREAM_ERR ; 
+ int UVC_STREAM_FID ; 
+ int UVC_STREAM_PTS ; 
+ int /*<<< orphan*/  gspca_frame_add (struct gspca_dev*,scalar_t__,int*,int) ; 
+ int min (int,int) ; 
+
+__attribute__((used)) static void sd_pkt_scan(struct gspca_dev *gspca_dev,
+			u8 *data, int len)
+{
+	struct sd *sd = (struct sd *) gspca_dev;
+	__u32 this_pts;
+	u8 this_fid;
+	int remaining_len = len;
+
+	do {
+		len = min(remaining_len, 2040);
+
+		/* Payloads are prefixed with a UVC-style header.  We
+		   consider a frame to start when the FID toggles, or the PTS
+		   changes.  A frame ends when EOF is set, and we've received
+		   the correct number of bytes. */
+
+		/* Verify UVC header.  Header length is always 12 */
+		if (data[0] != 12 || len < 12) {
+			PDEBUG(D_PACK, "bad header");
+			goto discard;
+		}
+
+		/* Check errors */
+		if (data[1] & UVC_STREAM_ERR) {
+			PDEBUG(D_PACK, "payload error");
+			goto discard;
+		}
+
+		/* Extract PTS and FID */
+		if (!(data[1] & UVC_STREAM_PTS)) {
+			PDEBUG(D_PACK, "PTS not present");
+			goto discard;
+		}
+		this_pts = (data[5] << 24) | (data[4] << 16)
+						| (data[3] << 8) | data[2];
+		this_fid = data[1] & UVC_STREAM_FID;
+
+		/* If PTS or FID has changed, start a new frame. */
+		if (this_pts != sd->last_pts || this_fid != sd->last_fid) {
+			if (gspca_dev->last_packet_type == INTER_PACKET)
+				gspca_frame_add(gspca_dev, LAST_PACKET,
+						NULL, 0);
+			sd->last_pts = this_pts;
+			sd->last_fid = this_fid;
+			gspca_frame_add(gspca_dev, FIRST_PACKET,
+					data + 12, len - 12);
+		/* If this packet is marked as EOF, end the frame */
+		} else if (data[1] & UVC_STREAM_EOF) {
+			sd->last_pts = 0;
+			gspca_frame_add(gspca_dev, LAST_PACKET,
+					data + 12, len - 12);
+		} else {
+
+			/* Add the data from this payload */
+			gspca_frame_add(gspca_dev, INTER_PACKET,
+					data + 12, len - 12);
+		}
+
+		/* Done this payload */
+		goto scan_next;
+
+discard:
+		/* Discard data until a new frame starts. */
+		gspca_dev->last_packet_type = DISCARD_PACKET;
+
+scan_next:
+		remaining_len -= len;
+		data += len;
+	} while (remaining_len > 0);
+}
